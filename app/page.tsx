@@ -351,8 +351,8 @@ export default function Home() {
               <h4 className="font-bold text-on-surface mb-4">Audio Fidelity</h4>
               <ul className="flex flex-col gap-3">
                 <li><a href="/320kbps.html" className="text-sm text-on-surface-variant hover:text-primary transition-colors">320kbps Studio Master</a></li>
-                <li><Link href="/" className="text-sm text-on-surface-variant hover:text-primary transition-colors">192kbps Standard MP3</Link></li>
-                <li><Link href="/" className="text-sm text-on-surface-variant hover:text-primary transition-colors">128kbps Speech Bitrate</Link></li>
+                <li><a href="https://m4atomp3converter.com/" className="text-sm text-on-surface-variant hover:text-primary transition-colors">192kbps Standard MP3</a></li>
+                <li><a href="https://m4atomp3converter.com/" className="text-sm text-on-surface-variant hover:text-primary transition-colors">128kbps Speech Bitrate</a></li>
               </ul>
             </div>
 
@@ -370,9 +370,9 @@ export default function Home() {
             <div>
               <h4 className="font-bold text-on-surface mb-4">Platform & Legal</h4>
               <ul className="flex flex-col gap-3">
-                <li><a href="/privacy-policy.html" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Privacy Policy</a></li>
-                <li><a href="/terms.html" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Terms of Service</a></li>
-                <li><a href="/about.html" className="text-sm text-on-surface-variant hover:text-primary transition-colors">About M4A to MP3 Converter.com</a></li>
+                <li><a href="https://m4atomp3converter.com/privacy-policy.html" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Privacy Policy</a></li>
+                <li><a href="https://m4atomp3converter.com/terms.html" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Terms of Service</a></li>
+                <li><a href="https://m4atomp3converter.com/about.html" className="text-sm text-on-surface-variant hover:text-primary transition-colors">About M4A to MP3 Converter.com</a></li>
               </ul>
             </div>
 
