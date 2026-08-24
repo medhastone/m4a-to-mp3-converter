@@ -260,7 +260,7 @@ export default function Converter() {
       <div className="relative w-full min-h-[256px] flex flex-col">
         {status === 'idle' && (
           <div 
-            className={`flex-1 border-2 border-dashed rounded-xl flex flex-col items-center justify-center gap-4 cursor-pointer transition-all duration-300 group/drop bg-surface-dim/50 p-6
+            className={`flex-auto border-2 border-dashed rounded-xl flex flex-col items-center justify-center gap-4 cursor-pointer transition-all duration-300 group/drop bg-surface-dim/50 p-6
               ${isDragging ? 'border-primary bg-primary/5 scale-[1.02]' : 'border-outline-variant hover:border-primary/50'}`}
             onDragEnter={(e) => { e.preventDefault(); setIsDragging(true); }}
             onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
@@ -301,7 +301,7 @@ export default function Converter() {
         )}
 
         {(status === 'processing' || status === 'done') && (
-          <div className="flex-1 flex flex-col items-center justify-center gap-4 bg-surface-dim/80 rounded-xl overflow-hidden border border-white/5 py-8 relative">
+          <div className="flex-auto flex flex-col items-center justify-center gap-4 bg-surface-dim/80 rounded-xl border border-white/5 py-8 relative">
              {/* Ambient Glow */}
              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(249,115,22,0.1)_0%,transparent_70%)] pointer-events-none"></div>
              
@@ -398,7 +398,7 @@ export default function Converter() {
         )}
 
         {status === 'error' && (
-          <div className="flex-1 flex flex-col items-center justify-center gap-4 bg-surface-dim/95 rounded-xl border border-error/50 p-8 text-center z-20 relative">
+          <div className="flex-auto flex flex-col items-center justify-center gap-4 bg-surface-dim/95 rounded-xl border border-error/50 p-8 text-center z-20 relative">
             <div className="w-16 h-16 rounded-full bg-error/20 flex items-center justify-center">
                <span className="text-error font-bold text-3xl">!</span>
             </div>
