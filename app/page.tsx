@@ -1,22 +1,23 @@
 import Converter from './components/Converter';
 import { Gauge, Activity, AudioLines, Mic, Monitor, Smartphone, Layers, ShieldCheck, ChevronDown } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Home() {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-surface-container/80 backdrop-blur-xl border-b border-outline-variant/20 shadow-[0_4px_30px_rgba(0,0,0,0.3)]">
         <div className="h-20 w-full px-5 lg:px-10 flex items-center justify-between mx-auto max-w-[1440px]">
-          <a href="/" className="flex items-center gap-3 group">
+          <Link href="/" className="flex items-center gap-3 group">
             <div className="w-8 h-8 bg-gradient-to-br from-primary to-primary-container rounded flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
                <AudioLines className="text-on-primary w-5 h-5" />
             </div>
             <span className="font-semibold text-xl tracking-tight group-hover:text-primary transition-colors">M4A to MP3 Converter<span className="text-primary">.com</span></span>
-          </a>
+          </Link>
           
           <nav className="hidden lg:flex items-center gap-6 mx-12">
-            <a className="text-on-surface-variant hover:text-on-surface transition-colors font-medium text-sm" href="/#how-it-works">How it Works</a>
-            <a className="text-on-surface-variant hover:text-on-surface transition-colors font-medium text-sm" href="/#specs">Technical Specs</a>
-            <a className="text-on-surface-variant hover:text-on-surface transition-colors font-medium text-sm" href="/#faq">FAQ</a>
+            <Link className="text-on-surface-variant hover:text-on-surface transition-colors font-medium text-sm" href="/#how-it-works">How it Works</Link>
+            <Link className="text-on-surface-variant hover:text-on-surface transition-colors font-medium text-sm" href="/#specs">Technical Specs</Link>
+            <Link className="text-on-surface-variant hover:text-on-surface transition-colors font-medium text-sm" href="/#faq">FAQ</Link>
                 
             <div className="relative group">
               <button className="text-on-surface-variant hover:text-on-surface transition-colors font-medium text-sm flex items-center gap-1">
@@ -155,7 +156,7 @@ export default function Home() {
                 </div>
                 <h3 className="font-bold text-2xl text-on-surface">Client-Side Encoding</h3>
                 <p className="text-on-surface-variant leading-relaxed text-sm md:text-base">
-                  This is where the magic happens. Our embedded <strong>LAME v3.1 encoder</strong>, compiled to WebAssembly, springs into action. Using your device's own CPU and RAM, it perfectly transcodes the audio bit-by-bit from M4A into a universally compatible MP3 format. Advanced dithering algorithms ensure that harmonic distortion is minimized and the original dynamic range is preserved.
+                  This is where the magic happens. Our embedded <strong>LAME v3.1 encoder</strong>, compiled to WebAssembly, springs into action. Using your device&apos;s own CPU and RAM, it perfectly transcodes the audio bit-by-bit from M4A into a universally compatible MP3 format. Advanced dithering algorithms ensure that harmonic distortion is minimized and the original dynamic range is preserved.
                 </p>
               </div>
 
@@ -169,7 +170,7 @@ export default function Home() {
                 </div>
                 <h3 className="font-bold text-2xl text-on-surface">Secure Download</h3>
                 <p className="text-on-surface-variant leading-relaxed text-sm md:text-base">
-                  Once the CPU finishes the transcoding cycle, the new MP3 file is generated directly in your browser's local memory. A secure Blob URL is created, triggering an immediate download to your local hard drive or smartphone storage. Fast, incredibly efficient, and mathematically impossible for us to access your data.
+                  Once the CPU finishes the transcoding cycle, the new MP3 file is generated directly in your browser&apos;s local memory. A secure Blob URL is created, triggering an immediate download to your local hard drive or smartphone storage. Fast, incredibly efficient, and mathematically impossible for us to access your data.
                 </p>
               </div>
             </div>
@@ -287,7 +288,7 @@ export default function Home() {
                   How do I convert an iPhone Voice Memo to MP3?
                 </h4>
                 <p className="text-on-surface-variant leading-relaxed text-base">
-                  Apple saves all voice memos in the M4A format by default. To convert them: open the Voice Memos app on your iPhone, tap the share icon on your recording, and select "Save to Files". Then, open our converter in Safari or Chrome, click the upload area, select your saved M4A file from iCloud or local storage, and click convert. The new MP3 will instantly save to your Downloads folder.
+                  Apple saves all voice memos in the M4A format by default. To convert them: open the Voice Memos app on your iPhone, tap the share icon on your recording, and select &quot;Save to Files&quot;. Then, open our converter in Safari or Chrome, click the upload area, select your saved M4A file from iCloud or local storage, and click convert. The new MP3 will instantly save to your Downloads folder.
                 </p>
               </div>
 
@@ -309,7 +310,7 @@ export default function Home() {
                   Is there a file size limit for audio conversion?
                 </h4>
                 <p className="text-on-surface-variant leading-relaxed text-base">
-                  Because everything happens locally in your browser's memory (RAM), the limit depends on your specific device rather than our servers. There are no artificial limits imposed by us. Most modern smartphones and laptop computers can easily handle audio files ranging from a few megabytes up to 2GB in size without crashing or slowing down.
+                  Because everything happens locally in your browser&apos;s memory (RAM), the limit depends on your specific device rather than our servers. There are no artificial limits imposed by us. Most modern smartphones and laptop computers can easily handle audio files ranging from a few megabytes up to 2GB in size without crashing or slowing down.
                 </p>
               </div>
 
@@ -320,7 +321,7 @@ export default function Home() {
                   Can I edit the ID3 tags (Title, Artist) during conversion?
                 </h4>
                 <p className="text-on-surface-variant leading-relaxed text-base">
-                  Yes! We have built a robust ID3 metadata tagging system directly into the converter. Before you click "Convert to MP3", you can optionally enter a custom Track Title, Artist Name, and Album. These tags will be permanently embedded into the resulting MP3 file, ensuring your audio is perfectly organized when imported into media players like Spotify, iTunes, or Windows Media Player.
+                  Yes! We have built a robust ID3 metadata tagging system directly into the converter. Before you click &quot;Convert to MP3&quot;, you can optionally enter a custom Track Title, Artist Name, and Album. These tags will be permanently embedded into the resulting MP3 file, ensuring your audio is perfectly organized when imported into media players like Spotify, iTunes, or Windows Media Player.
                 </p>
               </div>
               
@@ -350,8 +351,8 @@ export default function Home() {
               <h4 className="font-bold text-on-surface mb-4">Audio Fidelity</h4>
               <ul className="flex flex-col gap-3">
                 <li><a href="/320kbps.html" className="text-sm text-on-surface-variant hover:text-primary transition-colors">320kbps Studio Master</a></li>
-                <li><a href="/" className="text-sm text-on-surface-variant hover:text-primary transition-colors">192kbps Standard MP3</a></li>
-                <li><a href="/" className="text-sm text-on-surface-variant hover:text-primary transition-colors">128kbps Speech Bitrate</a></li>
+                <li><Link href="/" className="text-sm text-on-surface-variant hover:text-primary transition-colors">192kbps Standard MP3</Link></li>
+                <li><Link href="/" className="text-sm text-on-surface-variant hover:text-primary transition-colors">128kbps Speech Bitrate</Link></li>
               </ul>
             </div>
 
