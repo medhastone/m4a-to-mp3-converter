@@ -15,8 +15,11 @@ const jbMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'M4A to MP3 Converter - Studio Grade',
+  title: 'M4A to MP3 Converter.com - 100% Free, Fast & Client-Side Local Audio Transcoder',
   description: 'Locally transcode M4A to high-fidelity MP3. Zero server uploads.',
+  openGraph: {
+    siteName: 'M4A to MP3 Converter.com',
+  }
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {

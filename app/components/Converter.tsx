@@ -196,9 +196,11 @@ export default function Converter() {
   };
 
   return (
-    <div className="w-full md:w-2/3 bg-surface-container/80 backdrop-blur-2xl rounded-2xl border border-white/5 shadow-2xl relative overflow-hidden group p-6 md:p-10">
-      
-      {/* Configuration Bar */}
+    <div className="w-full md:w-2/3 flex flex-col gap-4">
+      {/* Converter Card */}
+      <div className="w-full bg-surface-container/80 backdrop-blur-2xl rounded-2xl border border-white/5 shadow-2xl relative overflow-hidden group p-6 md:p-10">
+        
+        {/* Configuration Bar */}
       <div className="flex flex-col sm:flex-row gap-6 mb-8 pb-6 border-b border-outline-variant/30">
         {/* Bitrate Selector */}
         <div className="flex-1 flex flex-col gap-2">
@@ -226,6 +228,9 @@ export default function Converter() {
               </button>
             ))}
           </div>
+          <p className="text-[11px] text-on-surface-variant mt-1 leading-snug">
+            Choose 320 kbps for studio master fidelity, 192 kbps for standard web audio, or 128 kbps for lightweight file transfers.
+          </p>
         </div>
 
         {/* Topology Selector */}
@@ -409,6 +414,16 @@ export default function Converter() {
             </button>
           </div>
         )}
+      </div>
+      </div>
+      
+      {/* Privacy & Security Badge Banner */}
+      <div className="w-full flex items-start sm:items-center justify-start gap-3 px-5 py-4 bg-surface-container/40 backdrop-blur-md rounded-xl border border-outline-variant/30 text-sm shadow-sm relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent pointer-events-none"></div>
+        <span className="text-primary text-lg leading-none relative z-10">🔒</span>
+        <p className="text-on-surface-variant leading-relaxed relative z-10">
+          <span className="font-semibold text-on-surface">100% Private & Client-Side:</span> Your files are transcoded locally using Web Audio API. No uploads, no servers, and 100% offline-safe.
+        </p>
       </div>
     </div>
   );

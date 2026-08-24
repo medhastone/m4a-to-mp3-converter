@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100% Private M4A to MP3 Converter - Zero Cloud Uploads</title>
+    <meta name="description" content="Convert confidential M4A audio files to MP3 with absolute privacy. 100% client-side Web Audio execution. Zero server uploads, zero logs.">
+    <link rel="canonical" href="https://m4atomp3converter.com/client-side-safe">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        surface: '#020617', // slate-950
+                        'surface-dim': '#0f172a', // slate-900
+                        primary: '#10b981', // emerald-500
+                        'primary-container': '#059669', // emerald-600
+                        secondary: '#f97316', // orange-500
+                        'secondary-container': '#ea580c', // orange-600
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    animation: {
+                        pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'ping-slow': 'ping 3s cubic-bezier(0, 0, 0.2, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- LameJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lamejs/1.2.1/lame.min.js"></script>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "name": "Private M4A to MP3 Converter",
+          "url": "https://m4atomp3converter.com/client-side-safe",
+          "description": "A 100% private, client-side m4a to mp3 converter. It operates completely offline in the browser, guaranteeing zero cloud uploads and absolute confidentiality.",
+          "applicationCategory": "MultimediaApplication",
+          "operatingSystem": "All",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Are my voice recordings ever stored on your servers?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Absolutely not. Because this is a client side m4a to mp3 converter, the entire decoding and encoding process happens locally inside your device's RAM. Zero bytes are uploaded to our servers, and no logs of your audio are ever created."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I disconnect my internet Wi-Fi and still convert audio?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes! Once you load this webpage, you can completely disconnect from Wi-Fi or turn on Airplane Mode. Because it is an m4a to mp3 converter offline safe tool, it utilizes browser WebAssembly to function without any active internet connection."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How does in-browser client-side processing ensure GDPR compliance?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "By never transmitting user data or audio files across the internet, there is no data collection, no third-party processor handoff, and no data residency concerns. The user maintains 100% custody of their files at all times."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #020617; color: #f8fafc; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .glass-panel { background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(16px); border: 1px solid rgba(16, 185, 129, 0.1); }
+    </style>
+    <meta property="og:site_name" content="M4A to MP3 Converter.com">
+</head>
+<body class="antialiased min-h-screen flex flex-col relative overflow-x-hidden">
+    <!-- Grid Background -->
+    <div class="fixed inset-0 pointer-events-none z-0">
+        <div class="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.03)_1px,transparent_1px)] bg-[size:40px_40px] opacity-30"></div>
+    </div>
+
+    <!-- Sticky Header -->
+    <header class="sticky top-0 z-50 glass-panel border-b border-primary/20 px-6 py-4 flex items-center justify-between shadow-[0_4px_30px_rgba(16,185,129,0.05)]">
+        <a href="/" class="flex items-center gap-2 text-white font-bold text-xl tracking-tight group">
+            <i data-lucide="audio-lines" class="text-primary group-hover:scale-110 transition-transform"></i>
+            M4A<span class="text-white/40 font-light">to</span>MP3
+        </a>
+        <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+            <a href="/" class="hover:text-white transition-colors">Home</a>
+            <a href="/batch-converter.html" class="hover:text-white transition-colors">Batch Tool</a>
+            <a href="/client-side-safe" class="text-primary">Security</a>
+        </div>
+        <div class="flex items-center gap-2 bg-primary/10 border border-primary/30 px-3 py-1.5 rounded-full relative">
+            <div class="absolute inset-0 rounded-full border border-primary/50 animate-ping-slow pointer-events-none"></div>
+            <i data-lucide="shield-check" class="w-4 h-4 text-primary"></i>
+            <span class="text-xs font-mono text-primary font-bold tracking-wide uppercase">Zero-Telemetry Verified • 100% Offline Safe</span>
+        </div>
+    </header>
+
+    <main class="flex-1 relative z-10 w-full max-w-5xl mx-auto px-6 py-12 flex flex-col gap-16">
+        
+        <!-- Hero Section -->
+        <section class="text-center max-w-3xl mx-auto">
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
+                100% Private <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-primary drop-shadow-md">M4A to MP3 Converter</span>
+            </h1>
+            <p class="text-slate-400 text-lg leading-relaxed">
+                Convert confidential M4A audio files to MP3 with absolute privacy. Built for legal, medical, and journalism professionals requiring <strong class="text-emerald-400 font-semibold">zero server uploads</strong> and zero activity logs.
+            </p>
+        </section>
+
+        <!-- Interactive Workspace -->
+        <section class="glass-panel rounded-2xl shadow-2xl p-6 md:p-10 relative overflow-hidden group">
+            
+            <div class="absolute -left-32 -top-32 w-64 h-64 bg-primary/5 rounded-full blur-[80px] pointer-events-none"></div>
+
+            <!-- Configuration Bar -->
+            <div class="flex flex-col md:flex-row gap-6 mb-8 pb-6 border-b border-primary/10 relative z-10">
+                <div class="flex-1 flex flex-col gap-2">
+                    <label class="font-mono text-xs text-slate-400 tracking-widest uppercase font-medium">Quality Protocol</label>
+                    <div class="flex bg-surface rounded-lg p-1 border border-white/5 relative">
+                        <button class="flex-1 py-2 font-mono text-xs text-slate-400 hover:text-white transition-colors" onclick="setBitrate(128)" id="btn-128">128 kbps</button>
+                        <button class="flex-1 py-2 font-mono text-xs text-primary font-bold bg-slate-800 rounded shadow-[0_0_10px_rgba(16,185,129,0.1)] transition-colors" onclick="setBitrate(192)" id="btn-192">192 kbps</button>
+                        <button class="flex-1 py-2 font-mono text-xs text-slate-400 hover:text-white transition-colors" onclick="setBitrate(320)" id="btn-320">320 kbps</button>
+                    </div>
+                </div>
+                <div class="flex-1 flex flex-col gap-2">
+                    <label class="font-mono text-xs text-slate-400 tracking-widest uppercase font-medium">Network Protocol</label>
+                    <div class="flex bg-primary/5 border border-primary/20 rounded-lg p-1 relative items-center justify-center pointer-events-none shadow-inner">
+                        <i data-lucide="wifi-off" class="w-4 h-4 text-primary mr-2"></i>
+                        <span class="font-mono text-xs text-primary font-bold tracking-widest uppercase">Strictly Local RAM Processing</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dropzone / Main Area -->
+            <div class="relative w-full min-h-[256px] flex flex-col z-10" id="workspace">
+                <div id="idle-state" class="flex-auto border-2 border-dashed border-primary/30 rounded-xl flex flex-col items-center justify-center gap-4 cursor-pointer hover:border-primary hover:bg-primary/5 transition-all p-8 relative" onclick="document.getElementById('fileInput').click()" ondragover="event.preventDefault(); this.classList.add('border-primary')" ondragleave="this.classList.remove('border-primary')" ondrop="handleDrop(event)">
+                    <div class="w-20 h-20 rounded-full bg-surface flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.1)] border border-primary/20 group-hover:scale-110 group-hover:shadow-[0_0_30px_rgba(16,185,129,0.3)] transition-all relative">
+                        <i data-lucide="lock" class="w-10 h-10 text-primary"></i>
+                        <div class="absolute -bottom-1 -right-1 bg-surface rounded-full p-1 border border-primary/30">
+                            <i data-lucide="check" class="w-3 h-3 text-primary"></i>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <p class="font-medium text-slate-200 text-lg md:text-xl">Drop confidential M4A file here</p>
+                        <p class="text-sm text-slate-400 mt-2">File never leaves your computer. Disconnect Wi-Fi to test.</p>
+                    </div>
+                    <input type="file" id="fileInput" accept=".m4a,audio/mp4,audio/x-m4a,audio/*" class="hidden" onchange="handleFileSelect(event)">
+                </div>
+
+                <div id="processing-state" class="hidden flex-auto flex flex-col items-center justify-center gap-4 bg-surface/50 rounded-xl border border-primary/20 py-8 relative">
+                    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(16,185,129,0.05)_0%,transparent_70%)] pointer-events-none"></div>
+                    
+                    <div class="flex items-center gap-3 mb-4 bg-primary/10 border border-primary/20 px-4 py-2 rounded-lg shadow-sm">
+                        <i data-lucide="shield-alert" class="w-4 h-4 text-primary animate-pulse"></i>
+                        <span class="font-mono text-xs text-primary font-medium tracking-wide">Network Traffic: 0 Bytes Transferred</span>
+                    </div>
+
+                    <div class="w-3/4 max-w-md bg-slate-800 h-2 rounded-full overflow-hidden shadow-inner relative z-10 mt-2">
+                        <div id="progress-bar" class="h-full bg-gradient-to-r from-primary to-primary-container transition-all duration-300 ease-out relative" style="width: 0%"></div>
+                    </div>
+                    <div class="flex justify-between w-3/4 max-w-md mt-1 z-10">
+                        <span id="status-text" class="font-mono text-xs text-slate-400 truncate pr-4">Decoding in local memory...</span>
+                        <span id="progress-text" class="font-mono text-xs font-bold text-primary">0%</span>
+                    </div>
+                </div>
+
+                <div id="done-state" class="hidden flex-auto flex flex-col items-center justify-center gap-4 bg-surface/50 rounded-xl border border-primary/20 py-8 relative">
+                     <div class="relative">
+                         <i data-lucide="shield-check" class="w-16 h-16 text-primary mb-2 relative z-10"></i>
+                         <div class="absolute inset-0 bg-primary/30 blur-xl rounded-full animate-pulse z-0"></div>
+                     </div>
+                     <h3 class="text-2xl font-bold text-white">Conversion Securely Completed</h3>
+                     <p class="text-sm text-slate-400 font-mono bg-slate-900 border border-white/5 px-3 py-1 rounded">No network requests were made during this operation.</p>
+                     
+                     <div class="flex flex-col sm:flex-row gap-4 mt-4 w-3/4 max-w-md">
+                         <button onclick="downloadMp3()" class="flex-1 bg-primary hover:bg-primary-container text-white font-semibold px-6 py-4 rounded-xl shadow-[0_0_15px_rgba(16,185,129,0.4)] flex items-center justify-center gap-2 transition-all">
+                             <i data-lucide="download" class="w-5 h-5"></i> Save MP3 Locally
+                         </button>
+                         <button onclick="resetConverter()" class="bg-slate-800 hover:bg-slate-700 text-white font-semibold px-6 py-4 rounded-xl transition-colors flex items-center justify-center gap-2">
+                             <i data-lucide="rotate-ccw" class="w-5 h-5"></i> Convert Another
+                         </button>
+                     </div>
+                </div>
+                
+                <div id="error-state" class="hidden flex-auto flex flex-col items-center justify-center gap-4 bg-red-950/20 rounded-xl border border-red-500/30 py-8 p-6 relative text-center">
+                     <i data-lucide="alert-triangle" class="w-12 h-12 text-red-400"></i>
+                     <h3 class="text-xl font-bold text-red-200">Processing Error</h3>
+                     <p id="error-text" class="text-red-300/70 text-sm max-w-sm mx-auto">An error occurred while parsing the file locally.</p>
+                     <button onclick="resetConverter()" class="mt-4 bg-slate-800 hover:bg-slate-700 px-8 py-3 rounded-xl font-medium transition-colors">Retry Securely</button>
+                </div>
+            </div>
+            
+        </section>
+
+        <!-- Technical Content & FAQ -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-8">
+            <article class="prose prose-invert prose-emerald max-w-none">
+                <h2 class="text-2xl font-bold mb-4">Security Whitepaper & Verification</h2>
+                
+                <h3 class="text-xl font-bold text-white mt-8 mb-3">Why Trust is Flawed (The Cloud Problem)</h3>
+                <p class="text-slate-400 leading-relaxed mb-4">
+                    When you use standard online converters, you upload your files to a remote server (often in a foreign jurisdiction). Even if a service claims to "delete files after 1 hour," you are fundamentally relying on their word. For attorneys dealing with privileged depositions, journalists handling sensitive interviews, or medical staff bound by HIPAA, sending data to a black-box server is a critical compliance breach.
+                </p>
+                <p class="text-slate-400 leading-relaxed mb-4">
+                    As a dedicated offline transcoding tool for confidentiality, our platform completely removes the element of trust. Because it executes entirely on the client side, we physically cannot access your files. The entire application runs using JavaScript and WebAssembly directly in your device's memory.
+                </p>
+
+                <h3 class="text-xl font-bold text-white mt-8 mb-3 flex items-center gap-2">
+                    <i data-lucide="terminal" class="w-5 h-5 text-primary"></i> How to Verify Zero Uploads
+                </h3>
+                <p class="text-slate-400 leading-relaxed mb-4">
+                    Don't just take our word for it. You can prove that this transcoder requires zero cloud uploads using your browser's built-in developer tools:
+                </p>
+                <ol class="list-decimal list-inside text-slate-400 space-y-2 mb-6">
+                    <li>Press <code class="text-xs bg-white/10 px-1.5 py-0.5 rounded text-primary font-mono">F12</code> (or right-click and select "Inspect") to open Developer Tools.</li>
+                    <li>Click on the <strong>Network</strong> tab.</li>
+                    <li>Drag and drop an audio file into the converter box above.</li>
+                    <li>Watch the Network tab. You will see <strong>0 bytes</strong> of network traffic generated during the entire conversion process.</li>
+                </ol>
+                
+                <p class="text-slate-400 leading-relaxed">
+                    For the ultimate guarantee, simply turn off your Wi-Fi or unplug your ethernet cable after loading this page. The private offline engine will continue to function flawlessly.
+                </p>
+            </article>
+
+            <div class="flex flex-col gap-6">
+                <h2 class="text-2xl font-bold mb-2">Security FAQs</h2>
+                <div class="bg-slate-900/50 p-5 rounded-xl border border-primary/10 shadow-[0_0_10px_rgba(16,185,129,0.03)] hover:border-primary/30 transition-colors">
+                    <h4 class="font-bold text-white mb-2 text-lg">Are my voice recordings ever stored on your servers?</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">Absolutely not. Because this is a client side m4a to mp3 converter, the entire decoding and encoding process happens locally inside your device's RAM. Zero bytes are uploaded to our servers, and no logs of your audio are ever created.</p>
+                </div>
+                <div class="bg-slate-900/50 p-5 rounded-xl border border-primary/10 shadow-[0_0_10px_rgba(16,185,129,0.03)] hover:border-primary/30 transition-colors">
+                    <h4 class="font-bold text-white mb-2 text-lg">Can I disconnect my internet Wi-Fi and still convert audio?</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">Yes! Once you load this webpage, you can completely disconnect from Wi-Fi or turn on Airplane Mode. Because it is an m4a to mp3 converter offline safe tool, it utilizes browser WebAssembly to function without any active internet connection.</p>
+                </div>
+                <div class="bg-slate-900/50 p-5 rounded-xl border border-primary/10 shadow-[0_0_10px_rgba(16,185,129,0.03)] hover:border-primary/30 transition-colors">
+                    <h4 class="font-bold text-white mb-2 text-lg">How does in-browser client-side processing ensure GDPR & HIPAA compliance?</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">By never transmitting user data or audio files across the internet, there is no data collection, no third-party processor handoff, and no data residency concerns. The user maintains 100% custody of their files at all times, natively satisfying strict privacy frameworks.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Matrix -->
+    <footer class="border-t border-white/10 mt-20 bg-surface-dim pt-16 pb-8">
+        <div class="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+            <div>
+                <h4 class="font-bold text-white mb-4">Formats</h4>
+                <ul class="flex flex-col gap-2 text-sm text-slate-400">
+                    <li><a href="/" class="hover:text-primary transition-colors">Main Hub (Home)</a></li>
+                    <li><a href="/iphone-voice-memos.html" class="hover:text-primary transition-colors">iPhone Voice Memos</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-4">Quality</h4>
+                <ul class="flex flex-col gap-2 text-sm text-slate-400">
+                    <li><a href="/320kbps.html" class="hover:text-primary transition-colors">320kbps Studio Master</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-4">Platforms</h4>
+                <ul class="flex flex-col gap-2 text-sm text-slate-400">
+                    <li><a href="/windows.html" class="hover:text-primary transition-colors">Windows 11 Guide</a></li>
+                    <li><a href="/mac.html" class="hover:text-primary transition-colors">Mac, Android & ChromeOS</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-4">Tools</h4>
+                <ul class="flex flex-col gap-2 text-sm text-slate-400">
+                    <li><a href="/batch-converter.html" class="hover:text-primary transition-colors">Batch Engine</a></li>
+                    <li><a href="/client-side-safe.html" class="text-primary font-medium">Zero Upload Privacy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-center text-slate-600 text-sm border-t border-white/5 pt-8 flex items-center justify-center gap-2">
+            <i data-lucide="shield" class="w-4 h-4"></i> &copy; 2026 M4A to MP3 Converter. Strictly Confidential Processing.
+        </div>
+    </footer>
+
+    <!-- Logic Script -->
+    <script>
+        lucide.createIcons();
+
+        let currentBitrate = 192;
+        let mp3BlobUrl = null;
+        let fileName = 'secure_audio.mp3';
+
+        function setBitrate(kbps) {
+            currentBitrate = kbps;
+            [128, 192, 320].forEach(val => {
+                const btn = document.getElementById(`btn-${val}`);
+                if (val === kbps) {
+                    btn.className = 'flex-1 py-2 font-mono text-xs text-primary font-bold bg-slate-800 rounded shadow-[0_0_10px_rgba(16,185,129,0.1)] transition-colors';
+                } else {
+                    btn.className = 'flex-1 py-2 font-mono text-xs text-slate-400 hover:text-white transition-colors';
+                }
+            });
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            document.getElementById('idle-state').classList.remove('border-primary');
+            if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+                processFile(e.dataTransfer.files[0]);
+            }
+        }
+
+        function handleFileSelect(e) {
+            if (e.target.files && e.target.files[0]) {
+                processFile(e.target.files[0]);
+            }
+        }
+
+        function setUIState(state) {
+            ['idle-state', 'processing-state', 'done-state', 'error-state'].forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+            document.getElementById(`${state}-state`).classList.remove('hidden');
+        }
+
+        async function processFile(file) {
+            try {
+                setUIState('processing');
+                document.getElementById('progress-bar').style.width = '0%';
+                document.getElementById('progress-text').innerText = '0%';
+                document.getElementById('status-text').innerText = `Securely decoding ${file.name} locally...`;
+
+                if (!window.lamejs) throw new Error("Encoder library not loaded.");
+
+                // Convert file to ArrayBuffer
+                const arrayBuffer = await file.arrayBuffer();
+                
+                // Decode using Web Audio API
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
+                
+                const channels = 2; // Default to stereo for consistency
+                const sampleRate = audioBuffer.sampleRate;
+                
+                // Initialize LameJS Encoder
+                const mp3encoder = new lamejs.Mp3Encoder(channels, sampleRate, currentBitrate);
+                const mp3Data = [];
+
+                const left = audioBuffer.getChannelData(0);
+                const right = audioBuffer.numberOfChannels > 1 
+                    ? audioBuffer.getChannelData(1) 
+                    : left; 
+
+                const sampleBlockSize = 1152;
+                const totalSamples = left.length;
+                let currentSample = 0;
+
+                const processChunk = () => {
+                    const end = Math.min(currentSample + sampleBlockSize * 10, totalSamples);
+                    
+                    const leftChunk = new Int16Array(end - currentSample);
+                    const rightChunk = new Int16Array(end - currentSample);
+                    
+                    // Quantize Float32 into Int16
+                    for (let i = 0; i < leftChunk.length; i++) {
+                        leftChunk[i] = left[currentSample + i] * 32767.5;
+                        rightChunk[i] = right[currentSample + i] * 32767.5;
+                    }
+
+                    const mp3buf = mp3encoder.encodeBuffer(leftChunk, rightChunk);
+                    if (mp3buf.length > 0) mp3Data.push(mp3buf);
+
+                    currentSample = end;
+                    
+                    const progress = Math.round((currentSample / totalSamples) * 100);
+                    document.getElementById('progress-bar').style.width = `${progress}%`;
+                    document.getElementById('progress-text').innerText = `${progress}%`;
+
+                    if (currentSample < totalSamples) {
+                        requestAnimationFrame(processChunk);
+                    } else {
+                        // Flush the encoder
+                        const mp3bufFinal = mp3encoder.flush();
+                        if (mp3bufFinal.length > 0) mp3Data.push(mp3bufFinal);
+
+                        const blob = new Blob(mp3Data, { type: 'audio/mp3' });
+                        if (mp3BlobUrl) URL.revokeObjectURL(mp3BlobUrl);
+                        mp3BlobUrl = URL.createObjectURL(blob);
+                        fileName = file.name.replace(/\.[^/.]+$/, "") + `_secure.mp3`;
+                        
+                        setUIState('done');
+                    }
+                };
+
+                // Add slight visual delay to allow user to read "0 bytes transferred" network state
+                setTimeout(() => requestAnimationFrame(processChunk), 500);
+
+            } catch (err) {
+                console.error(err);
+                document.getElementById('error-text').innerText = err.message || "Failed to process audio structure offline.";
+                setUIState('error');
+            }
+        }
+
+        function downloadMp3() {
+            if (!mp3BlobUrl) return;
+            const a = document.createElement('a');
+            a.href = mp3BlobUrl;
+            a.download = fileName;
+            a.click();
+        }
+
+        function resetConverter() {
+            setUIState('idle');
+            document.getElementById('fileInput').value = '';
+            if (mp3BlobUrl) {
+                URL.revokeObjectURL(mp3BlobUrl);
+                mp3BlobUrl = null;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batch M4A to MP3 Converter - Convert Multiple Files Online Free</title>
+    <meta name="description" content="Convert multiple M4A audio files to MP3 simultaneously with zero file size limits. Client-side batch transcoding directly in your browser.">
+    <link rel="canonical" href="https://m4atomp3converter.com/batch-converter">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        surface: '#020617', // slate-950
+                        'surface-dim': '#0f172a', // slate-900
+                        primary: '#f97316', // orange-500
+                        'primary-container': '#ea580c', // orange-600
+                        secondary: '#fb923c', // orange-400
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    animation: {
+                        pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- LameJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lamejs/1.2.1/lame.min.js"></script>
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "name": "Batch M4A to MP3 Converter",
+          "url": "https://m4atomp3converter.com/batch-converter",
+          "description": "Convert multiple large M4A audio files to MP3 simultaneously with zero file size limits.",
+          "applicationCategory": "MultimediaApplication",
+          "operatingSystem": "All",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Is there a limit to how many M4A files I can convert at once?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Because this is a true batch m4a to mp3 converter running locally in your browser, there is no hard server-side limit. You can queue up dozens of files, and they will process sequentially based on your computer's RAM availability."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I convert full 2-hour podcast recordings or audiobooks?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. If you need to convert large m4a to mp3 online, this tool excels because it does not upload the file. A 2-hour podcast would normally hit a 50MB cloud upload limit, but here, the m4a audio track to mp3 conversion happens entirely on your local machine."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Will batch conversion slow down my computer's performance?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The WebAssembly engine uses CPU resources to decode and encode audio. While it processes, you may notice increased CPU usage, but our queue system runs one file at a time sequentially to prevent freezing your browser or crashing your system."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #020617; color: #f8fafc; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .glass-panel { background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .queue-scroll::-webkit-scrollbar { width: 6px; }
+        .queue-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); border-radius: 4px; }
+        .queue-scroll::-webkit-scrollbar-thumb { background: rgba(249,115,22,0.3); border-radius: 4px; }
+        .queue-scroll::-webkit-scrollbar-thumb:hover { background: rgba(249,115,22,0.5); }
+    </style>
+    <meta property="og:site_name" content="M4A to MP3 Converter.com">
+</head>
+<body class="antialiased min-h-screen flex flex-col relative overflow-x-hidden">
+    <!-- Grid Background -->
+    <div class="fixed inset-0 pointer-events-none z-0">
+        <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] opacity-30"></div>
+    </div>
+
+    <!-- Sticky Header -->
+    <header class="sticky top-0 z-50 glass-panel border-b border-white/10 px-6 py-4 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-2 text-white font-bold text-xl tracking-tight group">
+            <i data-lucide="audio-lines" class="text-primary group-hover:scale-110 transition-transform"></i>
+            M4A<span class="text-white/40 font-light">to</span>MP3
+        </a>
+        <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+            <a href="/" class="hover:text-white transition-colors">Home</a>
+            <a href="/batch-converter" class="text-primary">Batch Converter</a>
+            <a href="/client-side-safe.html" class="hover:text-white transition-colors">Client-Side Safe</a>
+        </div>
+        <div class="flex items-center gap-2 bg-primary/10 border border-primary/20 px-3 py-1.5 rounded-full shadow-[0_0_15px_rgba(249,115,22,0.15)]">
+            <i data-lucide="layers" class="w-4 h-4 text-primary"></i>
+            <span class="text-xs font-mono text-primary font-semibold tracking-wide uppercase">Batch Queue Engine • Zero Size Limits</span>
+        </div>
+    </header>
+
+    <main class="flex-1 relative z-10 w-full max-w-5xl mx-auto px-6 py-12 flex flex-col gap-16">
+        
+        <!-- Hero Section -->
+        <section class="text-center max-w-3xl mx-auto">
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
+                Batch M4A to MP3 Converter
+            </h1>
+            <p class="text-slate-400 text-lg leading-relaxed">
+                Convert multiple M4A audio files simultaneously. Zero cloud upload limits. Bulk process albums, podcasts, and massive recordings instantly.
+            </p>
+        </section>
+
+        <!-- Interactive Workspace -->
+        <section class="glass-panel rounded-2xl shadow-2xl p-6 md:p-10 relative overflow-hidden group border border-white/10">
+            
+            <div class="absolute -right-32 -top-32 w-64 h-64 bg-primary/5 rounded-full blur-[80px] pointer-events-none"></div>
+
+            <!-- Configuration Bar -->
+            <div class="flex flex-col md:flex-row gap-6 mb-8 pb-6 border-b border-white/10 relative z-10">
+                <div class="flex-1 flex flex-col gap-2">
+                    <label class="font-mono text-xs text-slate-400 tracking-widest uppercase font-medium">Batch Quality</label>
+                    <div class="flex bg-surface rounded-lg p-1 border border-white/5 relative">
+                        <button class="flex-1 py-2 font-mono text-xs text-slate-400 hover:text-white transition-colors" onclick="setBitrate(128)" id="btn-128">128 kbps</button>
+                        <button class="flex-1 py-2 font-mono text-xs text-primary font-bold bg-slate-800 rounded shadow-sm transition-colors" onclick="setBitrate(192)" id="btn-192">192 kbps</button>
+                        <button class="flex-1 py-2 font-mono text-xs text-slate-400 hover:text-white transition-colors" onclick="setBitrate(320)" id="btn-320">320 kbps</button>
+                    </div>
+                </div>
+                <div class="flex-1 flex flex-col gap-2">
+                    <label class="font-mono text-xs text-slate-400 tracking-widest uppercase font-medium">Batch Topology</label>
+                    <div class="flex bg-surface rounded-lg p-1 border border-white/5 relative">
+                        <button class="flex-1 py-2 font-mono text-xs text-slate-400 hover:text-white transition-colors" onclick="setTopology('mono')" id="btn-mono">Mono (1 Ch)</button>
+                        <button class="flex-1 py-2 font-mono text-xs text-primary font-bold bg-slate-800 rounded shadow-sm transition-colors" onclick="setTopology('stereo')" id="btn-stereo">Stereo (2 Ch)</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Multi-File Dropzone Area -->
+            <div class="relative w-full flex flex-col gap-4 z-10">
+                <div id="dropzone" class="w-full border-2 border-dashed border-white/20 rounded-xl flex flex-col items-center justify-center gap-4 cursor-pointer hover:border-primary/50 hover:bg-white/5 transition-all p-8 relative" onclick="document.getElementById('fileInput').click()" ondragover="event.preventDefault(); this.classList.add('border-primary')" ondragleave="this.classList.remove('border-primary')" ondrop="handleDrop(event)">
+                    <div class="w-16 h-16 rounded-full bg-surface flex items-center justify-center shadow-lg border border-white/5 group-hover:scale-110 transition-transform">
+                        <i data-lucide="files" class="w-8 h-8 text-primary"></i>
+                    </div>
+                    <div class="text-center">
+                        <p class="font-medium text-slate-200 text-lg">Drop multiple M4A files here</p>
+                        <p class="text-sm text-slate-400 mt-1">or click to browse your folders</p>
+                    </div>
+                    <input type="file" id="fileInput" accept=".m4a,audio/mp4,audio/x-m4a,audio/*" multiple class="hidden" onchange="handleFileSelect(event)">
+                </div>
+
+                <!-- Queue UI Container -->
+                <div id="queue-container" class="hidden flex-col gap-3 mt-4">
+                    <div class="flex justify-between items-center px-2">
+                        <h3 class="font-bold text-white flex items-center gap-2"><i data-lucide="list-video" class="w-5 h-5 text-primary"></i> Conversion Queue</h3>
+                        <span id="queue-count" class="text-xs font-mono text-slate-400 bg-surface px-2 py-1 rounded border border-white/10">0 files</span>
+                    </div>
+                    
+                    <div id="queue-list" class="flex flex-col gap-3 max-h-[300px] overflow-y-auto queue-scroll pr-2">
+                        <!-- Dynamic Queue Items injected here -->
+                    </div>
+                    
+                    <div class="flex gap-4 mt-2">
+                        <button id="download-all-btn" onclick="downloadAll()" class="hidden flex-1 bg-primary hover:bg-primary-container text-white font-semibold px-4 py-3 rounded-lg shadow-[0_0_15px_rgba(249,115,22,0.3)] transition-all items-center justify-center gap-2">
+                            <i data-lucide="download-cloud" class="w-5 h-5"></i> Download All
+                        </button>
+                        <button id="clear-queue-btn" onclick="clearQueue()" class="flex-1 bg-slate-800 hover:bg-slate-700 text-white font-semibold px-4 py-3 rounded-lg transition-colors flex items-center justify-center gap-2">
+                            <i data-lucide="trash-2" class="w-4 h-4"></i> Clear Queue
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="w-full flex items-start sm:items-center justify-start gap-3 px-5 py-4 mt-6 bg-surface/40 rounded-xl border border-white/5 text-sm shadow-sm relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent pointer-events-none"></div>
+                <i data-lucide="database" class="w-5 h-5 text-primary relative z-10 shrink-0 mt-0.5 sm:mt-0"></i>
+                <p class="text-slate-300 leading-relaxed relative z-10">
+                    <span class="font-semibold text-white">Infinite Capacity:</span> Because this is a size-unlimited transcoding engine, you can queue multi-gigabyte files. Data never leaves your computer.
+                </p>
+            </div>
+        </section>
+
+        <!-- Technical Content & FAQ -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-8">
+            <article class="prose prose-invert prose-orange max-w-none">
+                <h2 class="text-2xl font-bold mb-4">Large-File & Zero-Limit Technical Breakdown</h2>
+                <p class="text-slate-400 leading-relaxed mb-4">
+                    Most online converters force a strict 50MB or 100MB file size limit. If you want to convert large audio files, like a 2-hour podcast recording or an entire audiobook, cloud-based tools will block you or ask for a premium subscription. This is because server bandwidth and cloud compute cycles are expensive.
+                </p>
+                <p class="text-slate-400 leading-relaxed mb-4">
+                    Our batch transcoding workflow fundamentally rewrites this architecture. By utilizing WebAssembly (Wasm) and the HTML5 Web Audio API, the conversion engine is downloaded to your browser once. When you drop files into the queue, we decode the audio tracks directly in your device's local RAM. 
+                </p>
+                <p class="text-slate-400 leading-relaxed">
+                    By bypassing server uploads entirely, the only limit is your computer's local memory. You can queue dozens of files, and our JavaScript event loop will sequentially slice the audio buffers and transcode them one-by-one, preventing browser freezes while delivering unbounded batch capabilities.
+                </p>
+
+                <h3 class="text-xl font-bold text-white mt-8 mb-3">Batch Workflow Guide</h3>
+                <ol class="list-decimal list-inside text-slate-400 space-y-2">
+                    <li><strong>Select Presets:</strong> Choose your desired Bitrate and Topology above. These settings will apply to all queued files.</li>
+                    <li><strong>Queue Files:</strong> Drag and drop multiple files (or a folder's contents) into the dashed zone.</li>
+                    <li><strong>Automated Processing:</strong> The queue will immediately begin processing sequentially. You can download files individually as they finish, or wait for the "Download All" button.</li>
+                </ol>
+            </article>
+
+            <div class="flex flex-col gap-6">
+                <h2 class="text-2xl font-bold mb-2">Frequently Asked Questions</h2>
+                <div class="bg-slate-900/50 p-5 rounded-xl border border-white/5">
+                    <h4 class="font-bold text-white mb-2 text-lg">Is there a limit to how many M4A files I can convert at once?</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">Because this is a true batch m4a to mp3 converter running locally in your browser, there is no hard server-side limit. You can queue up dozens of files, and they will process sequentially based on your computer's RAM availability.</p>
+                </div>
+                <div class="bg-slate-900/50 p-5 rounded-xl border border-white/5">
+                    <h4 class="font-bold text-white mb-2 text-lg">Can I convert full 2-hour podcast recordings or audiobooks?</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">Yes. If you need to convert large m4a to mp3 online, this tool excels because it does not upload the file. A 2-hour podcast would normally hit a 50MB cloud upload limit, but here, the m4a audio track to mp3 conversion happens entirely on your local machine.</p>
+                </div>
+                <div class="bg-slate-900/50 p-5 rounded-xl border border-white/5">
+                    <h4 class="font-bold text-white mb-2 text-lg">Will batch conversion slow down my computer's performance?</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed">The WebAssembly engine uses CPU resources to decode and encode audio. While it processes, you may notice increased CPU usage, but our queue system runs one file at a time sequentially to prevent freezing your browser or crashing your system.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Matrix -->
+    <footer class="border-t border-white/10 mt-20 bg-surface-dim pt-16 pb-8">
+        <div class="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+            <div>
+                <h4 class="font-bold text-white mb-4">Formats</h4>
+                <ul class="flex flex-col gap-2 text-sm text-slate-400">
+                    <li><a href="/" class="hover:text-primary transition-colors">Main Hub (Home)</a></li>
+                    <li><a href="/iphone-voice-memos.html" class="hover:text-primary transition-colors">iPhone Voice Memos</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-4">Quality</h4>
+                <ul class="flex flex-col gap-2 text-sm text-slate-400">
+                    <li><a href="/320kbps.html" class="hover:text-primary transition-colors">320kbps Studio Master</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-4">Platforms</h4>
+                <ul class="flex flex-col gap-2 text-sm text-slate-400">
+                    <li><a href="/windows.html" class="hover:text-primary transition-colors">Windows 11 Guide</a></li>
+                    <li><a href="/mac.html" class="hover:text-primary transition-colors">Mac & Mobile</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-4">Tools</h4>
+                <ul class="flex flex-col gap-2 text-sm text-slate-400">
+                    <li><a href="/batch-converter.html" class="text-primary font-medium">Batch Engine</a></li>
+                    <li><a href="/client-side-safe.html" class="hover:text-primary transition-colors">Zero Upload Privacy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-center text-slate-600 text-sm border-t border-white/5 pt-8">
+            &copy; 2026 M4A to MP3 Converter. All rights reserved. Unlimited Batch Processing.
+        </div>
+    </footer>
+
+    <!-- Logic Script -->
+    <script>
+        lucide.createIcons();
+
+        let currentBitrate = 192;
+        let currentTopology = 'stereo';
+        
+        let queue = [];
+        let isProcessingQueue = false;
+
+        function setBitrate(kbps) {
+            currentBitrate = kbps;
+            [128, 192, 320].forEach(val => {
+                const btn = document.getElementById(`btn-${val}`);
+                if (val === kbps) {
+                    btn.className = 'flex-1 py-2 font-mono text-xs text-primary font-bold bg-slate-800 rounded shadow-sm transition-colors';
+                } else {
+                    btn.className = 'flex-1 py-2 font-mono text-xs text-slate-400 hover:text-white transition-colors';
+                }
+            });
+        }
+
+        function setTopology(topo) {
+            currentTopology = topo;
+            ['mono', 'stereo'].forEach(val => {
+                const btn = document.getElementById(`btn-${val}`);
+                if (val === topo) {
+                    btn.className = 'flex-1 py-2 font-mono text-xs text-primary font-bold bg-slate-800 rounded shadow-sm transition-colors';
+                } else {
+                    btn.className = 'flex-1 py-2 font-mono text-xs text-slate-400 hover:text-white transition-colors';
+                }
+            });
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            document.getElementById('dropzone').classList.remove('border-primary');
+            if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+                addFilesToQueue(Array.from(e.dataTransfer.files));
+            }
+        }
+
+        function handleFileSelect(e) {
+            if (e.target.files && e.target.files.length > 0) {
+                addFilesToQueue(Array.from(e.target.files));
+            }
+            e.target.value = ''; // reset
+        }
+
+        function addFilesToQueue(files) {
+            const validFiles = files.filter(f => f.type.includes('audio') || f.name.endsWith('.m4a'));
+            
+            validFiles.forEach(f => {
+                queue.push({
+                    id: Math.random().toString(36).substr(2, 9),
+                    file: f,
+                    status: 'pending', // pending, processing, done, error
+                    progress: 0,
+                    url: null,
+                    errorMsg: '',
+                    outputName: f.name.replace(/\.[^/.]+$/, "") + `_${currentBitrate}kbps.mp3`
+                });
+            });
+
+            if (queue.length > 0) {
+                document.getElementById('queue-container').classList.remove('hidden');
+                document.getElementById('queue-container').classList.add('flex');
+            }
+
+            renderQueue();
+
+            if (!isProcessingQueue) {
+                processNextInQueue();
+            }
+        }
+
+        function getStatusIcon(status) {
+            if (status === 'pending') return '<i data-lucide="clock" class="w-4 h-4 text-slate-400"></i>';
+            if (status === 'processing') return '<i data-lucide="loader-2" class="w-4 h-4 text-primary animate-spin"></i>';
+            if (status === 'done') return '<i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>';
+            if (status === 'error') return '<i data-lucide="alert-triangle" class="w-4 h-4 text-red-400"></i>';
+            return '';
+        }
+
+        function renderQueue() {
+            const listEl = document.getElementById('queue-list');
+            document.getElementById('queue-count').innerText = `${queue.length} file${queue.length !== 1 ? 's' : ''}`;
+            
+            listEl.innerHTML = '';
+            
+            let allDone = queue.length > 0 && queue.every(q => q.status === 'done' || q.status === 'error');
+            
+            if (allDone && queue.some(q => q.status === 'done')) {
+                document.getElementById('download-all-btn').classList.remove('hidden');
+                document.getElementById('download-all-btn').classList.add('flex');
+            } else {
+                document.getElementById('download-all-btn').classList.add('hidden');
+                document.getElementById('download-all-btn').classList.remove('flex');
+            }
+
+            queue.forEach(item => {
+                const isError = item.status === 'error';
+                const isDone = item.status === 'done';
+                
+                const wrapper = document.createElement('div');
+                wrapper.className = `bg-surface-dim/50 p-4 rounded-xl border ${isError ? 'border-red-500/30' : 'border-white/5'} flex flex-col gap-3 transition-colors`;
+                
+                wrapper.innerHTML = `
+                    <div class="flex justify-between items-center gap-4">
+                        <div class="flex items-center gap-3 overflow-hidden">
+                            ${getStatusIcon(item.status)}
+                            <span class="text-sm ${isError ? 'text-red-300' : 'text-slate-200'} font-medium truncate">${item.file.name}</span>
+                        </div>
+                        <span class="text-xs font-mono ${isDone ? 'text-emerald-400' : (isError ? 'text-red-400' : 'text-slate-400')} shrink-0">
+                            ${isDone ? 'Ready' : (isError ? 'Error' : (item.status === 'processing' ? `${item.progress}%` : 'Waiting'))}
+                        </span>
+                    </div>
+                    
+                    ${item.status === 'processing' || item.status === 'pending' ? `
+                    <div class="w-full bg-surface-dim h-1.5 rounded-full overflow-hidden shadow-inner">
+                        <div class="bg-gradient-to-r from-primary to-primary-container h-full transition-all duration-300 ease-out ${item.status === 'processing' ? 'relative' : ''}" style="width: ${item.progress}%">
+                            ${item.status === 'processing' ? '<div class="absolute inset-0 bg-white/20 animate-pulse"></div>' : ''}
+                        </div>
+                    </div>
+                    ` : ''}
+
+                    ${isError ? `
+                    <p class="text-xs text-red-400/70 truncate">${item.errorMsg}</p>
+                    ` : ''}
+
+                    ${isDone ? `
+                    <button onclick="downloadSingle('${item.id}')" class="text-xs font-medium text-primary hover:text-primary-container bg-primary/10 hover:bg-primary/20 self-start px-3 py-1.5 rounded-md transition-colors flex items-center gap-1.5">
+                        <i data-lucide="download" class="w-3 h-3"></i> Download MP3
+                    </button>
+                    ` : ''}
+                `;
+                listEl.appendChild(wrapper);
+            });
+            
+            // Re-initialize lucide icons for newly injected DOM
+            lucide.createIcons();
+        }
+
+        async function processNextInQueue() {
+            const nextIndex = queue.findIndex(q => q.status === 'pending');
+            if (nextIndex === -1) {
+                isProcessingQueue = false;
+                renderQueue();
+                return;
+            }
+
+            isProcessingQueue = true;
+            const item = queue[nextIndex];
+            item.status = 'processing';
+            renderQueue();
+
+            try {
+                if (!window.lamejs) throw new Error("Encoder library not loaded.");
+
+                const arrayBuffer = await item.file.arrayBuffer();
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
+                
+                const channels = currentTopology === 'stereo' ? 2 : 1;
+                const sampleRate = audioBuffer.sampleRate;
+                
+                const mp3encoder = new lamejs.Mp3Encoder(channels, sampleRate, currentBitrate);
+                const mp3Data = [];
+
+                const left = audioBuffer.getChannelData(0);
+                const right = channels === 2 && audioBuffer.numberOfChannels > 1 
+                    ? audioBuffer.getChannelData(1) 
+                    : left; 
+
+                const sampleBlockSize = 1152;
+                const totalSamples = left.length;
+                let currentSample = 0;
+
+                const processChunk = () => {
+                    const end = Math.min(currentSample + sampleBlockSize * 10, totalSamples);
+                    
+                    const leftChunk = new Int16Array(end - currentSample);
+                    const rightChunk = new Int16Array(end - currentSample);
+                    
+                    for (let i = 0; i < leftChunk.length; i++) {
+                        leftChunk[i] = left[currentSample + i] * 32767.5;
+                        rightChunk[i] = right[currentSample + i] * 32767.5;
+                    }
+
+                    let mp3buf;
+                    if (channels === 2) {
+                        mp3buf = mp3encoder.encodeBuffer(leftChunk, rightChunk);
+                    } else {
+                        mp3buf = mp3encoder.encodeBuffer(leftChunk);
+                    }
+                    if (mp3buf.length > 0) mp3Data.push(mp3buf);
+
+                    currentSample = end;
+                    
+                    item.progress = Math.round((currentSample / totalSamples) * 100);
+                    renderQueue(); // Update UI for this specific item
+
+                    if (currentSample < totalSamples) {
+                        requestAnimationFrame(processChunk);
+                    } else {
+                        const mp3bufFinal = mp3encoder.flush();
+                        if (mp3bufFinal.length > 0) mp3Data.push(mp3bufFinal);
+
+                        const blob = new Blob(mp3Data, { type: 'audio/mp3' });
+                        item.url = URL.createObjectURL(blob);
+                        item.status = 'done';
+                        
+                        // Proceed to next
+                        setTimeout(processNextInQueue, 100);
+                    }
+                };
+
+                requestAnimationFrame(processChunk);
+
+            } catch (err) {
+                console.error(err);
+                item.status = 'error';
+                item.errorMsg = err.message || "Failed to process audio structure.";
+                // Proceed to next even if error
+                setTimeout(processNextInQueue, 100);
+            }
+        }
+
+        function downloadSingle(id) {
+            const item = queue.find(q => q.id === id);
+            if (item && item.url) {
+                triggerDownload(item.url, item.outputName);
+            }
+        }
+
+        function downloadAll() {
+            const doneItems = queue.filter(q => q.status === 'done' && q.url);
+            doneItems.forEach((item, index) => {
+                // Stagger downloads slightly to prevent browser blocking multiple downloads
+                setTimeout(() => {
+                    triggerDownload(item.url, item.outputName);
+                }, index * 300);
+            });
+        }
+
+        function triggerDownload(url, filename) {
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        function clearQueue() {
+            // Revoke URLs to free memory
+            queue.forEach(item => {
+                if (item.url) URL.revokeObjectURL(item.url);
+            });
+            queue = [];
+            isProcessingQueue = false;
+            document.getElementById('queue-container').classList.add('hidden');
+            document.getElementById('queue-container').classList.remove('flex');
+            document.getElementById('fileInput').value = '';
+            renderQueue();
+        }
+    </script>
+</body>
+</html>

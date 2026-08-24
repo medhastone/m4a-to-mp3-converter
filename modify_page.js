@@ -1,19 +1,9 @@
-import Converter from './components/Converter';
-import { Gauge, Activity, AudioLines, Mic, Monitor, Smartphone, Layers, ShieldCheck, ChevronDown } from 'lucide-react';
+const fs = require('fs');
 
-export default function Home() {
-  return (
-    <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-surface-container/80 backdrop-blur-xl border-b border-outline-variant/20 shadow-[0_4px_30px_rgba(0,0,0,0.3)]">
-        <div className="h-20 w-full px-5 lg:px-10 flex items-center justify-between mx-auto max-w-[1440px]">
-          <a href="/" className="flex items-center gap-3 group">
-            <div className="w-8 h-8 bg-gradient-to-br from-primary to-primary-container rounded flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
-               <AudioLines className="text-on-primary w-5 h-5" />
-            </div>
-            <span className="font-semibold text-xl tracking-tight group-hover:text-primary transition-colors">M4A to MP3 Converter<span className="text-primary">.com</span></span>
-          </a>
-          
-          <nav className="hidden lg:flex items-center gap-6 mx-12">
+let content = fs.readFileSync('app/page.tsx', 'utf8');
+
+const navRegex = /<nav className="hidden lg:flex items-center gap-6 mx-12">([\s\S]*?)<\/nav>/;
+const newNav = `<nav className="hidden lg:flex items-center gap-6 mx-12">
             <a className="text-on-surface-variant hover:text-on-surface transition-colors font-medium text-sm" href="/#how-it-works">How it Works</a>
             <a className="text-on-surface-variant hover:text-on-surface transition-colors font-medium text-sm" href="/#specs">Technical Specs</a>
             <a className="text-on-surface-variant hover:text-on-surface transition-colors font-medium text-sm" href="/#faq">FAQ</a>
@@ -44,85 +34,18 @@ export default function Home() {
                 </a>
               </div>
             </div>
-          </nav>
-          
-          <div className="flex items-center gap-4">
-            <div className="bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full flex items-center gap-2 shadow-[0_0_15px_rgba(16,185,129,0.15)]">
-              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_5px_rgba(16,185,129,0.8)]"></div>
-              <span className="text-emerald-400 font-jb-mono text-xs font-medium uppercase tracking-wider">100% Client-Side</span>
-            </div>
-          </div>
-        </div>
-      </header>
+          </nav>`;
 
-      <main className="pt-28 w-full pb-20 relative z-0">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebApplication",
-              "name": "M4A to MP3 Converter.com",
-              "applicationCategory": "MultimediaApplication",
-              "operatingSystem": "Any",
-              "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD"
-              },
-              "publisher": {
-                "@type": "Organization",
-                "name": "M4A to MP3 Converter.com"
-              }
-            })
-          }}
-        />
-        {/* Interactive Background Element */}
-        <div aria-hidden="true" className="fixed inset-0 pointer-events-none overflow-hidden z-[-1]">
-          <div className="absolute top-[10%] left-[5%] w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] mix-blend-screen"></div>
-          <div className="absolute bottom-[10%] right-[5%] w-[700px] h-[700px] bg-secondary/5 rounded-full blur-[150px] mix-blend-screen"></div>
-          {/* Ambient Grid */}
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] opacity-30"></div>
-        </div>
+content = content.replace(navRegex, newNav);
 
-        <div className="max-w-[1440px] mx-auto w-full px-5 lg:px-10 flex flex-col gap-16 mt-8">
-          
-          {/* Hero / Converter Workspace */}
-          <section className="w-full flex flex-col md:flex-row gap-8 items-start">
-            {/* Typography Sidebar */}
-            <div className="w-full md:w-1/3 flex flex-col gap-4 pt-4 relative">
-              <div className="absolute -left-5 top-4 w-1.5 h-24 bg-primary shadow-[0_0_20px_rgba(255,182,144,0.5)] rounded-r-full"></div>
-              <h1 className="text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70 drop-shadow-sm">
-                Studio-Grade <br/>
-                <span className="text-transparent bg-clip-text bg-gradient-to-br from-primary via-primary/80 to-primary-container/40 drop-shadow-[0_4px_12px_rgba(249,115,22,0.3)]">Conversion.</span>
-              </h1>
-              <p className="text-white/70 mix-blend-plus-lighter max-w-sm mt-4 text-lg leading-relaxed">
-                Locally transcode M4A to high-fidelity MP3. Zero server uploads. Absolute privacy. Maximum bit depth retention.
-              </p>
-              
-              {/* Decorative Specs */}
-              <div className="mt-8 flex gap-8 border-t border-outline-variant/30 pt-8">
-                <div className="flex flex-col">
-                  <span className="font-jb-mono text-[11px] text-secondary tracking-[0.1em] uppercase mb-1">Engine</span>
-                  <span className="font-semibold text-lg text-on-surface">LAME v3.1</span>
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-jb-mono text-[11px] text-secondary tracking-[0.1em] uppercase mb-1">Latency</span>
-                  <span className="font-semibold text-lg text-on-surface">&lt; 200ms</span>
-                </div>
-              </div>
-            </div>
+const mainRegex = /\{\/\* Asymmetric Data Visualization & Features \*\/\}[\s\S]*?<\/main>/;
 
-            {/* Glassmorphism Converter Card */}
-            <Converter />
-          </section>
-
-          {/* SEO Enhanced Sections: How it works, Technical Specs, FAQ */}
+const newMainContent = `{/* SEO Enhanced Sections: How it works, Technical Specs, FAQ */}
           <div className="w-full h-px bg-gradient-to-r from-transparent via-outline-variant/30 to-transparent my-12"></div>
 
           <section id="how-it-works" className="mt-8 flex flex-col gap-10 scroll-mt-24">
             <div className="flex flex-col gap-4 max-w-4xl">
-              <h2 className="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70 tracking-tight leading-tight">How It Works: The Future of Browser-Native Audio Conversion</h2>
+              <h2 className="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70 tracking-tight leading-tight">How It Works: The Future of Browser-Native Audio Conversion</h2>
               <p className="text-on-surface-variant text-lg leading-relaxed">
                 Most traditional online audio converters force you to upload your personal iPhone Voice Memos, podcasts, and music files to a remote cloud server. This outdated process is slow, wastes bandwidth, and exposes your private audio files to third-party databases. 
                 <br/><br/>
@@ -178,7 +101,7 @@ export default function Home() {
           {/* Technical Specs Table (Expanded) */}
           <section id="specs" className="mt-20 flex flex-col gap-10 scroll-mt-24">
             <div className="flex flex-col gap-4 max-w-4xl">
-              <h2 className="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70 tracking-tight leading-tight">Deep Technical Specifications & Codec Comparison</h2>
+              <h2 className="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70 tracking-tight leading-tight">Deep Technical Specifications & Codec Comparison</h2>
               <p className="text-on-surface-variant text-lg leading-relaxed">
                 Audio fidelity matters. Whether you are transcoding a quick iPhone voice memo for a Windows PC or converting a high-fidelity studio master track for archival, our tool offers full control over bitrate topology, sample rates, and file integrity. We utilize the industry-standard LAME encoder to ensure your MP3s sound incredible. Review our deep technical specifications and compare the M4A and MP3 formats below.
               </p>
@@ -250,7 +173,7 @@ export default function Home() {
           {/* Comprehensive FAQ Section */}
           <section id="faq" className="mt-24 mb-12 flex flex-col gap-10 scroll-mt-24">
             <div className="flex flex-col gap-4 max-w-4xl">
-              <h2 className="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70 tracking-tight leading-tight">Frequently Asked Questions</h2>
+              <h2 className="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70 tracking-tight leading-tight">Frequently Asked Questions</h2>
               <p className="text-on-surface-variant text-lg leading-relaxed">
                 Have questions about converting your M4A audio files to MP3? We have compiled detailed answers regarding audio quality, privacy guarantees, technical limitations, and cross-platform compatibility. Read through our comprehensive FAQ below.
               </p>
@@ -329,64 +252,9 @@ export default function Home() {
 
         </div>
       </main>
+`;
 
+content = content.replace(mainRegex, newMainContent);
 
-      <footer className="bg-surface-container-lowest border-t border-outline-variant/20 pt-16 pb-8 relative z-10">
-        <div className="max-w-[1440px] mx-auto px-5 lg:px-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-            
-            {/* Column 1 */}
-            <div>
-              <h4 className="font-bold text-on-surface mb-4">Devices & Systems</h4>
-              <ul className="flex flex-col gap-3">
-                <li><a href="/iphone-voice-memos.html" className="text-sm text-on-surface-variant hover:text-primary transition-colors">iPhone Voice Memos</a></li>
-                <li><a href="/windows.html" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Windows 11 / 10 PC Fix</a></li>
-                <li><a href="/mac.html" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Mac, Android & Chromebook</a></li>
-              </ul>
-            </div>
-
-            {/* Column 2 */}
-            <div>
-              <h4 className="font-bold text-on-surface mb-4">Audio Fidelity</h4>
-              <ul className="flex flex-col gap-3">
-                <li><a href="/320kbps.html" className="text-sm text-on-surface-variant hover:text-primary transition-colors">320kbps Studio Master</a></li>
-                <li><a href="/" className="text-sm text-on-surface-variant hover:text-primary transition-colors">192kbps Standard MP3</a></li>
-                <li><a href="/" className="text-sm text-on-surface-variant hover:text-primary transition-colors">128kbps Speech Bitrate</a></li>
-              </ul>
-            </div>
-
-            {/* Column 3 */}
-            <div>
-              <h4 className="font-bold text-on-surface mb-4">Tools & Performance</h4>
-              <ul className="flex flex-col gap-3">
-                <li><a href="/batch-converter.html" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Batch Converter (No Limit)</a></li>
-                <li><a href="/client-side-safe.html" className="text-sm text-on-surface-variant hover:text-primary transition-colors">100% Client-Side Safe</a></li>
-                <li><a href="/client-side-safe.html" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Zero Upload Architecture</a></li>
-              </ul>
-            </div>
-
-            {/* Column 4 */}
-            <div>
-              <h4 className="font-bold text-on-surface mb-4">Platform & Legal</h4>
-              <ul className="flex flex-col gap-3">
-                <li><a href="/privacy-policy.html" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Privacy Policy</a></li>
-                <li><a href="/terms.html" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Terms of Service</a></li>
-                <li><a href="/about.html" className="text-sm text-on-surface-variant hover:text-primary transition-colors">About M4A to MP3 Converter.com</a></li>
-              </ul>
-            </div>
-
-          </div>
-          
-          <div className="border-t border-outline-variant/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-            <p className="text-on-surface-variant text-sm">
-              &copy; 2026 M4A to MP3 Converter.com — Browser-Native Audio Transcoding Network. All rights reserved.
-            </p>
-            <p className="text-on-surface-variant/60 text-xs font-jb-mono">
-              100% Local In-Browser Processing • Zero Server Bandwidth
-            </p>
-          </div>
-        </div>
-      </footer>
-    </>
-  );
-}
+fs.writeFileSync('app/page.tsx', content, 'utf8');
+console.log('page.tsx deeply updated for SEO.');

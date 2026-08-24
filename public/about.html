@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us & Contact - M4A to MP3 Converter.com</title>
+    <meta name="description" content="Learn about the audio engineering team behind M4A to MP3 Converter.com. Discover our zero-upload, privacy-first technical architecture and get in touch.">
+    <link rel="canonical" href="https://m4atomp3converter.com/about.html">
+    <meta property="og:site_name" content="M4A to MP3 Converter.com">
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        surface: '#020617', // slate-950
+                        'surface-dim': '#0f172a', // slate-900
+                        primary: '#f97316', // orange-500
+                        'primary-container': '#ea580c', // orange-600
+                        secondary: '#fb923c', // orange-400
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    animation: {
+                        pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #020617; color: #cbd5e1; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .glass-header { background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col relative overflow-x-hidden">
+    <!-- Grid Background -->
+    <div class="fixed inset-0 pointer-events-none z-0">
+        <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] opacity-50"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 glass-header px-6 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="/" class="flex items-center gap-3 group">
+                <div class="w-8 h-8 bg-gradient-to-br from-primary to-primary-container rounded flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
+                   <i data-lucide="audio-lines" class="text-white w-5 h-5"></i>
+                </div>
+                <span class="font-semibold text-xl text-white tracking-tight group-hover:text-primary transition-colors">M4A to MP3 Converter<span class="text-primary">.com</span></span>
+            </a>
+            
+            <nav class="hidden lg:flex items-center gap-6">
+                <a class="text-slate-400 hover:text-white transition-colors font-medium text-sm" href="/#how-it-works">How it Works</a>
+                <a class="text-slate-400 hover:text-white transition-colors font-medium text-sm" href="/#specs">Technical Specs</a>
+                <a class="text-slate-400 hover:text-white transition-colors font-medium text-sm" href="/#faq">FAQ</a>
+                
+                <div class="relative group">
+                    <button class="text-slate-400 hover:text-white transition-colors font-medium text-sm flex items-center gap-1 py-4 -my-4">
+                        Presets & Tools <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                    </button>
+                    
+                    <div class="absolute top-full right-0 mt-0 w-64 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 flex flex-col py-2 z-50">
+                        <a href="/iphone-voice-memos.html" class="px-4 py-2 text-sm text-slate-400 hover:text-primary hover:bg-slate-800 transition-colors flex items-center gap-2">
+                            <span class="text-lg">📱</span> iPhone Voice Memos
+                        </a>
+                        <a href="/320kbps.html" class="px-4 py-2 text-sm text-slate-400 hover:text-primary hover:bg-slate-800 transition-colors flex items-center gap-2">
+                            <span class="text-lg">🎵</span> 320kbps Studio Master
+                        </a>
+                        <a href="/batch-converter.html" class="px-4 py-2 text-sm text-slate-400 hover:text-primary hover:bg-slate-800 transition-colors flex items-center gap-2">
+                            <span class="text-lg">🗂️</span> Batch Audio Converter
+                        </a>
+                        <a href="/windows.html" class="px-4 py-2 text-sm text-slate-400 hover:text-primary hover:bg-slate-800 transition-colors flex items-center gap-2">
+                            <span class="text-lg">💻</span> Windows 11 / 10 PC Fix
+                        </a>
+                        <a href="/mac.html" class="px-4 py-2 text-sm text-slate-400 hover:text-primary hover:bg-slate-800 transition-colors flex items-center gap-2">
+                            <span class="text-lg">🍏</span> Mac, Android & ChromeOS
+                        </a>
+                        <a href="/client-side-safe.html" class="px-4 py-2 text-sm text-slate-400 hover:text-primary hover:bg-slate-800 transition-colors flex items-center gap-2">
+                            <span class="text-lg">🔒</span> 100% Client-Side Safe
+                        </a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="flex items-center gap-4">
+                <div class="bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full flex items-center gap-2 shadow-[0_0_15px_rgba(16,185,129,0.15)]">
+                    <div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_5px_rgba(16,185,129,0.8)]"></div>
+                    <span class="text-emerald-400 font-mono text-xs font-medium uppercase tracking-wider">100% Client-Side</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 relative z-10 w-full max-w-5xl mx-auto px-6 py-12 md:py-20 flex flex-col gap-16">
+        
+        <!-- Header / Origin Story -->
+        <div class="text-center md:text-left border-b border-slate-800 pb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">About Us & Engineering Mission</h1>
+            <p class="text-slate-400 text-lg leading-relaxed max-w-3xl">
+                M4A to MP3 Converter.com was born out of a profound frustration with the legacy audio conversion industry. We observed that users were being forced into an insecure paradigm: uploading highly private voice memos, legal recordings, and personal audio files to remote, ad-cluttered cloud servers simply to change a file extension. 
+            </p>
+            <p class="text-slate-400 text-lg leading-relaxed max-w-3xl mt-4">
+                Our philosophy is simple: <strong class="text-white">Privacy-first, zero-upload, zero-latency in-browser computing.</strong> By eliminating the server completely, we return data custody back to the user.
+            </p>
+        </div>
+
+        <!-- Technical Engineering & Architecture -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <div class="flex flex-col gap-6">
+                <h2 class="text-2xl font-bold text-white flex items-center gap-3">
+                    <i data-lucide="cpu" class="w-6 h-6 text-primary"></i> 
+                    Technical Architecture
+                </h2>
+                <p class="text-slate-400 leading-relaxed">
+                    Our platform utilizes edge-compute browser technologies to achieve desktop-grade transcoding natively inside your browser. We leverage the HTML5 <strong>Web Audio API</strong> to cleanly decompress incoming AAC bitstreams into uncompressed PCM Float32 audio buffers.
+                </p>
+                <p class="text-slate-400 leading-relaxed">
+                    Once buffered, the data is handed off to <strong>LameJS</strong> (a WebAssembly/JavaScript port of the legendary LAME MP3 encoder). To prevent browser freezing during heavy batch processing, our engine slices the encoding workload into chunks and processes them via non-blocking <code class="bg-slate-900 text-primary px-1.5 py-0.5 rounded text-sm font-mono border border-slate-800">requestAnimationFrame</code> threads. 
+                </p>
+            </div>
+            
+            <!-- Comparison Matrix -->
+            <div class="bg-slate-900/50 border border-slate-800 rounded-2xl p-6 flex flex-col gap-4">
+                <h3 class="text-lg font-bold text-white mb-2">Performance: Cloud vs. Edge-Local</h3>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-slate-950 border border-slate-800 p-4 rounded-xl">
+                        <span class="text-slate-500 text-xs font-mono uppercase tracking-wider block mb-2">Legacy Cloud Converters</span>
+                        <ul class="space-y-2 text-sm text-slate-400 mt-3">
+                            <li class="flex items-center gap-2"><i data-lucide="x-circle" class="w-4 h-4 text-red-400"></i> High Upload Latency</li>
+                            <li class="flex items-center gap-2"><i data-lucide="x-circle" class="w-4 h-4 text-red-400"></i> High Privacy Risk</li>
+                            <li class="flex items-center gap-2"><i data-lucide="x-circle" class="w-4 h-4 text-red-400"></i> 50MB File Caps</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-primary/10 border border-primary/20 p-4 rounded-xl shadow-[0_0_15px_rgba(249,115,22,0.05)]">
+                        <span class="text-primary text-xs font-mono uppercase tracking-wider block mb-2">M4A to MP3 Converter.com</span>
+                        <ul class="space-y-2 text-sm text-slate-200 mt-3">
+                            <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i> 0ms Upload Latency</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i> 100% Private (Local)</li>
+                            <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i> Unlimited File Sizes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Editorial Standards & The Team -->
+        <section class="bg-slate-900/30 border-l-4 border-primary p-8 rounded-r-2xl">
+            <h2 class="text-2xl font-bold text-white mb-4">Engineering Team & Editorial Standards</h2>
+            <p class="text-slate-400 leading-relaxed mb-4">
+                M4A to MP3 Converter.com is maintained by a specialized team of audio engineers and web performance architects. Our collective background stems from building low-latency digital audio workstations (DAWs) and optimizing high-throughput network applications.
+            </p>
+            <p class="text-slate-400 leading-relaxed">
+                <strong>Our Commitment:</strong> We adhere to strict editorial and operational standards. We pledge absolute ad transparency—you will never see deceptive "Download Here" button ads that trick users into installing malware. We are continuously monitoring modern browser codec updates (such as Chromium and WebKit updates) to ensure our encoding engine maintains the highest possible acoustic fidelity and accessibility compliance.
+            </p>
+        </section>
+
+        <!-- Contact & Feedback Center -->
+        <section class="border-t border-slate-800 pt-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <div class="lg:col-span-5 flex flex-col gap-6">
+                    <h2 class="text-3xl font-bold text-white tracking-tight">Contact Center</h2>
+                    <p class="text-slate-400 leading-relaxed">
+                        Whether you've encountered a rare codec bug, have a feature request, or wish to discuss a business inquiry, our engineering team is readily available.
+                    </p>
+                    
+                    <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 mt-4">
+                        <h3 class="text-white font-semibold mb-4">Direct Support Channel</h3>
+                        <div class="flex items-center gap-4 text-slate-300 bg-slate-950 border border-slate-800 px-4 py-3 rounded-lg w-fit">
+                            <i data-lucide="mail" class="w-5 h-5 text-primary"></i>
+                            <a href="mailto:medhastone@gmail.com" class="hover:text-primary transition-colors font-mono text-sm">medhastone@gmail.com</a>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-slate-900/30 border border-slate-800 rounded-xl p-5">
+                        <h4 class="text-slate-200 font-semibold mb-2 flex items-center gap-2">
+                            <i data-lucide="clock" class="w-4 h-4 text-slate-400"></i> Turnaround Timeline
+                        </h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            We pride ourselves on active maintenance. All technical support tickets, bug reports, and regulatory inquiries receive a guaranteed response within <strong>24–48 hours</strong>.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Interactive Form -->
+                <div class="lg:col-span-7 bg-slate-900/80 border border-slate-800 rounded-2xl p-8 shadow-2xl relative overflow-hidden">
+                    <!-- Subtle Glow -->
+                    <div class="absolute -top-20 -right-20 w-64 h-64 bg-primary/5 rounded-full blur-[80px] pointer-events-none"></div>
+                    
+                                        <form id="contactForm" class="flex flex-col gap-5 relative z-10">
+                        <input type="hidden" name="_subject" value="New Inquiry from M4A to MP3 Converter.com">
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div class="flex flex-col gap-2">
+                                <label for="name" class="text-sm font-medium text-slate-300">Full Name</label>
+                                <input type="text" id="name" name="name" required class="bg-slate-950 border border-slate-800 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors placeholder:text-slate-600" placeholder="Jane Doe">
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <label for="email" class="text-sm font-medium text-slate-300">Email Address</label>
+                                <input type="email" id="email" name="email" required class="bg-slate-950 border border-slate-800 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors placeholder:text-slate-600" placeholder="jane@example.com">
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col gap-2">
+                            <label for="purpose" class="text-sm font-medium text-slate-300">Purpose of Inquiry</label>
+                            <select id="purpose" name="purpose" class="bg-slate-950 border border-slate-800 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors">
+                                <option value="support">Technical Support</option>
+                                <option value="bug">Bug Report</option>
+                                <option value="feature">Feature Request</option>
+                                <option value="business">Business / Legal Inquiry</option>
+                            </select>
+                        </div>
+                        
+                        <div class="flex flex-col gap-2">
+                            <label for="message" class="text-sm font-medium text-slate-300">Message</label>
+                            <textarea id="message" name="message" required rows="5" class="bg-slate-950 border border-slate-800 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors placeholder:text-slate-600 resize-none" placeholder="How can we help you?"></textarea>
+                        </div>
+                        
+                        <button id="submitBtn" type="submit" class="mt-2 bg-gradient-to-r from-primary to-primary-container hover:from-primary-container hover:to-primary text-white font-bold py-3.5 px-6 rounded-lg transition-all transform hover:scale-[1.02] shadow-[0_4px_14px_rgba(249,115,22,0.3)] flex items-center justify-center gap-2">
+                            <span>Submit Inquiry</span> <i data-lucide="send" class="w-4 h-4"></i>
+                        </button>
+                        
+                        <div id="formSuccess" class="hidden mt-2 p-4 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-lg text-sm text-center font-medium">
+                            Message successfully sent to our secure queue. We will respond within 24-48 hours.
+                        </div>
+                        <div id="formError" class="hidden mt-2 p-4 bg-red-500/10 border border-red-500/20 text-red-400 rounded-lg text-sm text-center font-medium">
+                            Oops! Something went wrong. Please try again later.
+                        </div>
+                    </form>
+                    
+                    <script>
+                        document.getElementById('contactForm').addEventListener('submit', function(e) {
+                            e.preventDefault();
+                            
+                            const form = e.target;
+                            const formData = new FormData(form);
+                            const btn = document.getElementById('submitBtn');
+                            const originalBtnHTML = btn.innerHTML;
+                            const successMsg = document.getElementById('formSuccess');
+                            const errorMsg = document.getElementById('formError');
+                            
+                            // Reset messages & show loading state
+                            successMsg.classList.add('hidden');
+                            errorMsg.classList.add('hidden');
+                            btn.innerHTML = '<span class="animate-pulse">Sending...</span>';
+                            btn.disabled = true;
+                            btn.classList.add('opacity-70');
+                            
+                            fetch('https://formsubmit.co/ajax/medhastone@gmail.com', {
+                                method: 'POST',
+                                body: formData,
+                                headers: {
+                                    'Accept': 'application/json'
+                                }
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    form.reset();
+                                    successMsg.classList.remove('hidden');
+                                } else {
+                                    errorMsg.classList.remove('hidden');
+                                }
+                            })
+                            .catch(error => {
+                                errorMsg.classList.remove('hidden');
+                            })
+                            .finally(() => {
+                                btn.innerHTML = originalBtnHTML;
+                                btn.disabled = false;
+                                btn.classList.remove('opacity-70');
+                                // Re-initialize lucide icons for the button
+                                if(window.lucide) { window.lucide.createIcons(); }
+                            });
+                        });
+                    </script>
+                </div>
+                
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 4-Column Footer Matrix -->
+    <footer class="bg-slate-950 border-t border-slate-800/50 pt-16 pb-8 relative z-10 mt-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- Column 1 -->
+                <div>
+                    <h4 class="font-bold text-slate-200 mb-4">Devices & Systems</h4>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="/iphone-voice-memos.html" class="text-sm text-slate-400 hover:text-primary transition-colors">iPhone Voice Memos</a></li>
+                        <li><a href="/windows.html" class="text-sm text-slate-400 hover:text-primary transition-colors">Windows 11 / 10 PC Fix</a></li>
+                        <li><a href="/mac.html" class="text-sm text-slate-400 hover:text-primary transition-colors">Mac, Android & Chromebook</a></li>
+                    </ul>
+                </div>
+                <!-- Column 2 -->
+                <div>
+                    <h4 class="font-bold text-slate-200 mb-4">Audio Fidelity</h4>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="/320kbps.html" class="text-sm text-slate-400 hover:text-primary transition-colors">320kbps Studio Master</a></li>
+                        <li><a href="/" class="text-sm text-slate-400 hover:text-primary transition-colors">192kbps Standard MP3</a></li>
+                        <li><a href="/" class="text-sm text-slate-400 hover:text-primary transition-colors">128kbps Speech Bitrate</a></li>
+                    </ul>
+                </div>
+                <!-- Column 3 -->
+                <div>
+                    <h4 class="font-bold text-slate-200 mb-4">Tools & Performance</h4>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="/batch-converter.html" class="text-sm text-slate-400 hover:text-primary transition-colors">Batch Converter (No Limit)</a></li>
+                        <li><a href="/client-side-safe.html" class="text-sm text-slate-400 hover:text-primary transition-colors">100% Client-Side Safe</a></li>
+                        <li><a href="/client-side-safe.html" class="text-sm text-slate-400 hover:text-primary transition-colors">Zero Upload Architecture</a></li>
+                    </ul>
+                </div>
+                <!-- Column 4 -->
+                <div>
+                    <h4 class="font-bold text-slate-200 mb-4">Platform & Legal</h4>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="/privacy-policy.html" class="text-sm text-slate-400 hover:text-primary transition-colors">Privacy Policy</a></li>
+                        <li><a href="/terms.html" class="text-sm text-slate-400 hover:text-primary transition-colors">Terms of Service</a></li>
+                        <li><a href="/about.html" class="text-sm text-primary transition-colors font-medium">About M4A to MP3 Converter.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-slate-800/50 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+                <p class="text-slate-500 text-sm">
+                    &copy; 2026 M4A to MP3 Converter.com — Browser-Native Audio Transcoding Network. All rights reserved.
+                </p>
+                <p class="text-slate-600 text-xs font-mono">
+                    100% Local In-Browser Processing • Zero Server Bandwidth
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
