@@ -224,7 +224,7 @@ export default function Home() {
               </div>
               
               {/* Row 1 */}
-              <div className="bg-surface-container-low p-6 flex items-center sm:justify-end border-t border-outline-variant/10">
+              <div className="bg-surface-container-low p-6 flex items-center justify-center text-center border-t border-outline-variant/10">
                 <span className="text-on-surface-variant text-base font-medium">Data Compression</span>
               </div>
               <div className="bg-surface p-6 flex items-center justify-center text-center border-t border-outline-variant/10">
@@ -235,7 +235,7 @@ export default function Home() {
               </div>
               
               {/* Row 2 */}
-              <div className="bg-surface-container-low p-6 flex items-center sm:justify-end border-t border-outline-variant/10">
+              <div className="bg-surface-container-low p-6 flex items-center justify-center text-center border-t border-outline-variant/10">
                 <span className="text-on-surface-variant text-base font-medium">Device Compatibility</span>
               </div>
               <div className="bg-surface p-6 flex items-center justify-center text-center border-t border-outline-variant/10">
@@ -247,7 +247,7 @@ export default function Home() {
               </div>
               
               {/* Row 3 */}
-              <div className="bg-surface-container-low p-6 flex items-center sm:justify-end border-t border-outline-variant/10">
+              <div className="bg-surface-container-low p-6 flex items-center justify-center text-center border-t border-outline-variant/10">
                 <span className="text-on-surface-variant text-base font-medium">Supported Bitrates</span>
               </div>
               <div className="bg-surface p-6 flex items-center justify-center text-center border-t border-outline-variant/10">
@@ -258,7 +258,7 @@ export default function Home() {
               </div>
 
               {/* Row 4 */}
-              <div className="bg-surface-container-low p-6 flex items-center sm:justify-end border-t border-outline-variant/10">
+              <div className="bg-surface-container-low p-6 flex items-center justify-center text-center border-t border-outline-variant/10">
                 <span className="text-on-surface-variant text-base font-medium">Metadata Support</span>
               </div>
               <div className="bg-surface p-6 flex items-center justify-center text-center border-t border-outline-variant/10">
