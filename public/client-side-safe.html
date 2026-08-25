@@ -8,7 +8,20 @@
     <link rel="canonical" href="https://m4atomp3converter.com/client-side-safe">
     
     <!-- Tailwind CSS via CDN -->
+    
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <style>
+        body, html {
+            background-color: #020617;
+            color: #f8fafc;
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>setTimeout(() => document.documentElement.classList.remove('no-js'), 0);</script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -37,10 +50,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    
     
     <!-- LameJS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lamejs/1.2.1/lame.min.js"></script>
+    
 
     <!-- Schema Markup -->
     <script type="application/ld+json">
@@ -106,20 +119,20 @@
     </div>
 
     <!-- Sticky Header -->
-    <header class="sticky top-0 z-50 glass-panel border-b border-primary/20 px-6 py-4 flex items-center justify-between shadow-[0_4px_30px_rgba(16,185,129,0.05)]">
-        <a href="/" class="flex items-center gap-2 text-white font-bold text-xl tracking-tight group">
-            <i data-lucide="audio-lines" class="text-primary group-hover:scale-110 transition-transform"></i>
-            M4A<span class="text-white/40 font-light">to</span>MP3
+    <header class="sticky top-0 z-50 glass-panel border-b border-emerald-500/20 px-6 py-4 flex items-center justify-between shadow-[0_4px_30px_rgba(16,185,129,0.05)]">
+        <a href="/" class="flex items-center gap-2 text-white font-bold text-xl tracking-tight group" aria-label="Go to homepage">
+            <i data-lucide="audio-lines" class="text-emerald-400 group-hover:scale-110 transition-transform"></i>
+            M4A<span class="text-slate-300 font-light">to</span>MP3
         </a>
         <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
             <a href="/" class="hover:text-white transition-colors">Home</a>
             <a href="/batch-converter.html" class="hover:text-white transition-colors">Batch Tool</a>
-            <a href="/client-side-safe" class="text-primary">Security</a>
+            <a href="/client-side-safe" class="text-emerald-400">Security</a>
         </div>
-        <div class="flex items-center gap-2 bg-primary/10 border border-primary/30 px-3 py-1.5 rounded-full relative">
-            <div class="absolute inset-0 rounded-full border border-primary/50 animate-ping-slow pointer-events-none"></div>
-            <i data-lucide="shield-check" class="w-4 h-4 text-primary"></i>
-            <span class="text-xs font-mono text-primary font-bold tracking-wide uppercase">Zero-Telemetry Verified • 100% Offline Safe</span>
+        <div class="flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/30 px-3 py-1.5 rounded-full relative">
+            <div class="absolute inset-0 rounded-full border border-emerald-500/50 animate-ping-slow pointer-events-none"></div>
+            <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
+            <span class="text-xs font-mono text-emerald-400 font-bold tracking-wide uppercase">Zero-Telemetry Verified • 100% Offline Safe</span>
         </div>
     </header>
 
@@ -138,34 +151,34 @@
         <!-- Interactive Workspace -->
         <section class="glass-panel rounded-2xl shadow-2xl p-6 md:p-10 relative overflow-hidden group">
             
-            <div class="absolute -left-32 -top-32 w-64 h-64 bg-primary/5 rounded-full blur-[80px] pointer-events-none"></div>
+            <div class="absolute -left-32 -top-32 w-64 h-64 bg-emerald-500/5 rounded-full blur-[80px] pointer-events-none"></div>
 
             <!-- Configuration Bar -->
-            <div class="flex flex-col md:flex-row gap-6 mb-8 pb-6 border-b border-primary/10 relative z-10">
+            <div class="flex flex-col md:flex-row gap-6 mb-8 pb-6 border-b border-emerald-500/10 relative z-10">
                 <div class="flex-1 flex flex-col gap-2">
                     <label class="font-mono text-xs text-slate-400 tracking-widest uppercase font-medium">Quality Protocol</label>
                     <div class="flex bg-surface rounded-lg p-1 border border-white/5 relative">
-                        <button class="flex-1 py-2 font-mono text-xs text-slate-400 hover:text-white transition-colors" onclick="setBitrate(128)" id="btn-128">128 kbps</button>
-                        <button class="flex-1 py-2 font-mono text-xs text-primary font-bold bg-slate-800 rounded shadow-[0_0_10px_rgba(16,185,129,0.1)] transition-colors" onclick="setBitrate(192)" id="btn-192">192 kbps</button>
-                        <button class="flex-1 py-2 font-mono text-xs text-slate-400 hover:text-white transition-colors" onclick="setBitrate(320)" id="btn-320">320 kbps</button>
+                        <button class="flex-1 py-2 font-mono text-xs text-slate-400 hover:text-white transition-colors" onclick="setBitrate(128)" id="btn-128" aria-label="Select 128 kbps bitrate">128 kbps</button>
+                        <button class="flex-1 py-2 font-mono text-xs text-emerald-400 font-bold bg-slate-800 rounded shadow-[0_0_10px_rgba(16,185,129,0.1)] transition-colors" onclick="setBitrate(192)" id="btn-192" aria-label="Select 192 kbps bitrate">192 kbps</button>
+                        <button class="flex-1 py-2 font-mono text-xs text-slate-400 hover:text-white transition-colors" onclick="setBitrate(320)" id="btn-320" aria-label="Select 320 kbps bitrate">320 kbps</button>
                     </div>
                 </div>
                 <div class="flex-1 flex flex-col gap-2">
                     <label class="font-mono text-xs text-slate-400 tracking-widest uppercase font-medium">Network Protocol</label>
-                    <div class="flex bg-primary/5 border border-primary/20 rounded-lg p-1 relative items-center justify-center pointer-events-none shadow-inner">
-                        <i data-lucide="wifi-off" class="w-4 h-4 text-primary mr-2"></i>
-                        <span class="font-mono text-xs text-primary font-bold tracking-widest uppercase">Strictly Local RAM Processing</span>
+                    <div class="flex bg-emerald-500/5 border border-emerald-500/20 rounded-lg p-1 relative items-center justify-center pointer-events-none shadow-inner">
+                        <i data-lucide="wifi-off" class="w-4 h-4 text-emerald-400 mr-2"></i>
+                        <span class="font-mono text-xs text-emerald-400 font-bold tracking-widest uppercase">Strictly Local RAM Processing</span>
                     </div>
                 </div>
             </div>
 
             <!-- Dropzone / Main Area -->
             <div class="relative w-full min-h-[256px] flex flex-col z-10" id="workspace">
-                <div id="idle-state" class="flex-auto border-2 border-dashed border-primary/30 rounded-xl flex flex-col items-center justify-center gap-4 cursor-pointer hover:border-primary hover:bg-primary/5 transition-all p-8 relative" onclick="document.getElementById('fileInput').click()" ondragover="event.preventDefault(); this.classList.add('border-primary')" ondragleave="this.classList.remove('border-primary')" ondrop="handleDrop(event)">
-                    <div class="w-20 h-20 rounded-full bg-surface flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.1)] border border-primary/20 group-hover:scale-110 group-hover:shadow-[0_0_30px_rgba(16,185,129,0.3)] transition-all relative">
-                        <i data-lucide="lock" class="w-10 h-10 text-primary"></i>
-                        <div class="absolute -bottom-1 -right-1 bg-surface rounded-full p-1 border border-primary/30">
-                            <i data-lucide="check" class="w-3 h-3 text-primary"></i>
+                <div id="idle-state" class="flex-auto border-2 border-dashed border-emerald-500/30 rounded-xl flex flex-col items-center justify-center gap-4 cursor-pointer hover:border-emerald-500 hover:bg-emerald-500/5 transition-all p-8 relative" onclick="document.getElementById('fileInput').click()" ondragover="event.preventDefault(); this.classList.add('border-emerald-500')" ondragleave="this.classList.remove('border-emerald-500')" ondrop="handleDrop(event)" aria-label="Upload audio file drop zone" role="button" tabindex="0">
+                    <div class="w-20 h-20 rounded-full bg-surface flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.1)] border border-emerald-500/20 group-hover:scale-110 group-hover:shadow-[0_0_30px_rgba(16,185,129,0.3)] transition-all relative">
+                        <i data-lucide="lock" class="w-10 h-10 text-emerald-400"></i>
+                        <div class="absolute -bottom-1 -right-1 bg-surface rounded-full p-1 border border-emerald-500/30">
+                            <i data-lucide="check" class="w-3 h-3 text-emerald-400"></i>
                         </div>
                     </div>
                     <div class="text-center">
@@ -175,12 +188,12 @@
                     <input type="file" id="fileInput" accept=".m4a,audio/mp4,audio/x-m4a,audio/*" class="hidden" onchange="handleFileSelect(event)">
                 </div>
 
-                <div id="processing-state" class="hidden flex-auto flex flex-col items-center justify-center gap-4 bg-surface/50 rounded-xl border border-primary/20 py-8 relative">
+                <div id="processing-state" class="hidden flex-auto flex flex-col items-center justify-center gap-4 bg-surface/50 rounded-xl border border-emerald-500/20 py-8 relative">
                     <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(16,185,129,0.05)_0%,transparent_70%)] pointer-events-none"></div>
                     
-                    <div class="flex items-center gap-3 mb-4 bg-primary/10 border border-primary/20 px-4 py-2 rounded-lg shadow-sm">
-                        <i data-lucide="shield-alert" class="w-4 h-4 text-primary animate-pulse"></i>
-                        <span class="font-mono text-xs text-primary font-medium tracking-wide">Network Traffic: 0 Bytes Transferred</span>
+                    <div class="flex items-center gap-3 mb-4 bg-emerald-500/10 border border-emerald-500/20 px-4 py-2 rounded-lg shadow-sm">
+                        <i data-lucide="shield-alert" class="w-4 h-4 text-emerald-400 animate-pulse"></i>
+                        <span class="font-mono text-xs text-emerald-400 font-medium tracking-wide">Network Traffic: 0 Bytes Transferred</span>
                     </div>
 
                     <div class="w-3/4 max-w-md bg-slate-800 h-2 rounded-full overflow-hidden shadow-inner relative z-10 mt-2">
@@ -188,23 +201,23 @@
                     </div>
                     <div class="flex justify-between w-3/4 max-w-md mt-1 z-10">
                         <span id="status-text" class="font-mono text-xs text-slate-400 truncate pr-4">Decoding in local memory...</span>
-                        <span id="progress-text" class="font-mono text-xs font-bold text-primary">0%</span>
+                        <span id="progress-text" class="font-mono text-xs font-bold text-emerald-400">0%</span>
                     </div>
                 </div>
 
-                <div id="done-state" class="hidden flex-auto flex flex-col items-center justify-center gap-4 bg-surface/50 rounded-xl border border-primary/20 py-8 relative">
+                <div id="done-state" class="hidden flex-auto flex flex-col items-center justify-center gap-4 bg-surface/50 rounded-xl border border-emerald-500/20 py-8 relative">
                      <div class="relative">
-                         <i data-lucide="shield-check" class="w-16 h-16 text-primary mb-2 relative z-10"></i>
-                         <div class="absolute inset-0 bg-primary/30 blur-xl rounded-full animate-pulse z-0"></div>
+                         <i data-lucide="shield-check" class="w-16 h-16 text-emerald-400 mb-2 relative z-10"></i>
+                         <div class="absolute inset-0 bg-emerald-500/30 blur-xl rounded-full animate-pulse z-0"></div>
                      </div>
                      <h3 class="text-2xl font-bold text-white">Conversion Securely Completed</h3>
                      <p class="text-sm text-slate-400 font-mono bg-slate-900 border border-white/5 px-3 py-1 rounded">No network requests were made during this operation.</p>
                      
                      <div class="flex flex-col sm:flex-row gap-4 mt-4 w-3/4 max-w-md">
-                         <button onclick="downloadMp3()" class="flex-1 bg-primary hover:bg-primary-container text-white font-semibold px-6 py-4 rounded-xl shadow-[0_0_15px_rgba(16,185,129,0.4)] flex items-center justify-center gap-2 transition-all">
+                         <button onclick="downloadMp3()" class="flex-1 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold px-6 py-4 rounded-xl shadow-[0_0_15px_rgba(16,185,129,0.4)] flex items-center justify-center gap-2 transition-all" aria-label="Download MP3 file">
                              <i data-lucide="download" class="w-5 h-5"></i> Save MP3 Locally
                          </button>
-                         <button onclick="resetConverter()" class="bg-slate-800 hover:bg-slate-700 text-white font-semibold px-6 py-4 rounded-xl transition-colors flex items-center justify-center gap-2">
+                         <button onclick="resetConverter()" class="bg-slate-800 hover:bg-slate-700 text-white font-semibold px-6 py-4 rounded-xl transition-colors flex items-center justify-center gap-2" aria-label="Convert another file">
                              <i data-lucide="rotate-ccw" class="w-5 h-5"></i> Convert Another
                          </button>
                      </div>
@@ -213,8 +226,8 @@
                 <div id="error-state" class="hidden flex-auto flex flex-col items-center justify-center gap-4 bg-red-950/20 rounded-xl border border-red-500/30 py-8 p-6 relative text-center">
                      <i data-lucide="alert-triangle" class="w-12 h-12 text-red-400"></i>
                      <h3 class="text-xl font-bold text-red-200">Processing Error</h3>
-                     <p id="error-text" class="text-red-300/70 text-sm max-w-sm mx-auto">An error occurred while parsing the file locally.</p>
-                     <button onclick="resetConverter()" class="mt-4 bg-slate-800 hover:bg-slate-700 px-8 py-3 rounded-xl font-medium transition-colors">Retry Securely</button>
+                     <p id="error-text" class="text-red-200 text-sm max-w-sm mx-auto">An error occurred while parsing the file locally.</p>
+                     <button onclick="resetConverter()" class="mt-4 bg-slate-800 hover:bg-slate-700 px-8 py-3 rounded-xl font-medium transition-colors" aria-label="Convert another file">Retry Securely</button>
                 </div>
             </div>
             
@@ -234,13 +247,13 @@
                 </p>
 
                 <h3 class="text-xl font-bold text-white mt-8 mb-3 flex items-center gap-2">
-                    <i data-lucide="terminal" class="w-5 h-5 text-primary"></i> How to Verify Zero Uploads
+                    <i data-lucide="terminal" class="w-5 h-5 text-emerald-400"></i> How to Verify Zero Uploads
                 </h3>
                 <p class="text-slate-400 leading-relaxed mb-4">
                     Don't just take our word for it. You can prove that this transcoder requires zero cloud uploads using your browser's built-in developer tools:
                 </p>
                 <ol class="list-decimal list-inside text-slate-400 space-y-2 mb-6">
-                    <li>Press <code class="text-xs bg-white/10 px-1.5 py-0.5 rounded text-primary font-mono">F12</code> (or right-click and select "Inspect") to open Developer Tools.</li>
+                    <li>Press <code class="text-xs bg-white/10 px-1.5 py-0.5 rounded text-emerald-400 font-mono">F12</code> (or right-click and select "Inspect") to open Developer Tools.</li>
                     <li>Click on the <strong>Network</strong> tab.</li>
                     <li>Drag and drop an audio file into the converter box above.</li>
                     <li>Watch the Network tab. You will see <strong>0 bytes</strong> of network traffic generated during the entire conversion process.</li>
@@ -253,15 +266,15 @@
 
             <div class="flex flex-col gap-6">
                 <h2 class="text-2xl font-bold mb-2">Security FAQs</h2>
-                <div class="bg-slate-900/50 p-5 rounded-xl border border-primary/10 shadow-[0_0_10px_rgba(16,185,129,0.03)] hover:border-primary/30 transition-colors">
+                <div class="bg-slate-900/50 p-5 rounded-xl border border-emerald-500/10 shadow-[0_0_10px_rgba(16,185,129,0.03)] hover:border-emerald-500/30 transition-colors">
                     <h4 class="font-bold text-white mb-2 text-lg">Are my voice recordings ever stored on your servers?</h4>
                     <p class="text-slate-400 text-sm leading-relaxed">Absolutely not. Because this is a client side m4a to mp3 converter, the entire decoding and encoding process happens locally inside your device's RAM. Zero bytes are uploaded to our servers, and no logs of your audio are ever created.</p>
                 </div>
-                <div class="bg-slate-900/50 p-5 rounded-xl border border-primary/10 shadow-[0_0_10px_rgba(16,185,129,0.03)] hover:border-primary/30 transition-colors">
+                <div class="bg-slate-900/50 p-5 rounded-xl border border-emerald-500/10 shadow-[0_0_10px_rgba(16,185,129,0.03)] hover:border-emerald-500/30 transition-colors">
                     <h4 class="font-bold text-white mb-2 text-lg">Can I disconnect my internet Wi-Fi and still convert audio?</h4>
                     <p class="text-slate-400 text-sm leading-relaxed">Yes! Once you load this webpage, you can completely disconnect from Wi-Fi or turn on Airplane Mode. Because it is an m4a to mp3 converter offline safe tool, it utilizes browser WebAssembly to function without any active internet connection.</p>
                 </div>
-                <div class="bg-slate-900/50 p-5 rounded-xl border border-primary/10 shadow-[0_0_10px_rgba(16,185,129,0.03)] hover:border-primary/30 transition-colors">
+                <div class="bg-slate-900/50 p-5 rounded-xl border border-emerald-500/10 shadow-[0_0_10px_rgba(16,185,129,0.03)] hover:border-emerald-500/30 transition-colors">
                     <h4 class="font-bold text-white mb-2 text-lg">How does in-browser client-side processing ensure GDPR & HIPAA compliance?</h4>
                     <p class="text-slate-400 text-sm leading-relaxed">By never transmitting user data or audio files across the internet, there is no data collection, no third-party processor handoff, and no data residency concerns. The user maintains 100% custody of their files at all times, natively satisfying strict privacy frameworks.</p>
                 </div>
@@ -275,44 +288,46 @@
             <div>
                 <h4 class="font-bold text-white mb-4">Formats</h4>
                 <ul class="flex flex-col gap-2 text-sm text-slate-400">
-                    <li><a href="/" class="hover:text-primary transition-colors">Main Hub (Home)</a></li>
-                    <li><a href="/iphone-voice-memos.html" class="hover:text-primary transition-colors">iPhone Voice Memos</a></li>
+                    <li><a href="/" class="hover:text-emerald-400 transition-colors">Main Hub (Home)</a></li>
+                    <li><a href="/iphone-voice-memos.html" class="hover:text-emerald-400 transition-colors">iPhone Voice Memos</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="font-bold text-white mb-4">Quality</h4>
                 <ul class="flex flex-col gap-2 text-sm text-slate-400">
-                    <li><a href="/320kbps.html" class="hover:text-primary transition-colors">320kbps Studio Master</a></li>
+                    <li><a href="/320kbps.html" class="hover:text-emerald-400 transition-colors">320kbps Studio Master</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="font-bold text-white mb-4">Platforms</h4>
                 <ul class="flex flex-col gap-2 text-sm text-slate-400">
-                    <li><a href="/windows.html" class="hover:text-primary transition-colors">Windows 11 Guide</a></li>
-                    <li><a href="/mac.html" class="hover:text-primary transition-colors">Mac, Android & ChromeOS</a></li>
+                    <li><a href="/windows.html" class="hover:text-emerald-400 transition-colors">Windows 11 Guide</a></li>
+                    <li><a href="/mac.html" class="hover:text-emerald-400 transition-colors">Mac, Android & ChromeOS</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="font-bold text-white mb-4">Tools</h4>
                 <ul class="flex flex-col gap-2 text-sm text-slate-400">
-                    <li><a href="/batch-converter.html" class="hover:text-primary transition-colors">Batch Engine</a></li>
-                    <li><a href="/client-side-safe.html" class="text-primary font-medium">Zero Upload Privacy</a></li>
+                    <li><a href="/batch-converter.html" class="hover:text-emerald-400 transition-colors">Batch Engine</a></li>
+                    <li><a href="/client-side-safe.html" class="text-emerald-400 font-medium">Zero Upload Privacy</a></li>
                 </ul>
             </div>
                     <div>
                 <h4 class="font-bold text-white mb-4">Platform & Legal</h4>
                 <ul class="flex flex-col gap-2 text-sm text-slate-400">
-                    <li><a href="https://m4atomp3converter.com/privacy-policy.html" class="hover:text-primary transition-colors">Privacy Policy</a></li>
-                    <li><a href="https://m4atomp3converter.com/terms.html" class="hover:text-primary transition-colors">Terms of Service</a></li>
-                    <li><a href="https://m4atomp3converter.com/about.html" class="hover:text-primary transition-colors">About M4A to MP3 Converter.com</a></li>
+                    <li><a href="https://m4atomp3converter.com/privacy-policy.html" class="hover:text-emerald-400 transition-colors">Privacy Policy</a></li>
+                    <li><a href="https://m4atomp3converter.com/terms.html" class="hover:text-emerald-400 transition-colors">Terms of Service</a></li>
+                    <li><a href="https://m4atomp3converter.com/about.html" class="hover:text-emerald-400 transition-colors">About M4A to MP3 Converter.com</a></li>
                 </ul>
             </div>
         </div>
-        <div class="text-center text-slate-600 text-sm border-t border-white/5 pt-8 flex items-center justify-center gap-2">
+        <div class="text-center text-slate-400 text-sm border-t border-white/5 pt-8 flex items-center justify-center gap-2">
             <i data-lucide="shield" class="w-4 h-4"></i> &copy; 2026 M4A to MP3 Converter. Strictly Confidential Processing.
         </div>
     </footer>
 
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lamejs/1.2.1/lame.min.js"></script>
     <!-- Logic Script -->
     <script>
         lucide.createIcons();
@@ -326,7 +341,7 @@
             [128, 192, 320].forEach(val => {
                 const btn = document.getElementById(`btn-${val}`);
                 if (val === kbps) {
-                    btn.className = 'flex-1 py-2 font-mono text-xs text-primary font-bold bg-slate-800 rounded shadow-[0_0_10px_rgba(16,185,129,0.1)] transition-colors';
+                    btn.className = 'flex-1 py-2 font-mono text-xs text-emerald-400 font-bold bg-slate-800 rounded shadow-[0_0_10px_rgba(16,185,129,0.1)] transition-colors';
                 } else {
                     btn.className = 'flex-1 py-2 font-mono text-xs text-slate-400 hover:text-white transition-colors';
                 }
@@ -335,7 +350,7 @@
 
         function handleDrop(e) {
             e.preventDefault();
-            document.getElementById('idle-state').classList.remove('border-primary');
+            document.getElementById('idle-state').classList.remove('border-emerald-500');
             if (e.dataTransfer.files && e.dataTransfer.files[0]) {
                 processFile(e.dataTransfer.files[0]);
             }

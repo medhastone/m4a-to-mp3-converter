@@ -8,7 +8,20 @@
     <link rel="canonical" href="https://m4atomp3converter.com/batch-converter">
     
     <!-- Tailwind CSS via CDN -->
+    
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <style>
+        body, html {
+            background-color: #020617;
+            color: #f8fafc;
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>setTimeout(() => document.documentElement.classList.remove('no-js'), 0);</script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -35,10 +48,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    
     
     <!-- LameJS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lamejs/1.2.1/lame.min.js"></script>
+    
 
     <!-- Schema Markup -->
     <script type="application/ld+json">
@@ -109,18 +122,18 @@
 
     <!-- Sticky Header -->
     <header class="sticky top-0 z-50 glass-panel border-b border-white/10 px-6 py-4 flex items-center justify-between">
-        <a href="/" class="flex items-center gap-2 text-white font-bold text-xl tracking-tight group">
-            <i data-lucide="audio-lines" class="text-primary group-hover:scale-110 transition-transform"></i>
-            M4A<span class="text-white/40 font-light">to</span>MP3
+        <a href="/" class="flex items-center gap-2 text-white font-bold text-xl tracking-tight group" aria-label="Go to homepage">
+            <i data-lucide="audio-lines" class="text-emerald-400 group-hover:scale-110 transition-transform"></i>
+            M4A<span class="text-slate-300 font-light">to</span>MP3
         </a>
         <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
             <a href="/" class="hover:text-white transition-colors">Home</a>
-            <a href="/batch-converter" class="text-primary">Batch Converter</a>
+            <a href="/batch-converter" class="text-emerald-400">Batch Converter</a>
             <a href="/client-side-safe.html" class="hover:text-white transition-colors">Client-Side Safe</a>
         </div>
-        <div class="flex items-center gap-2 bg-primary/10 border border-primary/20 px-3 py-1.5 rounded-full shadow-[0_0_15px_rgba(249,115,22,0.15)]">
-            <i data-lucide="layers" class="w-4 h-4 text-primary"></i>
-            <span class="text-xs font-mono text-primary font-semibold tracking-wide uppercase">Batch Queue Engine • Zero Size Limits</span>
+        <div class="flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full shadow-[0_0_15px_rgba(249,115,22,0.15)]">
+            <i data-lucide="layers" class="w-4 h-4 text-emerald-400"></i>
+            <span class="text-xs font-mono text-emerald-400 font-semibold tracking-wide uppercase">Batch Queue Engine • Zero Size Limits</span>
         </div>
     </header>
 
@@ -139,32 +152,32 @@
         <!-- Interactive Workspace -->
         <section class="glass-panel rounded-2xl shadow-2xl p-6 md:p-10 relative overflow-hidden group border border-white/10">
             
-            <div class="absolute -right-32 -top-32 w-64 h-64 bg-primary/5 rounded-full blur-[80px] pointer-events-none"></div>
+            <div class="absolute -right-32 -top-32 w-64 h-64 bg-emerald-500/5 rounded-full blur-[80px] pointer-events-none"></div>
 
             <!-- Configuration Bar -->
             <div class="flex flex-col md:flex-row gap-6 mb-8 pb-6 border-b border-white/10 relative z-10">
                 <div class="flex-1 flex flex-col gap-2">
                     <label class="font-mono text-xs text-slate-400 tracking-widest uppercase font-medium">Batch Quality</label>
                     <div class="flex bg-surface rounded-lg p-1 border border-white/5 relative">
-                        <button class="flex-1 py-2 font-mono text-xs text-slate-400 hover:text-white transition-colors" onclick="setBitrate(128)" id="btn-128">128 kbps</button>
-                        <button class="flex-1 py-2 font-mono text-xs text-primary font-bold bg-slate-800 rounded shadow-sm transition-colors" onclick="setBitrate(192)" id="btn-192">192 kbps</button>
-                        <button class="flex-1 py-2 font-mono text-xs text-slate-400 hover:text-white transition-colors" onclick="setBitrate(320)" id="btn-320">320 kbps</button>
+                        <button class="flex-1 py-2 font-mono text-xs text-slate-400 hover:text-white transition-colors" onclick="setBitrate(128)" id="btn-128" aria-label="Select 128 kbps bitrate">128 kbps</button>
+                        <button class="flex-1 py-2 font-mono text-xs text-emerald-400 font-bold bg-slate-800 rounded shadow-sm transition-colors" onclick="setBitrate(192)" id="btn-192" aria-label="Select 192 kbps bitrate">192 kbps</button>
+                        <button class="flex-1 py-2 font-mono text-xs text-slate-400 hover:text-white transition-colors" onclick="setBitrate(320)" id="btn-320" aria-label="Select 320 kbps bitrate">320 kbps</button>
                     </div>
                 </div>
                 <div class="flex-1 flex flex-col gap-2">
                     <label class="font-mono text-xs text-slate-400 tracking-widest uppercase font-medium">Batch Topology</label>
                     <div class="flex bg-surface rounded-lg p-1 border border-white/5 relative">
                         <button class="flex-1 py-2 font-mono text-xs text-slate-400 hover:text-white transition-colors" onclick="setTopology('mono')" id="btn-mono">Mono (1 Ch)</button>
-                        <button class="flex-1 py-2 font-mono text-xs text-primary font-bold bg-slate-800 rounded shadow-sm transition-colors" onclick="setTopology('stereo')" id="btn-stereo">Stereo (2 Ch)</button>
+                        <button class="flex-1 py-2 font-mono text-xs text-emerald-400 font-bold bg-slate-800 rounded shadow-sm transition-colors" onclick="setTopology('stereo')" id="btn-stereo">Stereo (2 Ch)</button>
                     </div>
                 </div>
             </div>
 
             <!-- Multi-File Dropzone Area -->
             <div class="relative w-full flex flex-col gap-4 z-10">
-                <div id="dropzone" class="w-full border-2 border-dashed border-white/20 rounded-xl flex flex-col items-center justify-center gap-4 cursor-pointer hover:border-primary/50 hover:bg-white/5 transition-all p-8 relative" onclick="document.getElementById('fileInput').click()" ondragover="event.preventDefault(); this.classList.add('border-primary')" ondragleave="this.classList.remove('border-primary')" ondrop="handleDrop(event)">
+                <div id="dropzone" class="w-full border-2 border-dashed border-white/20 rounded-xl flex flex-col items-center justify-center gap-4 cursor-pointer hover:border-emerald-500/50 hover:bg-white/5 transition-all p-8 relative" onclick="document.getElementById('fileInput').click()" ondragover="event.preventDefault(); this.classList.add('border-emerald-500')" ondragleave="this.classList.remove('border-emerald-500')" ondrop="handleDrop(event)">
                     <div class="w-16 h-16 rounded-full bg-surface flex items-center justify-center shadow-lg border border-white/5 group-hover:scale-110 transition-transform">
-                        <i data-lucide="files" class="w-8 h-8 text-primary"></i>
+                        <i data-lucide="files" class="w-8 h-8 text-emerald-400"></i>
                     </div>
                     <div class="text-center">
                         <p class="font-medium text-slate-200 text-lg">Drop multiple M4A files here</p>
@@ -176,7 +189,7 @@
                 <!-- Queue UI Container -->
                 <div id="queue-container" class="hidden flex-col gap-3 mt-4">
                     <div class="flex justify-between items-center px-2">
-                        <h3 class="font-bold text-white flex items-center gap-2"><i data-lucide="list-video" class="w-5 h-5 text-primary"></i> Conversion Queue</h3>
+                        <h3 class="font-bold text-white flex items-center gap-2"><i data-lucide="list-video" class="w-5 h-5 text-emerald-400"></i> Conversion Queue</h3>
                         <span id="queue-count" class="text-xs font-mono text-slate-400 bg-surface px-2 py-1 rounded border border-white/10">0 files</span>
                     </div>
                     
@@ -185,10 +198,10 @@
                     </div>
                     
                     <div class="flex gap-4 mt-2">
-                        <button id="download-all-btn" onclick="downloadAll()" class="hidden flex-1 bg-primary hover:bg-primary-container text-white font-semibold px-4 py-3 rounded-lg shadow-[0_0_15px_rgba(249,115,22,0.3)] transition-all items-center justify-center gap-2">
+                        <button id="download-all-btn" onclick="downloadAll()" class="hidden flex-1 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold px-4 py-3 rounded-lg shadow-[0_0_15px_rgba(249,115,22,0.3)] transition-all items-center justify-center gap-2" aria-label="Download all MP3 files">
                             <i data-lucide="download-cloud" class="w-5 h-5"></i> Download All
                         </button>
-                        <button id="clear-queue-btn" onclick="clearQueue()" class="flex-1 bg-slate-800 hover:bg-slate-700 text-white font-semibold px-4 py-3 rounded-lg transition-colors flex items-center justify-center gap-2">
+                        <button id="clear-queue-btn" onclick="clearQueue()" class="flex-1 bg-slate-800 hover:bg-slate-700 text-white font-semibold px-4 py-3 rounded-lg transition-colors flex items-center justify-center gap-2" aria-label="Clear file queue">
                             <i data-lucide="trash-2" class="w-4 h-4"></i> Clear Queue
                         </button>
                     </div>
@@ -197,7 +210,7 @@
             
             <div class="w-full flex items-start sm:items-center justify-start gap-3 px-5 py-4 mt-6 bg-surface/40 rounded-xl border border-white/5 text-sm shadow-sm relative overflow-hidden">
                 <div class="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent pointer-events-none"></div>
-                <i data-lucide="database" class="w-5 h-5 text-primary relative z-10 shrink-0 mt-0.5 sm:mt-0"></i>
+                <i data-lucide="database" class="w-5 h-5 text-emerald-400 relative z-10 shrink-0 mt-0.5 sm:mt-0"></i>
                 <p class="text-slate-300 leading-relaxed relative z-10">
                     <span class="font-semibold text-white">Infinite Capacity:</span> Because this is a size-unlimited transcoding engine, you can queue multi-gigabyte files. Data never leaves your computer.
                 </p>
@@ -250,44 +263,46 @@
             <div>
                 <h4 class="font-bold text-white mb-4">Formats</h4>
                 <ul class="flex flex-col gap-2 text-sm text-slate-400">
-                    <li><a href="/" class="hover:text-primary transition-colors">Main Hub (Home)</a></li>
-                    <li><a href="/iphone-voice-memos.html" class="hover:text-primary transition-colors">iPhone Voice Memos</a></li>
+                    <li><a href="/" class="hover:text-emerald-400 transition-colors">Main Hub (Home)</a></li>
+                    <li><a href="/iphone-voice-memos.html" class="hover:text-emerald-400 transition-colors">iPhone Voice Memos</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="font-bold text-white mb-4">Quality</h4>
                 <ul class="flex flex-col gap-2 text-sm text-slate-400">
-                    <li><a href="/320kbps.html" class="hover:text-primary transition-colors">320kbps Studio Master</a></li>
+                    <li><a href="/320kbps.html" class="hover:text-emerald-400 transition-colors">320kbps Studio Master</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="font-bold text-white mb-4">Platforms</h4>
                 <ul class="flex flex-col gap-2 text-sm text-slate-400">
-                    <li><a href="/windows.html" class="hover:text-primary transition-colors">Windows 11 Guide</a></li>
-                    <li><a href="/mac.html" class="hover:text-primary transition-colors">Mac & Mobile</a></li>
+                    <li><a href="/windows.html" class="hover:text-emerald-400 transition-colors">Windows 11 Guide</a></li>
+                    <li><a href="/mac.html" class="hover:text-emerald-400 transition-colors">Mac & Mobile</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="font-bold text-white mb-4">Tools</h4>
                 <ul class="flex flex-col gap-2 text-sm text-slate-400">
-                    <li><a href="/batch-converter.html" class="text-primary font-medium">Batch Engine</a></li>
-                    <li><a href="/client-side-safe.html" class="hover:text-primary transition-colors">Zero Upload Privacy</a></li>
+                    <li><a href="/batch-converter.html" class="text-emerald-400 font-medium">Batch Engine</a></li>
+                    <li><a href="/client-side-safe.html" class="hover:text-emerald-400 transition-colors">Zero Upload Privacy</a></li>
                 </ul>
             </div>
                     <div>
                 <h4 class="font-bold text-white mb-4">Platform & Legal</h4>
                 <ul class="flex flex-col gap-2 text-sm text-slate-400">
-                    <li><a href="https://m4atomp3converter.com/privacy-policy.html" class="hover:text-primary transition-colors">Privacy Policy</a></li>
-                    <li><a href="https://m4atomp3converter.com/terms.html" class="hover:text-primary transition-colors">Terms of Service</a></li>
-                    <li><a href="https://m4atomp3converter.com/about.html" class="hover:text-primary transition-colors">About M4A to MP3 Converter.com</a></li>
+                    <li><a href="https://m4atomp3converter.com/privacy-policy.html" class="hover:text-emerald-400 transition-colors">Privacy Policy</a></li>
+                    <li><a href="https://m4atomp3converter.com/terms.html" class="hover:text-emerald-400 transition-colors">Terms of Service</a></li>
+                    <li><a href="https://m4atomp3converter.com/about.html" class="hover:text-emerald-400 transition-colors">About M4A to MP3 Converter.com</a></li>
                 </ul>
             </div>
         </div>
-        <div class="text-center text-slate-600 text-sm border-t border-white/5 pt-8">
+        <div class="text-center text-slate-400 text-sm border-t border-white/5 pt-8">
             &copy; 2026 M4A to MP3 Converter. All rights reserved. Unlimited Batch Processing.
         </div>
     </footer>
 
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lamejs/1.2.1/lame.min.js"></script>
     <!-- Logic Script -->
     <script>
         lucide.createIcons();
@@ -303,7 +318,7 @@
             [128, 192, 320].forEach(val => {
                 const btn = document.getElementById(`btn-${val}`);
                 if (val === kbps) {
-                    btn.className = 'flex-1 py-2 font-mono text-xs text-primary font-bold bg-slate-800 rounded shadow-sm transition-colors';
+                    btn.className = 'flex-1 py-2 font-mono text-xs text-emerald-400 font-bold bg-slate-800 rounded shadow-sm transition-colors';
                 } else {
                     btn.className = 'flex-1 py-2 font-mono text-xs text-slate-400 hover:text-white transition-colors';
                 }
@@ -315,7 +330,7 @@
             ['mono', 'stereo'].forEach(val => {
                 const btn = document.getElementById(`btn-${val}`);
                 if (val === topo) {
-                    btn.className = 'flex-1 py-2 font-mono text-xs text-primary font-bold bg-slate-800 rounded shadow-sm transition-colors';
+                    btn.className = 'flex-1 py-2 font-mono text-xs text-emerald-400 font-bold bg-slate-800 rounded shadow-sm transition-colors';
                 } else {
                     btn.className = 'flex-1 py-2 font-mono text-xs text-slate-400 hover:text-white transition-colors';
                 }
@@ -324,7 +339,7 @@
 
         function handleDrop(e) {
             e.preventDefault();
-            document.getElementById('dropzone').classList.remove('border-primary');
+            document.getElementById('dropzone').classList.remove('border-emerald-500');
             if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
                 addFilesToQueue(Array.from(e.dataTransfer.files));
             }
@@ -366,7 +381,7 @@
 
         function getStatusIcon(status) {
             if (status === 'pending') return '<i data-lucide="clock" class="w-4 h-4 text-slate-400"></i>';
-            if (status === 'processing') return '<i data-lucide="loader-2" class="w-4 h-4 text-primary animate-spin"></i>';
+            if (status === 'processing') return '<i data-lucide="loader-2" class="w-4 h-4 text-emerald-400 animate-spin"></i>';
             if (status === 'done') return '<i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>';
             if (status === 'error') return '<i data-lucide="alert-triangle" class="w-4 h-4 text-red-400"></i>';
             return '';
@@ -419,7 +434,7 @@
                     ` : ''}
 
                     ${isDone ? `
-                    <button onclick="downloadSingle('${item.id}')" class="text-xs font-medium text-primary hover:text-primary-container bg-primary/10 hover:bg-primary/20 self-start px-3 py-1.5 rounded-md transition-colors flex items-center gap-1.5">
+                    <button onclick="downloadSingle('${item.id}')" class="text-xs font-medium text-emerald-400 hover:text-emerald-400-container bg-emerald-500/10 hover:bg-emerald-500/20 self-start px-3 py-1.5 rounded-md transition-colors flex items-center gap-1.5">
                         <i data-lucide="download" class="w-3 h-3"></i> Download MP3
                     </button>
                     ` : ''}

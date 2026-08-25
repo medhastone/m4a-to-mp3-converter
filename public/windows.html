@@ -8,7 +8,20 @@
     <link rel="canonical" href="https://m4atomp3converter.com/windows">
     
     <!-- Tailwind CSS via CDN -->
+    
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <style>
+        body, html {
+            background-color: #020617;
+            color: #f8fafc;
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>setTimeout(() => document.documentElement.classList.remove('no-js'), 0);</script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -46,10 +59,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    
     
     <!-- LameJS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lamejs/1.2.1/lame.min.js"></script>
+    
 
     <!-- Schema Markup -->
     <script type="application/ld+json">
@@ -116,13 +129,13 @@
 
     <!-- Sticky Header -->
     <header class="sticky top-0 z-50 glass-panel border-b border-white/10 px-6 py-4 flex items-center justify-between">
-        <a href="/" class="flex items-center gap-2 text-white font-bold text-xl tracking-tight group">
-            <i data-lucide="audio-lines" class="text-primary group-hover:scale-110 transition-transform"></i>
-            M4A<span class="text-white/40 font-light">to</span>MP3
+        <a href="/" class="flex items-center gap-2 text-white font-bold text-xl tracking-tight group" aria-label="Go to homepage">
+            <i data-lucide="audio-lines" class="text-emerald-400 group-hover:scale-110 transition-transform"></i>
+            M4A<span class="text-slate-300 font-light">to</span>MP3
         </a>
         <div class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
             <a href="/" class="hover:text-white transition-colors">Home</a>
-            <a href="/windows" class="text-primary">Windows PC Guide</a>
+            <a href="/windows" class="text-emerald-400">Windows PC Guide</a>
             <a href="/iphone-voice-memos.html" class="hover:text-white transition-colors">Voice Memos</a>
         </div>
         <div class="flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 px-3 py-1.5 rounded-full">
@@ -139,7 +152,7 @@
                 Convert M4A to MP3 on <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-primary drop-shadow-md">Windows 11 & 10</span>
             </h1>
             <p class="text-slate-400 text-lg leading-relaxed">
-                Fix <code class="text-primary bg-primary/10 px-1.5 py-0.5 rounded text-sm">0xc00d36c4</code> playback errors instantly. Convert Apple audio on PC directly in your browser—no iTunes, no shady .exe installers, no malware.
+                Fix <code class="text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded text-sm">0xc00d36c4</code> playback errors instantly. Convert Apple audio on PC directly in your browser—no iTunes, no shady .exe installers, no malware.
             </p>
         </section>
 
@@ -153,25 +166,25 @@
                 <div class="flex-1 flex flex-col gap-2">
                     <label class="font-mono text-xs text-slate-400 tracking-widest uppercase font-medium">Format Quality</label>
                     <div class="flex bg-surface rounded-lg p-1 border border-white/5 relative">
-                        <button class="flex-1 py-2 font-mono text-xs text-slate-400 hover:text-white transition-colors" onclick="setBitrate(128)" id="btn-128">128 kbps</button>
-                        <button class="flex-1 py-2 font-mono text-xs text-primary font-bold bg-slate-800 rounded shadow-sm transition-colors" onclick="setBitrate(192)" id="btn-192">192 kbps</button>
-                        <button class="flex-1 py-2 font-mono text-xs text-slate-400 hover:text-white transition-colors" onclick="setBitrate(320)" id="btn-320">320 kbps</button>
+                        <button class="flex-1 py-2 font-mono text-xs text-slate-400 hover:text-white transition-colors" onclick="setBitrate(128)" id="btn-128" aria-label="Select 128 kbps bitrate">128 kbps</button>
+                        <button class="flex-1 py-2 font-mono text-xs text-emerald-400 font-bold bg-slate-800 rounded shadow-sm transition-colors" onclick="setBitrate(192)" id="btn-192" aria-label="Select 192 kbps bitrate">192 kbps</button>
+                        <button class="flex-1 py-2 font-mono text-xs text-slate-400 hover:text-white transition-colors" onclick="setBitrate(320)" id="btn-320" aria-label="Select 320 kbps bitrate">320 kbps</button>
                     </div>
                 </div>
                 <div class="flex-1 flex flex-col gap-2">
                     <label class="font-mono text-xs text-slate-400 tracking-widest uppercase font-medium">Audio Topology</label>
                     <div class="flex bg-surface rounded-lg p-1 border border-white/5 relative">
                         <button class="flex-1 py-2 font-mono text-xs text-slate-400 hover:text-white transition-colors" onclick="setTopology('mono')" id="btn-mono">Mono (1 Ch)</button>
-                        <button class="flex-1 py-2 font-mono text-xs text-primary font-bold bg-slate-800 rounded shadow-sm transition-colors" onclick="setTopology('stereo')" id="btn-stereo">Stereo (2 Ch)</button>
+                        <button class="flex-1 py-2 font-mono text-xs text-emerald-400 font-bold bg-slate-800 rounded shadow-sm transition-colors" onclick="setTopology('stereo')" id="btn-stereo">Stereo (2 Ch)</button>
                     </div>
                 </div>
             </div>
 
             <!-- Dropzone / Main Area -->
             <div class="relative w-full min-h-[256px] flex flex-col z-10" id="workspace">
-                <div id="idle-state" class="flex-auto border-2 border-dashed border-white/20 rounded-xl flex flex-col items-center justify-center gap-4 cursor-pointer hover:border-primary/50 hover:bg-white/5 transition-all p-6 relative" onclick="document.getElementById('fileInput').click()" ondragover="event.preventDefault(); this.classList.add('border-primary')" ondragleave="this.classList.remove('border-primary')" ondrop="handleDrop(event)">
-                    <div class="w-16 h-16 rounded-full bg-surface flex items-center justify-center shadow-lg border border-white/5 group-hover:scale-110 group-hover:border-primary/30 transition-all">
-                        <i data-lucide="folder-open" class="w-8 h-8 text-blue-400 group-hover:text-primary transition-colors"></i>
+                <div id="idle-state" class="flex-auto border-2 border-dashed border-white/20 rounded-xl flex flex-col items-center justify-center gap-4 cursor-pointer hover:border-emerald-500/50 hover:bg-white/5 transition-all p-6 relative" onclick="document.getElementById('fileInput').click()" ondragover="event.preventDefault(); this.classList.add('border-emerald-500')" ondragleave="this.classList.remove('border-emerald-500')" ondrop="handleDrop(event)" aria-label="Upload audio file drop zone" role="button" tabindex="0">
+                    <div class="w-16 h-16 rounded-full bg-surface flex items-center justify-center shadow-lg border border-white/5 group-hover:scale-110 group-hover:border-emerald-500/30 transition-all">
+                        <i data-lucide="folder-open" class="w-8 h-8 text-blue-400 group-hover:text-emerald-400 transition-colors"></i>
                     </div>
                     <div class="text-center">
                         <p class="font-medium text-slate-200 text-lg">Drag & drop from Windows File Explorer</p>
@@ -183,18 +196,18 @@
                 <div id="processing-state" class="hidden flex-auto flex flex-col items-center justify-center gap-4 bg-surface/50 rounded-xl border border-white/5 py-8 relative">
                     <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(249,115,22,0.1)_0%,transparent_70%)] pointer-events-none"></div>
                     <div class="flex items-end h-16 gap-2 mb-2">
-                        <div class="w-2 bg-primary rounded-t-full animate-eq-1"></div>
-                        <div class="w-2 bg-primary-container rounded-t-full animate-eq-2 shadow-[0_0_15px_rgba(249,115,22,0.5)]"></div>
-                        <div class="w-2 bg-primary rounded-t-full animate-eq-3"></div>
-                        <div class="w-2 bg-primary-container rounded-t-full animate-eq-4"></div>
-                        <div class="w-2 bg-primary rounded-t-full animate-eq-5"></div>
+                        <div class="w-2 bg-emerald-500 rounded-t-full animate-eq-1"></div>
+                        <div class="w-2 bg-emerald-500-container rounded-t-full animate-eq-2 shadow-[0_0_15px_rgba(249,115,22,0.5)]"></div>
+                        <div class="w-2 bg-emerald-500 rounded-t-full animate-eq-3"></div>
+                        <div class="w-2 bg-emerald-500-container rounded-t-full animate-eq-4"></div>
+                        <div class="w-2 bg-emerald-500 rounded-t-full animate-eq-5"></div>
                     </div>
                     <div class="w-3/4 max-w-md bg-slate-800 h-2 rounded-full overflow-hidden shadow-inner relative z-10">
                         <div id="progress-bar" class="h-full bg-gradient-to-r from-primary to-primary-container transition-all duration-300 ease-out relative" style="width: 0%"></div>
                     </div>
                     <div class="flex justify-between w-3/4 max-w-md mt-1 z-10">
                         <span id="status-text" class="font-mono text-xs text-slate-400 truncate pr-4">Transcoding to Windows MP3...</span>
-                        <span id="progress-text" class="font-mono text-xs font-bold text-primary">0%</span>
+                        <span id="progress-text" class="font-mono text-xs font-bold text-emerald-400">0%</span>
                     </div>
                 </div>
 
@@ -202,10 +215,10 @@
                      <i data-lucide="check-circle-2" class="w-12 h-12 text-secondary mb-2"></i>
                      <h3 class="text-xl font-bold text-white">Windows Conversion Complete</h3>
                      <div class="flex gap-4 mt-4 w-3/4 max-w-md">
-                         <button onclick="downloadMp3()" class="flex-1 bg-primary hover:bg-primary-container text-white font-semibold px-6 py-3 rounded-lg shadow-[0_0_15px_rgba(249,115,22,0.4)] flex items-center justify-center gap-2 transition-all">
+                         <button onclick="downloadMp3()" class="flex-1 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold px-6 py-3 rounded-lg shadow-[0_0_15px_rgba(249,115,22,0.4)] flex items-center justify-center gap-2 transition-all" aria-label="Download MP3 file">
                              <i data-lucide="download" class="w-5 h-5"></i> Download MP3
                          </button>
-                         <button onclick="resetConverter()" class="bg-slate-800 hover:bg-slate-700 text-white font-semibold px-4 py-3 rounded-lg transition-colors flex items-center gap-2">
+                         <button onclick="resetConverter()" class="bg-slate-800 hover:bg-slate-700 text-white font-semibold px-4 py-3 rounded-lg transition-colors flex items-center gap-2" aria-label="Convert another file">
                              <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
                          </button>
                      </div>
@@ -214,8 +227,8 @@
                 <div id="error-state" class="hidden flex-auto flex flex-col items-center justify-center gap-4 bg-red-950/20 rounded-xl border border-red-500/30 py-8 relative">
                      <i data-lucide="alert-triangle" class="w-10 h-10 text-red-400"></i>
                      <h3 class="text-xl font-bold text-red-200">Processing Failed</h3>
-                     <p id="error-text" class="text-red-300/70 text-sm max-w-sm text-center">An unknown error occurred.</p>
-                     <button onclick="resetConverter()" class="mt-2 bg-slate-800 hover:bg-slate-700 px-6 py-2 rounded-lg font-medium transition-colors">Try Again</button>
+                     <p id="error-text" class="text-red-200 text-sm max-w-sm text-center">An unknown error occurred.</p>
+                     <button onclick="resetConverter()" class="mt-2 bg-slate-800 hover:bg-slate-700 px-6 py-2 rounded-lg font-medium transition-colors" aria-label="Convert another file">Try Again</button>
                 </div>
             </div>
             
@@ -238,7 +251,7 @@
                 
                 <h3 class="text-xl font-bold text-white mt-8 mb-3">Resolving Error 0xc00d36c4</h3>
                 <p class="text-slate-400 leading-relaxed mb-4">
-                    The notorious <code class="bg-white/10 px-1 rounded text-primary">0xc00d36c4</code> error translates to "missing codec". Rather than paying for the HEVC extensions in the Microsoft Store or attempting to install bloatware like iTunes, the cleanest solution for a Windows Media Player playback fix is simply transcoding the audio container into a universal format.
+                    The notorious <code class="bg-white/10 px-1 rounded text-emerald-400">0xc00d36c4</code> error translates to "missing codec". Rather than paying for the HEVC extensions in the Microsoft Store or attempting to install bloatware like iTunes, the cleanest solution for a Windows Media Player playback fix is simply transcoding the audio container into a universal format.
                 </p>
 
                 <h3 class="text-xl font-bold text-white mt-8 mb-3">Direct Browser Execution vs. Desktop Software</h3>
@@ -251,19 +264,19 @@
                 <h2 class="text-2xl font-bold mb-2">Frequently Asked Questions</h2>
                 <div class="bg-slate-900/50 p-5 rounded-xl border border-white/5">
                     <h4 class="font-bold text-white mb-2 text-lg flex items-center gap-2">
-                        <i data-lucide="help-circle" class="w-5 h-5 text-primary"></i> Why does Windows Media Player fail to play some M4A files?
+                        <i data-lucide="help-circle" class="w-5 h-5 text-emerald-400"></i> Why does Windows Media Player fail to play some M4A files?
                     </h4>
                     <p class="text-slate-400 text-sm leading-relaxed">Windows Media Player sometimes lacks the native HEVC or ALAC audio codecs required to unpack specific M4A containers originating from Apple devices, often resulting in error 0xc00d36c4. Converting the file to a standard MP3 resolves this universally.</p>
                 </div>
                 <div class="bg-slate-900/50 p-5 rounded-xl border border-white/5">
                     <h4 class="font-bold text-white mb-2 text-lg flex items-center gap-2">
-                        <i data-lucide="help-circle" class="w-5 h-5 text-primary"></i> Do I need to install iTunes on Windows to convert audio?
+                        <i data-lucide="help-circle" class="w-5 h-5 text-emerald-400"></i> Do I need to install iTunes on Windows to convert audio?
                     </h4>
                     <p class="text-slate-400 text-sm leading-relaxed">No. You do not need to bloat your PC by installing Apple iTunes. This web-based converter uses your browser's internal Web Audio API to decode the M4A file directly in your system RAM and outputs an MP3 instantly.</p>
                 </div>
                 <div class="bg-slate-900/50 p-5 rounded-xl border border-white/5">
                     <h4 class="font-bold text-white mb-2 text-lg flex items-center gap-2">
-                        <i data-lucide="help-circle" class="w-5 h-5 text-primary"></i> How do I set converted MP3 files as default in Windows 11?
+                        <i data-lucide="help-circle" class="w-5 h-5 text-emerald-400"></i> How do I set converted MP3 files as default in Windows 11?
                     </h4>
                     <p class="text-slate-400 text-sm leading-relaxed">After downloading your MP3, right-click the file, select 'Properties', and next to 'Opens with', click 'Change'. Select Windows Media Player or Groove Music, then click OK. All MP3s will now open natively.</p>
                 </div>
@@ -277,44 +290,46 @@
             <div>
                 <h4 class="font-bold text-white mb-4">Formats</h4>
                 <ul class="flex flex-col gap-2 text-sm text-slate-400">
-                    <li><a href="/" class="hover:text-primary transition-colors">Main Hub (Home)</a></li>
-                    <li><a href="/iphone-voice-memos.html" class="hover:text-primary transition-colors">iPhone Voice Memos</a></li>
+                    <li><a href="/" class="hover:text-emerald-400 transition-colors">Main Hub (Home)</a></li>
+                    <li><a href="/iphone-voice-memos.html" class="hover:text-emerald-400 transition-colors">iPhone Voice Memos</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="font-bold text-white mb-4">Quality</h4>
                 <ul class="flex flex-col gap-2 text-sm text-slate-400">
-                    <li><a href="/320kbps.html" class="hover:text-primary transition-colors">320kbps Studio Master</a></li>
+                    <li><a href="/320kbps.html" class="hover:text-emerald-400 transition-colors">320kbps Studio Master</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="font-bold text-white mb-4">Platforms</h4>
                 <ul class="flex flex-col gap-2 text-sm text-slate-400">
-                    <li><a href="/windows.html" class="text-primary font-medium">Windows 11 Guide</a></li>
-                    <li><a href="/mac.html" class="hover:text-primary transition-colors">Mac & Mobile</a></li>
+                    <li><a href="/windows.html" class="text-emerald-400 font-medium">Windows 11 Guide</a></li>
+                    <li><a href="/mac.html" class="hover:text-emerald-400 transition-colors">Mac & Mobile</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="font-bold text-white mb-4">Tools</h4>
                 <ul class="flex flex-col gap-2 text-sm text-slate-400">
-                    <li><a href="/batch-converter.html" class="hover:text-primary transition-colors">Batch Engine</a></li>
-                    <li><a href="/client-side-safe.html" class="hover:text-primary transition-colors">Zero Upload Privacy</a></li>
+                    <li><a href="/batch-converter.html" class="hover:text-emerald-400 transition-colors">Batch Engine</a></li>
+                    <li><a href="/client-side-safe.html" class="hover:text-emerald-400 transition-colors">Zero Upload Privacy</a></li>
                 </ul>
             </div>
                     <div>
                 <h4 class="font-bold text-white mb-4">Platform & Legal</h4>
                 <ul class="flex flex-col gap-2 text-sm text-slate-400">
-                    <li><a href="https://m4atomp3converter.com/privacy-policy.html" class="hover:text-primary transition-colors">Privacy Policy</a></li>
-                    <li><a href="https://m4atomp3converter.com/terms.html" class="hover:text-primary transition-colors">Terms of Service</a></li>
-                    <li><a href="https://m4atomp3converter.com/about.html" class="hover:text-primary transition-colors">About M4A to MP3 Converter.com</a></li>
+                    <li><a href="https://m4atomp3converter.com/privacy-policy.html" class="hover:text-emerald-400 transition-colors">Privacy Policy</a></li>
+                    <li><a href="https://m4atomp3converter.com/terms.html" class="hover:text-emerald-400 transition-colors">Terms of Service</a></li>
+                    <li><a href="https://m4atomp3converter.com/about.html" class="hover:text-emerald-400 transition-colors">About M4A to MP3 Converter.com</a></li>
                 </ul>
             </div>
         </div>
-        <div class="text-center text-slate-600 text-sm border-t border-white/5 pt-8">
+        <div class="text-center text-slate-400 text-sm border-t border-white/5 pt-8">
             &copy; 2026 M4A to MP3 Converter. All rights reserved. Built for Windows Users.
         </div>
     </footer>
 
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lamejs/1.2.1/lame.min.js"></script>
     <!-- Logic Script -->
     <script>
         lucide.createIcons();
@@ -330,7 +345,7 @@
             [128, 192, 320].forEach(val => {
                 const btn = document.getElementById(`btn-${val}`);
                 if (val === kbps) {
-                    btn.className = 'flex-1 py-2 font-mono text-xs text-primary font-bold bg-slate-800 rounded shadow-sm transition-colors';
+                    btn.className = 'flex-1 py-2 font-mono text-xs text-emerald-400 font-bold bg-slate-800 rounded shadow-sm transition-colors';
                 } else {
                     btn.className = 'flex-1 py-2 font-mono text-xs text-slate-400 hover:text-white transition-colors';
                 }
@@ -342,7 +357,7 @@
             ['mono', 'stereo'].forEach(val => {
                 const btn = document.getElementById(`btn-${val}`);
                 if (val === topo) {
-                    btn.className = 'flex-1 py-2 font-mono text-xs text-primary font-bold bg-slate-800 rounded shadow-sm transition-colors';
+                    btn.className = 'flex-1 py-2 font-mono text-xs text-emerald-400 font-bold bg-slate-800 rounded shadow-sm transition-colors';
                 } else {
                     btn.className = 'flex-1 py-2 font-mono text-xs text-slate-400 hover:text-white transition-colors';
                 }
@@ -351,7 +366,7 @@
 
         function handleDrop(e) {
             e.preventDefault();
-            document.getElementById('idle-state').classList.remove('border-primary');
+            document.getElementById('idle-state').classList.remove('border-emerald-500');
             if (e.dataTransfer.files && e.dataTransfer.files[0]) {
                 processFile(e.dataTransfer.files[0]);
             }

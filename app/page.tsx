@@ -1,6 +1,6 @@
 import Converter from './components/Converter';
 import MobileMenu from './components/MobileMenu';
-import { Gauge, Activity, AudioLines, Mic, Monitor, Smartphone, Layers, ShieldCheck, ChevronDown } from 'lucide-react';
+import { Gauge, Activity, AudioLines, Mic, Monitor, Smartphone, Layers, ShieldCheck, ChevronDown, Twitter, Facebook, Youtube } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Home() {
@@ -391,10 +391,21 @@ export default function Home() {
           </div>
           
           <div className="border-t border-outline-variant/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-            <p className="text-on-surface-variant text-sm">
+            <p className="text-on-surface-variant text-sm md:flex-1">
               &copy; 2026 M4A to MP3 Converter.com — Browser-Native Audio Transcoding Network. All rights reserved.
             </p>
-            <p className="text-on-surface-variant/60 text-xs font-jb-mono">
+            <div className="flex items-center gap-5 justify-center md:flex-1">
+              <a href="https://x.com/zentova_in" target="_blank" rel="noopener noreferrer" className="text-on-surface-variant hover:text-primary transition-transform hover:scale-110" aria-label="X (Twitter)">
+                <Twitter className="w-5 h-5" />
+              </a>
+              <a href="https://www.facebook.com/share/1FadEdrneX/" target="_blank" rel="noopener noreferrer" className="text-on-surface-variant hover:text-primary transition-transform hover:scale-110" aria-label="Facebook">
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a href="https://youtube.com/@medhastone?si=bqXCsWFRsJGFUP18" target="_blank" rel="noopener noreferrer" className="text-on-surface-variant hover:text-primary transition-transform hover:scale-110" aria-label="YouTube">
+                <Youtube className="w-5 h-5" />
+              </a>
+            </div>
+            <p className="text-on-surface-variant/60 text-xs font-jb-mono md:flex-1 md:text-right">
               100% Local In-Browser Processing • Zero Server Bandwidth
             </p>
           </div>
