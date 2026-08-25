@@ -66,54 +66,64 @@
 
     <!-- Schema Markup -->
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
-      "@graph": [
+      "@type": "WebApplication",
+      "name": "iPhone Voice Memo to MP3 Converter",
+      "url": "https://m4atomp3converter.com/iphone-voice-memos",
+      "description": "Convert Apple iOS voice memos (.m4a) to high-quality MP3 format directly in your browser.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Medhastone",
+        "url": "https://zentova.in"
+      },
+      "creator": {
+        "@type": "Person",
+        "name": "Medhastone",
+        "url": "https://zentova.in"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
         {
-          "@type": "WebApplication",
-          "name": "iPhone Voice Memo to MP3 Converter",
-          "url": "https://m4atomp3converter.com/iphone-voice-memos",
-          "description": "Convert Apple iOS voice memos (.m4a) to high-quality MP3 format directly in your browser.",
-          "applicationCategory": "MultimediaApplication",
-          "operatingSystem": "All",
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
+          "@type": "Question",
+          "name": "Where are iPhone voice memos stored?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "By default, iPhone voice memos are stored within the Voice Memos app. You can export them as .m4a files by tapping the three dots next to a recording and selecting 'Save to Files' or 'AirDrop'."
           }
         },
         {
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "Where are iPhone voice memos stored?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "By default, iPhone voice memos are stored within the Voice Memos app. You can export them as .m4a files by tapping the three dots next to a recording and selecting 'Save to Files' or 'AirDrop'."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Can I convert voice memos directly inside mobile Safari on iPhone?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes! Our converter runs 100% in your browser using Web Audio API. You can select the file directly from your iCloud Drive or 'Files' app via Safari."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Is there a recording duration limit for conversion?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Since the conversion happens locally on your device's RAM without server uploads, the limit depends on your device's memory. Most modern iPhones and desktops can handle 1-2 hour lectures easily."
-              }
-            }
-          ]
+          "@type": "Question",
+          "name": "Can I convert voice memos directly inside mobile Safari on iPhone?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! Our converter runs 100% in your browser using Web Audio API. You can select the file directly from your iCloud Drive or 'Files' app via Safari."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there a recording duration limit for conversion?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Since the conversion happens locally on your device's RAM without server uploads, the limit depends on your device's memory. Most modern iPhones and desktops can handle 1-2 hour lectures easily."
+          }
         }
       ]
     }
-    </script>
+  ]
+}
+</script>
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #020617; color: #f8fafc; }
         .font-mono { font-family: 'JetBrains Mono', monospace; }

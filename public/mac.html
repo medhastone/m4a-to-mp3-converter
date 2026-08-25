@@ -66,54 +66,64 @@
 
     <!-- Schema Markup -->
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
-      "@graph": [
+      "@type": "WebApplication",
+      "name": "Mac & Android M4A to MP3 Converter",
+      "url": "https://m4atomp3converter.com/mac",
+      "description": "Cross-platform browser m4a to mp3 converter for Mac, Android, and Chromebook devices.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "macOS, Android, ChromeOS",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Medhastone",
+        "url": "https://zentova.in"
+      },
+      "creator": {
+        "@type": "Person",
+        "name": "Medhastone",
+        "url": "https://zentova.in"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
         {
-          "@type": "WebApplication",
-          "name": "Mac & Android M4A to MP3 Converter",
-          "url": "https://m4atomp3converter.com/mac",
-          "description": "Cross-platform browser m4a to mp3 converter for Mac, Android, and Chromebook devices.",
-          "applicationCategory": "MultimediaApplication",
-          "operatingSystem": "macOS, Android, ChromeOS",
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
+          "@type": "Question",
+          "name": "Why won't my Android device play .m4a files sent from an iPhone?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Many default Android media players and file managers do not natively support the Apple ALAC or specific AAC codecs wrapped in an M4A container. Using an m4a to mp3 converter android tool makes the file universally playable across all Android devices."
           }
         },
         {
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "Why won't my Android device play .m4a files sent from an iPhone?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Many default Android media players and file managers do not natively support the Apple ALAC or specific AAC codecs wrapped in an M4A container. Using an m4a to mp3 converter android tool makes the file universally playable across all Android devices."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Can I run this converter on a Chromebook with no internet connection after loading?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes! Because this tool is a 100% browser m4a to mp3 converter utilizing local WebAssembly and the Web Audio API, once the page is fully loaded in your Chrome browser, you can convert files entirely offline."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Does converting on Mac require Terminal or FFmpeg commands?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "No. While power users often use FFmpeg via Terminal, this m4a to mp3 converter mac tool provides a seamless visual drag-and-drop interface right in Safari or Chrome, requiring zero command-line knowledge or software installation."
-              }
-            }
-          ]
+          "@type": "Question",
+          "name": "Can I run this converter on a Chromebook with no internet connection after loading?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! Because this tool is a 100% browser m4a to mp3 converter utilizing local WebAssembly and the Web Audio API, once the page is fully loaded in your Chrome browser, you can convert files entirely offline."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does converting on Mac require Terminal or FFmpeg commands?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. While power users often use FFmpeg via Terminal, this m4a to mp3 converter mac tool provides a seamless visual drag-and-drop interface right in Safari or Chrome, requiring zero command-line knowledge or software installation."
+          }
         }
       ]
     }
-    </script>
+  ]
+}
+</script>
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #020617; color: #f8fafc; }
         .font-mono { font-family: 'JetBrains Mono', monospace; }

@@ -66,54 +66,64 @@
 
     <!-- Schema Markup -->
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
-      "@graph": [
+      "@type": "WebApplication",
+      "name": "M4A to MP3 320kbps Converter",
+      "url": "https://m4atomp3converter.com/320kbps",
+      "description": "Convert M4A to MP3 high quality at 320kbps. 100% private, client-side decoding preserves full audio frequency.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Medhastone",
+        "url": "https://zentova.in"
+      },
+      "creator": {
+        "@type": "Person",
+        "name": "Medhastone",
+        "url": "https://zentova.in"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
         {
-          "@type": "WebApplication",
-          "name": "M4A to MP3 320kbps Converter",
-          "url": "https://m4atomp3converter.com/320kbps",
-          "description": "Convert M4A to MP3 high quality at 320kbps. 100% private, client-side decoding preserves full audio frequency.",
-          "applicationCategory": "MultimediaApplication",
-          "operatingSystem": "All",
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
+          "@type": "Question",
+          "name": "Can humans hear the difference between 256kbps and 320kbps?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For casual listening on standard headphones, the difference is negligible. However, for audiophiles, DJs, or on high-fidelity studio monitors, 320kbps preserves critical transient response, extreme high frequencies (cymbals, air), and spatial imaging that 256kbps may slightly compress."
           }
         },
         {
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "Can humans hear the difference between 256kbps and 320kbps?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "For casual listening on standard headphones, the difference is negligible. However, for audiophiles, DJs, or on high-fidelity studio monitors, 320kbps preserves critical transient response, extreme high frequencies (cymbals, air), and spatial imaging that 256kbps may slightly compress."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Does converting M4A to 320kbps increase the original audio quality?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "No. Transcoding an audio file cannot add fidelity that was not present in the original source. Converting a 128kbps M4A to a 320kbps MP3 just creates a larger file. However, if your source is a lossless ALAC M4A or a high-bitrate AAC, converting to 320kbps ensures you do not lose any quality during the transition."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Will 320kbps MP3 play on older car audio systems and legacy hardware?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes. 320kbps CBR (Constant Bitrate) is part of the original MPEG-1 Audio Layer III specification. It is universally supported by almost every digital audio player, car stereo, and operating system created in the last 25 years."
-              }
-            }
-          ]
+          "@type": "Question",
+          "name": "Does converting M4A to 320kbps increase the original audio quality?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Transcoding an audio file cannot add fidelity that was not present in the original source. Converting a 128kbps M4A to a 320kbps MP3 just creates a larger file. However, if your source is a lossless ALAC M4A or a high-bitrate AAC, converting to 320kbps ensures you do not lose any quality during the transition."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will 320kbps MP3 play on older car audio systems and legacy hardware?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. 320kbps CBR (Constant Bitrate) is part of the original MPEG-1 Audio Layer III specification. It is universally supported by almost every digital audio player, car stereo, and operating system created in the last 25 years."
+          }
         }
       ]
     }
-    </script>
+  ]
+}
+</script>
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #020617; color: #f8fafc; }
         .font-mono { font-family: 'JetBrains Mono', monospace; }

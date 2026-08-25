@@ -57,54 +57,64 @@
 
     <!-- Schema Markup -->
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
-      "@graph": [
+      "@type": "WebApplication",
+      "name": "Private M4A to MP3 Converter",
+      "url": "https://m4atomp3converter.com/client-side-safe",
+      "description": "A 100% private, client-side m4a to mp3 converter. It operates completely offline in the browser, guaranteeing zero cloud uploads and absolute confidentiality.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Medhastone",
+        "url": "https://zentova.in"
+      },
+      "creator": {
+        "@type": "Person",
+        "name": "Medhastone",
+        "url": "https://zentova.in"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
         {
-          "@type": "WebApplication",
-          "name": "Private M4A to MP3 Converter",
-          "url": "https://m4atomp3converter.com/client-side-safe",
-          "description": "A 100% private, client-side m4a to mp3 converter. It operates completely offline in the browser, guaranteeing zero cloud uploads and absolute confidentiality.",
-          "applicationCategory": "MultimediaApplication",
-          "operatingSystem": "All",
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
+          "@type": "Question",
+          "name": "Are my voice recordings ever stored on your servers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely not. Because this is a client side m4a to mp3 converter, the entire decoding and encoding process happens locally inside your device's RAM. Zero bytes are uploaded to our servers, and no logs of your audio are ever created."
           }
         },
         {
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "Are my voice recordings ever stored on your servers?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Absolutely not. Because this is a client side m4a to mp3 converter, the entire decoding and encoding process happens locally inside your device's RAM. Zero bytes are uploaded to our servers, and no logs of your audio are ever created."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Can I disconnect my internet Wi-Fi and still convert audio?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes! Once you load this webpage, you can completely disconnect from Wi-Fi or turn on Airplane Mode. Because it is an m4a to mp3 converter offline safe tool, it utilizes browser WebAssembly to function without any active internet connection."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "How does in-browser client-side processing ensure GDPR compliance?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "By never transmitting user data or audio files across the internet, there is no data collection, no third-party processor handoff, and no data residency concerns. The user maintains 100% custody of their files at all times."
-              }
-            }
-          ]
+          "@type": "Question",
+          "name": "Can I disconnect my internet Wi-Fi and still convert audio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! Once you load this webpage, you can completely disconnect from Wi-Fi or turn on Airplane Mode. Because it is an m4a to mp3 converter offline safe tool, it utilizes browser WebAssembly to function without any active internet connection."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does in-browser client-side processing ensure GDPR compliance?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "By never transmitting user data or audio files across the internet, there is no data collection, no third-party processor handoff, and no data residency concerns. The user maintains 100% custody of their files at all times."
+          }
         }
       ]
     }
-    </script>
+  ]
+}
+</script>
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #020617; color: #f8fafc; }
         .font-mono { font-family: 'JetBrains Mono', monospace; }
@@ -322,7 +332,7 @@
             </div>
         </div>
         <div class="text-center text-slate-400 text-sm border-t border-white/5 pt-8 flex items-center justify-center gap-2">
-            <i data-lucide="shield" class="w-4 h-4"></i> &copy; 2026 M4A to MP3 Converter. Strictly Confidential Processing.
+            <i data-lucide="shield" class="w-4 h-4"></i> &copy; 2026 M4A to MP3 Converter.com &bull; Engineered by <a href="https://zentova.in" target="_blank" rel="noopener" class="text-orange-400 hover:text-orange-300 font-semibold underline decoration-orange-500/30 transition">Medhastone</a> &bull; Support: medhastone@gmail.com
         </div>
     </footer>
 

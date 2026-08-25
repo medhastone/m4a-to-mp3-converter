@@ -66,54 +66,64 @@
 
     <!-- Schema Markup -->
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
-      "@graph": [
+      "@type": "WebApplication",
+      "name": "Windows M4A to MP3 Converter",
+      "url": "https://m4atomp3converter.com/windows",
+      "description": "Browser-based tool to convert M4A to MP3 on Windows 10 and Windows 11, fixing codec and playback errors without iTunes.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Windows 10, Windows 11",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Medhastone",
+        "url": "https://zentova.in"
+      },
+      "creator": {
+        "@type": "Person",
+        "name": "Medhastone",
+        "url": "https://zentova.in"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
         {
-          "@type": "WebApplication",
-          "name": "Windows M4A to MP3 Converter",
-          "url": "https://m4atomp3converter.com/windows",
-          "description": "Browser-based tool to convert M4A to MP3 on Windows 10 and Windows 11, fixing codec and playback errors without iTunes.",
-          "applicationCategory": "MultimediaApplication",
-          "operatingSystem": "Windows 10, Windows 11",
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
+          "@type": "Question",
+          "name": "Why does Windows Media Player fail to play some M4A files?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Windows Media Player sometimes lacks the native HEVC or ALAC audio codecs required to unpack specific M4A containers originating from Apple devices, often resulting in error 0xc00d36c4. Converting the file to a standard MP3 resolves this universally."
           }
         },
         {
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "Why does Windows Media Player fail to play some M4A files?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Windows Media Player sometimes lacks the native HEVC or ALAC audio codecs required to unpack specific M4A containers originating from Apple devices, often resulting in error 0xc00d36c4. Converting the file to a standard MP3 resolves this universally."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Do I need to install iTunes on Windows to convert audio?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "No. You do not need to bloat your PC by installing Apple iTunes. This web-based converter uses your browser's internal Web Audio API to decode the M4A file directly in your system RAM and outputs an MP3 instantly."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "How do I set converted MP3 files as default in Windows 11?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "After downloading your MP3, right-click the file, select 'Properties', and next to 'Opens with', click 'Change'. Select Windows Media Player or Groove Music, then click OK. All MP3s will now open natively."
-              }
-            }
-          ]
+          "@type": "Question",
+          "name": "Do I need to install iTunes on Windows to convert audio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. You do not need to bloat your PC by installing Apple iTunes. This web-based converter uses your browser's internal Web Audio API to decode the M4A file directly in your system RAM and outputs an MP3 instantly."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I set converted MP3 files as default in Windows 11?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "After downloading your MP3, right-click the file, select 'Properties', and next to 'Opens with', click 'Change'. Select Windows Media Player or Groove Music, then click OK. All MP3s will now open natively."
+          }
         }
       ]
     }
-    </script>
+  ]
+}
+</script>
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #020617; color: #f8fafc; }
         .font-mono { font-family: 'JetBrains Mono', monospace; }

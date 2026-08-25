@@ -55,54 +55,64 @@
 
     <!-- Schema Markup -->
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
-      "@graph": [
+      "@type": "WebApplication",
+      "name": "Batch M4A to MP3 Converter",
+      "url": "https://m4atomp3converter.com/batch-converter",
+      "description": "Convert multiple large M4A audio files to MP3 simultaneously with zero file size limits.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Medhastone",
+        "url": "https://zentova.in"
+      },
+      "creator": {
+        "@type": "Person",
+        "name": "Medhastone",
+        "url": "https://zentova.in"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
         {
-          "@type": "WebApplication",
-          "name": "Batch M4A to MP3 Converter",
-          "url": "https://m4atomp3converter.com/batch-converter",
-          "description": "Convert multiple large M4A audio files to MP3 simultaneously with zero file size limits.",
-          "applicationCategory": "MultimediaApplication",
-          "operatingSystem": "All",
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
+          "@type": "Question",
+          "name": "Is there a limit to how many M4A files I can convert at once?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Because this is a true batch m4a to mp3 converter running locally in your browser, there is no hard server-side limit. You can queue up dozens of files, and they will process sequentially based on your computer's RAM availability."
           }
         },
         {
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "Is there a limit to how many M4A files I can convert at once?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Because this is a true batch m4a to mp3 converter running locally in your browser, there is no hard server-side limit. You can queue up dozens of files, and they will process sequentially based on your computer's RAM availability."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Can I convert full 2-hour podcast recordings or audiobooks?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes. If you need to convert large m4a to mp3 online, this tool excels because it does not upload the file. A 2-hour podcast would normally hit a 50MB cloud upload limit, but here, the m4a audio track to mp3 conversion happens entirely on your local machine."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Will batch conversion slow down my computer's performance?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "The WebAssembly engine uses CPU resources to decode and encode audio. While it processes, you may notice increased CPU usage, but our queue system runs one file at a time sequentially to prevent freezing your browser or crashing your system."
-              }
-            }
-          ]
+          "@type": "Question",
+          "name": "Can I convert full 2-hour podcast recordings or audiobooks?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. If you need to convert large m4a to mp3 online, this tool excels because it does not upload the file. A 2-hour podcast would normally hit a 50MB cloud upload limit, but here, the m4a audio track to mp3 conversion happens entirely on your local machine."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will batch conversion slow down my computer's performance?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The WebAssembly engine uses CPU resources to decode and encode audio. While it processes, you may notice increased CPU usage, but our queue system runs one file at a time sequentially to prevent freezing your browser or crashing your system."
+          }
         }
       ]
     }
-    </script>
+  ]
+}
+</script>
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #020617; color: #f8fafc; }
         .font-mono { font-family: 'JetBrains Mono', monospace; }

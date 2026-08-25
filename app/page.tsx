@@ -86,6 +86,16 @@ export default function Home() {
               "publisher": {
                 "@type": "Organization",
                 "name": "M4A to MP3 Converter.com"
+              },
+              "author": {
+                "@type": "Person",
+                "name": "Medhastone",
+                "url": "https://zentova.in"
+              },
+              "creator": {
+                "@type": "Person",
+                "name": "Medhastone",
+                "url": "https://zentova.in"
               }
             })
           }}
@@ -392,7 +402,7 @@ export default function Home() {
           
           <div className="border-t border-outline-variant/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
             <p className="text-on-surface-variant text-sm md:flex-1">
-              &copy; 2026 M4A to MP3 Converter.com — Browser-Native Audio Transcoding Network. All rights reserved.
+              &copy; 2026 M4A to MP3 Converter.com &bull; Engineered by <a href="https://zentova.in" target="_blank" rel="noopener" className="text-orange-400 hover:text-orange-300 font-semibold underline decoration-orange-500/30 transition">Medhastone</a> &bull; Support: medhastone@gmail.com
             </p>
             <div className="flex items-center gap-5 justify-center md:flex-1">
               <a href="https://x.com/zentova_in" target="_blank" rel="noopener noreferrer" className="text-on-surface-variant hover:text-primary transition-transform hover:scale-110" aria-label="X (Twitter)">
