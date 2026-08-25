@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   description: 'Locally transcode M4A to high-fidelity MP3. Zero server uploads.',
   openGraph: {
     siteName: 'M4A to MP3 Converter.com',
+  },
+  icons: {
+    icon: '/icon.svg',
   }
 };
 
