@@ -1,4 +1,5 @@
 import Converter from './components/Converter';
+import MobileMenu from './components/MobileMenu';
 import { Gauge, Activity, AudioLines, Mic, Monitor, Smartphone, Layers, ShieldCheck, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 
@@ -47,11 +48,12 @@ export default function Home() {
             </div>
           </nav>
           
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <div className="bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full flex items-center gap-2 shadow-[0_0_15px_rgba(16,185,129,0.15)]">
               <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_5px_rgba(16,185,129,0.8)]"></div>
-              <span className="text-emerald-400 font-jb-mono text-xs font-medium uppercase tracking-wider">100% Client-Side</span>
+              <span className="text-emerald-400 font-jb-mono text-xs font-medium uppercase tracking-wider hidden sm:block">100% Client-Side</span>
             </div>
+            <MobileMenu />
           </div>
         </div>
       </header>
