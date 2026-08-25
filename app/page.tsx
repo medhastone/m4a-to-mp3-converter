@@ -66,8 +66,18 @@ export default function Home() {
               "@context": "https://schema.org",
               "@type": "WebApplication",
               "name": "M4A to MP3 Converter.com",
+              "url": "https://m4atomp3converter.com/",
+              "description": "A fast, 100% client-side M4A to MP3 audio converter. No server uploads, entirely private, and works instantly in your browser.",
               "applicationCategory": "MultimediaApplication",
+              "browserRequirements": "Requires JavaScript. Runs entirely offline in the browser.",
               "operatingSystem": "Any",
+              "featureList": [
+                "100% Client-Side Processing",
+                "Zero Server Uploads",
+                "Instant Conversion",
+                "High Fidelity 320kbps MP3 Output",
+                "iPhone Voice Memo Support"
+              ],
               "offers": {
                 "@type": "Offer",
                 "price": "0",
