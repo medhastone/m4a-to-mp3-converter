@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { FileAudio, Download, RotateCcw, Music } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 const ID3Writer = require('browser-id3-writer');
 
 type ProcessingStatus = 'idle' | 'processing' | 'done' | 'error';
@@ -9,6 +10,7 @@ type Bitrate = '128' | '192' | '320';
 type Topology = 'mono' | 'stereo';
 
 export default function Converter() {
+  const t = useTranslations('converter');
   const [status, setStatus] = useState<ProcessingStatus>('idle');
   const [progress, setProgress] = useState(0);
   const [bitrate, setBitrate] = useState<Bitrate>('192');
@@ -125,7 +127,7 @@ export default function Converter() {
       requestAnimationFrame(encodeChunk);
 
     } catch (error: any) {
-      console.error(error);
+       // console.error(error instanceof Error ? error.message : "Error processing file");
       setErrorMsg(error.message || 'An unknown error occurred.');
       setStatus('error');
     }
@@ -140,7 +142,7 @@ export default function Converter() {
       setId3Album('');
       processAudioFile(file);
     } else {
-      alert('Please select a valid .m4a audio file.');
+      setErrorMsg('Please select a valid .m4a audio file.'); setStatus('error');
     }
   };
 
@@ -183,7 +185,7 @@ export default function Converter() {
       a.click();
       URL.revokeObjectURL(url);
     } catch (e) {
-      console.error('ID3 Tagging failed:', e);
+       // console.error('ID3 Tagging failed:', e instanceof Error ? e.message : "Error");
       // Fallback without tags
       const blob = new Blob([rawMp3Buffer], { type: 'audio/mp3' });
       const url = URL.createObjectURL(blob);
@@ -196,7 +198,7 @@ export default function Converter() {
   };
 
   return (
-    <div className="w-full md:w-2/3 flex flex-col gap-4">
+    <div className="w-full flex flex-col gap-4">
       {/* Converter Card */}
       <div className="w-full bg-surface-container/80 backdrop-blur-2xl rounded-2xl border border-white/5 shadow-2xl relative overflow-hidden group p-6 md:p-10">
         
@@ -205,7 +207,7 @@ export default function Converter() {
         {/* Bitrate Selector */}
         <div className="flex-1 flex flex-col gap-2">
           <label className="font-jb-mono text-xs text-on-surface-variant tracking-widest uppercase font-medium">
-            Target Bitrate
+            {t('target_bitrate')}
           </label>
           <div className="flex bg-surface-dim rounded-lg p-1 relative border border-outline-variant/30 overflow-hidden">
             {/* Animated Background */}
@@ -224,19 +226,19 @@ export default function Converter() {
                   bitrate === val ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-on-surface'
                 }`}
               >
-                {val} {val === '320' && <span className="text-secondary text-[10px] ml-1">HQ</span>}
+                {val} {val === '320' && <span className="text-secondary text-[10px] ml-1">{t('hq')}</span>}
               </button>
             ))}
           </div>
           <p className="text-[11px] text-on-surface-variant mt-1 leading-snug">
-            Choose 320 kbps for studio master fidelity, 192 kbps for standard web audio, or 128 kbps for lightweight file transfers.
+            {t('bitrate_description')}
           </p>
         </div>
 
         {/* Topology Selector */}
         <div className="flex-1 flex flex-col gap-2">
           <label className="font-jb-mono text-xs text-on-surface-variant tracking-widest uppercase font-medium">
-            Topology
+            {t('topology')}
           </label>
           <div className="flex bg-surface-dim rounded-lg p-1 relative border border-outline-variant/30 overflow-hidden">
             <div 
@@ -254,7 +256,7 @@ export default function Converter() {
                   topology === val ? 'text-primary font-bold' : 'text-on-surface-variant hover:text-on-surface'
                 }`}
               >
-                {val}
+                {t(val)}
               </button>
             ))}
           </div>
@@ -276,22 +278,22 @@ export default function Converter() {
               }
             }}
             onDrop={handleDrop}
-            onClick={() => fileInputRef.current?.click()}
+            onClick={(e) => { if (e.target !== fileInputRef.current) fileInputRef.current?.click(); }}
           >
             <input 
               type="file" 
               accept=".m4a,audio/mp4" 
               className="hidden" 
               ref={fileInputRef}
-              onChange={(e) => e.target.files && handleFile(e.target.files[0])}
+              onChange={(e) => e.target.files && handleFile(e.target.files[0])} onClick={(e) => e.stopPropagation()}
             />
             <div className={`pointer-events-none w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center shadow-lg transition-all duration-300
               ${isDragging ? 'shadow-[0_0_30px_rgba(249,115,22,0.4)] scale-110' : 'group-hover/drop:shadow-[0_0_20px_rgba(249,115,22,0.2)]'}`}>
               <FileAudio className={`w-8 h-8 transition-colors ${isDragging ? 'text-primary-container' : 'text-primary'}`} />
             </div>
             <div className="text-center pointer-events-none">
-              <h3 className="font-semibold text-xl text-on-surface group-hover/drop:text-primary transition-colors">Drop M4A Here</h3>
-              <p className="text-on-surface-variant mt-1">or click to browse local filesystem</p>
+              <h3 className="font-semibold text-xl text-on-surface group-hover/drop:text-primary transition-colors">{t('drop_m4a_here')}</h3>
+              <p className="text-on-surface-variant mt-1">{t('or_browse_filesystem')}</p>
             </div>
 
             {/* Subtle waveform decoration */}
@@ -333,10 +335,10 @@ export default function Converter() {
 
              <div className="flex justify-between w-3/4 max-w-md mt-1 z-10">
                <span className="font-jb-mono text-xs text-on-surface-variant truncate pr-4">
-                 {status === 'done' ? 'Conversion complete.' : `Processing ${fileName}...`}
+                 {status === 'done' ? t('conversion_complete') : t('processing_file', { fileName })}
                </span>
                <span className={`font-jb-mono text-xs font-bold ${status === 'done' ? 'text-secondary' : 'text-primary'}`}>
-                 {Math.round(Math.min(progress, 100))}%
+                 {Math.round(Math.min(progress, 100))}
                </span>
              </div>
 
@@ -347,36 +349,36 @@ export default function Converter() {
                  <div className="bg-surface-dim/40 backdrop-blur-md rounded-xl p-4 border border-outline-variant/30 mb-4 flex flex-col gap-3">
                    <div className="flex items-center gap-2 mb-1">
                      <Music className="w-4 h-4 text-primary" />
-                     <h4 className="font-semibold text-sm text-on-surface">ID3 Metadata (Optional)</h4>
+                     <h4 className="font-semibold text-sm text-on-surface">{t('id3_metadata_optional')}</h4>
                    </div>
                    <div className="flex flex-col gap-1">
-                     <label className="text-[10px] text-on-surface-variant uppercase tracking-wider font-jb-mono">Title</label>
+                     <label className="text-[10px] text-on-surface-variant uppercase tracking-wider font-jb-mono">{t('title')}</label>
                      <input 
                        type="text" 
                        value={id3Title} 
                        onChange={(e) => setId3Title(e.target.value)} 
-                       placeholder="Track Title"
+                       placeholder={t('placeholder_track_title')}
                        className="bg-surface-container-high border border-outline-variant/30 rounded text-sm px-3 py-1.5 text-on-surface focus:outline-none focus:border-primary/50 transition-colors"
                      />
                    </div>
                    <div className="grid grid-cols-2 gap-3">
                      <div className="flex flex-col gap-1">
-                       <label className="text-[10px] text-on-surface-variant uppercase tracking-wider font-jb-mono">Artist</label>
+                       <label className="text-[10px] text-on-surface-variant uppercase tracking-wider font-jb-mono">{t('artist')}</label>
                        <input 
                          type="text" 
                          value={id3Artist} 
                          onChange={(e) => setId3Artist(e.target.value)} 
-                         placeholder="Artist Name"
+                         placeholder={t('placeholder_artist_name')}
                          className="bg-surface-container-high border border-outline-variant/30 rounded text-sm px-3 py-1.5 text-on-surface focus:outline-none focus:border-primary/50 transition-colors"
                        />
                      </div>
                      <div className="flex flex-col gap-1">
-                       <label className="text-[10px] text-on-surface-variant uppercase tracking-wider font-jb-mono">Album</label>
+                       <label className="text-[10px] text-on-surface-variant uppercase tracking-wider font-jb-mono">{t('album')}</label>
                        <input 
                          type="text" 
                          value={id3Album} 
                          onChange={(e) => setId3Album(e.target.value)} 
-                         placeholder="Album Name"
+                         placeholder={t('placeholder_album_name')}
                          className="bg-surface-container-high border border-outline-variant/30 rounded text-sm px-3 py-1.5 text-on-surface focus:outline-none focus:border-primary/50 transition-colors"
                        />
                      </div>
@@ -388,13 +390,13 @@ export default function Converter() {
                     onClick={handleDownload}
                     className="bg-primary hover:bg-primary-container text-on-primary font-semibold px-6 py-2.5 rounded-lg shadow-[0_0_15px_rgba(249,115,22,0.4)] hover:shadow-[0_0_25px_rgba(249,115,22,0.6)] transition-all flex items-center gap-2 flex-1 justify-center"
                    >
-                     <Download className="w-5 h-5" /> Download MP3
+                     <Download className="w-5 h-5" /> {t('download_mp3')}
                    </button>
                    <button 
                      onClick={reset}
                      className="bg-surface-container-highest hover:bg-surface-bright text-on-surface font-semibold px-6 py-2.5 rounded-lg transition-colors flex items-center gap-2"
                    >
-                     <RotateCcw className="w-4 h-4" /> Reset
+                     <RotateCcw className="w-4 h-4" /> {t('reset')}
                    </button>
                  </div>
                </div>
@@ -407,23 +409,14 @@ export default function Converter() {
             <div className="w-16 h-16 rounded-full bg-error/20 flex items-center justify-center">
                <span className="text-error font-bold text-3xl">!</span>
             </div>
-            <h3 className="text-xl font-semibold text-on-surface">Processing Failed</h3>
+            <h3 className="text-xl font-semibold text-on-surface">{t('processing_failed')}</h3>
             <p className="text-on-surface-variant text-sm max-w-sm">{errorMsg}</p>
             <button onClick={reset} className="mt-4 bg-surface-container-highest hover:bg-surface-bright px-6 py-2.5 rounded-lg font-medium transition-colors">
-              Try Again
+              {t('try_again')}
             </button>
           </div>
         )}
       </div>
-      </div>
-      
-      {/* Privacy & Security Badge Banner */}
-      <div className="w-full flex items-start sm:items-center justify-start gap-3 px-5 py-4 bg-surface-container/40 backdrop-blur-md rounded-xl border border-outline-variant/30 text-sm shadow-sm relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent pointer-events-none"></div>
-        <span className="text-primary text-lg leading-none relative z-10">🔒</span>
-        <p className="text-on-surface-variant leading-relaxed relative z-10">
-          <span className="font-semibold text-on-surface">100% Private & Client-Side:</span> Your files are transcoded locally using Web Audio API. No uploads, no servers, and 100% offline-safe.
-        </p>
       </div>
     </div>
   );

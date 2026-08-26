@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from 'react';
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
+import { Link } from '../../i18n/routing';
 import { Menu, X, ChevronDown } from 'lucide-react';
 
 export default function MobileMenu() {
+  const t = useTranslations('mobilemenu');
   const [isOpen, setIsOpen] = useState(false);
   const [isToolsOpen, setIsToolsOpen] = useState(false);
 
@@ -13,7 +15,7 @@ export default function MobileMenu() {
       <button 
         onClick={() => setIsOpen(!isOpen)} 
         className="p-2 text-on-surface-variant hover:text-on-surface transition-colors"
-        aria-label="Toggle Menu"
+        aria-label={t('toggle_menu')}
       >
         {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
       </button>
@@ -21,13 +23,13 @@ export default function MobileMenu() {
       {isOpen && (
         <div className="absolute top-20 left-0 right-0 bg-surface-container-high border-b border-outline-variant/20 shadow-xl flex flex-col z-50">
           <Link onClick={() => setIsOpen(false)} className="px-6 py-4 text-on-surface hover:bg-surface-dim transition-colors font-medium border-b border-outline-variant/10" href="/#how-it-works">
-            How it Works
+            {t('how_it_works')}
           </Link>
           <Link onClick={() => setIsOpen(false)} className="px-6 py-4 text-on-surface hover:bg-surface-dim transition-colors font-medium border-b border-outline-variant/10" href="/#specs">
-            Technical Specs
+            {t('technical_specs')}
           </Link>
           <Link onClick={() => setIsOpen(false)} className="px-6 py-4 text-on-surface hover:bg-surface-dim transition-colors font-medium border-b border-outline-variant/10" href="/#faq">
-            FAQ
+            {t('faq')}
           </Link>
           
           <div className="flex flex-col border-b border-outline-variant/10">
@@ -35,30 +37,30 @@ export default function MobileMenu() {
               onClick={() => setIsToolsOpen(!isToolsOpen)}
               className="px-6 py-4 flex items-center justify-between text-on-surface hover:bg-surface-dim transition-colors font-medium"
             >
-              Presets & Tools 
+              {t('presets_and_tools')} 
               <ChevronDown className={`w-5 h-5 transition-transform ${isToolsOpen ? 'rotate-180' : ''}`} />
             </button>
             
             {isToolsOpen && (
               <div className="bg-surface-dim/30 flex flex-col py-2 px-6">
-                <a onClick={() => setIsOpen(false)} href="/iphone-voice-memos.html" className="py-3 text-sm text-on-surface-variant hover:text-primary flex items-center gap-3">
-                  <span className="text-lg">📱</span> iPhone Voice Memos
-                </a>
-                <a onClick={() => setIsOpen(false)} href="/320kbps.html" className="py-3 text-sm text-on-surface-variant hover:text-primary flex items-center gap-3">
-                  <span className="text-lg">🎵</span> 320kbps Studio Master
-                </a>
-                <a onClick={() => setIsOpen(false)} href="/batch-converter.html" className="py-3 text-sm text-on-surface-variant hover:text-primary flex items-center gap-3">
-                  <span className="text-lg">🗂️</span> Batch Audio Converter
-                </a>
-                <a onClick={() => setIsOpen(false)} href="/windows.html" className="py-3 text-sm text-on-surface-variant hover:text-primary flex items-center gap-3">
-                  <span className="text-lg">💻</span> Windows 11 / 10 PC Fix
-                </a>
-                <a onClick={() => setIsOpen(false)} href="/mac.html" className="py-3 text-sm text-on-surface-variant hover:text-primary flex items-center gap-3">
-                  <span className="text-lg">🍏</span> Mac, Android & ChromeOS
-                </a>
-                <a onClick={() => setIsOpen(false)} href="/client-side-safe.html" className="py-3 text-sm text-on-surface-variant hover:text-primary flex items-center gap-3">
-                  <span className="text-lg">🔒</span> 100% Client-Side Safe
-                </a>
+                <Link onClick={() => setIsOpen(false)} href="/iphone-voice-memos" className="py-3 text-sm text-on-surface-variant hover:text-primary flex items-center gap-3">
+                  <span className="text-lg">📱</span> {t('iphone_voice_memos')}
+                </Link>
+                <Link onClick={() => setIsOpen(false)} href="/320kbps" className="py-3 text-sm text-on-surface-variant hover:text-primary flex items-center gap-3">
+                  <span className="text-lg">🎵</span> {t('studio_master')}
+                </Link>
+                <Link onClick={() => setIsOpen(false)} href="/batch-converter" className="py-3 text-sm text-on-surface-variant hover:text-primary flex items-center gap-3">
+                  <span className="text-lg">🗂️</span> {t('batch_audio_converter')}
+                </Link>
+                <Link onClick={() => setIsOpen(false)} href="/windows" className="py-3 text-sm text-on-surface-variant hover:text-primary flex items-center gap-3">
+                  <span className="text-lg">💻</span> {t('windows_pc_fix')}
+                </Link>
+                <Link onClick={() => setIsOpen(false)} href="/mac" className="py-3 text-sm text-on-surface-variant hover:text-primary flex items-center gap-3">
+                  <span className="text-lg">🍏</span> {t('mac_android_chromeos')}
+                </Link>
+                <Link onClick={() => setIsOpen(false)} href="/client-side-safe" className="py-3 text-sm text-on-surface-variant hover:text-primary flex items-center gap-3">
+                  <span className="text-lg">🔒</span> {t('client_side_safe')}
+                </Link>
               </div>
             )}
           </div>

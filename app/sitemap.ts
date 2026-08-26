@@ -1,70 +1,25 @@
-import { MetadataRoute } from 'next';
-
-export const dynamic = 'force-static';
+import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://m4atomp3converter.com';
-
-  return [
-    {
-      url: `${baseUrl}/`,
+  const domain = 'https://m4atomp3converter.com'
+  const locales = ['en', 'es', 'fr', 'hi', 'de', 'pt']
+  
+  const entries: MetadataRoute.Sitemap = []
+  
+  for (const locale of locales) {
+    entries.push({
+      url: `${domain}/${locale}`,
       lastModified: new Date(),
-      changeFrequency: 'daily',
+      changeFrequency: 'weekly',
       priority: 1.0,
-    },
-    {
-      url: `${baseUrl}/iphone-voice-memos`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/320kbps`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/batch-converter`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/windows`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/mac`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/client-side-safe`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/privacy-policy`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/terms`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/about`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.5,
-    }
-  ];
+      alternates: {
+        languages: locales.reduce((acc, l) => {
+          acc[l] = `${domain}/${l}`
+          return acc
+        }, {} as Record<string, string>)
+      }
+    })
+  }
+
+  return entries
 }

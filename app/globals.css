@@ -56,3 +56,14 @@
 .animate-eq-3 { animation: eq-pulse 1.0s ease-in-out infinite 0.4s; }
 .animate-eq-4 { animation: eq-pulse 0.9s ease-in-out infinite 0.1s; }
 .animate-eq-5 { animation: eq-pulse 1.1s ease-in-out infinite 0.3s; }
+
+/* Hide Google Translate top bar and body margin */
+.skiptranslate iframe {
+    display: none !important;
+}
+body {
+    top: 0px !important;
+}
+#google_translate_element {
+    display: none !important;
+}
