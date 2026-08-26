@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import { useTranslations } from 'next-intl';
 import { ShieldCheck, Mail } from 'lucide-react';
 
@@ -5,6 +6,7 @@ import { ShieldCheck, Mail } from 'lucide-react';
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const resolvedParams = await params;
   const locale = resolvedParams.locale;
+  setRequestLocale(locale);
   const domain = 'https://m4atomp3converter.com';
   const path = '/privacy-policy';
   
@@ -23,7 +25,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-export default function Page() {
+import { use } from 'react';
+
+export default function Page({ params }: { params: Promise<{ locale: string }> }) {
+  const locale = use(params).locale;
+  setRequestLocale(locale);
   const t = useTranslations('privacy_policy');
 
   return (

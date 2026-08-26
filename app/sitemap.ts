@@ -1,5 +1,7 @@
 import { MetadataRoute } from 'next'
 
+export const dynamic = 'force-static'
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const domain = 'https://m4atomp3converter.com'
   const locales = ['en', 'es', 'fr', 'hi', 'de', 'pt']

@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import { useTranslations } from 'next-intl';
 import { Terminal } from 'lucide-react';
 import Converter from '../../components/Converter';
@@ -6,6 +7,7 @@ import Converter from '../../components/Converter';
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const resolvedParams = await params;
   const locale = resolvedParams.locale;
+  setRequestLocale(locale);
   const domain = 'https://m4atomp3converter.com';
   const path = '/client-side-safe';
   
@@ -24,7 +26,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
+import { use } from 'react';
+
 export default function Page({ params }: { params: Promise<{ locale: string }> }) {
+  const locale = use(params).locale;
+  setRequestLocale(locale);
   const t = useTranslations('client_side_safe');
 
   return (

@@ -1,3 +1,4 @@
+import { setRequestLocale } from 'next-intl/server';
 import { useTranslations } from 'next-intl';
 import Converter from '../../components/Converter';
 
@@ -5,6 +6,7 @@ import Converter from '../../components/Converter';
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const resolvedParams = await params;
   const locale = resolvedParams.locale;
+  setRequestLocale(locale);
   const domain = 'https://m4atomp3converter.com';
   const path = '/iphone-voice-memos';
   
@@ -23,7 +25,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
+import { use } from 'react';
+
 export default function Page({ params }: { params: Promise<{ locale: string }> }) {
+  const locale = use(params).locale;
+  setRequestLocale(locale);
   const t = useTranslations('iphone_voice_memos');
 
   return (

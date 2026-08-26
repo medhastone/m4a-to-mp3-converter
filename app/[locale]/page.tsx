@@ -1,9 +1,13 @@
+import { setRequestLocale } from 'next-intl/server';
 import { AudioLines, ArrowRight, ShieldCheck, Zap, ServerOff, Smartphone, Mic, Layers, Activity, Monitor, ChevronDown } from 'lucide-react';
 import Link from 'next/link';
 import Converter from '../components/Converter';
 import { getTranslations } from 'next-intl/server';
 
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
+  const resolvedParams = await params;
+  const locale = resolvedParams.locale;
+  setRequestLocale(locale);
   const t = await getTranslations('home');
 
   const jsonLd = {
@@ -46,7 +50,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           {/* Left Column */}
           <div className="flex-1 flex flex-col items-start text-left">
             <div className="flex items-stretch gap-5 mb-6">
-              <div className="w-1.5 md:w-2 bg-white rounded-full opacity-90"></div>
+              <div className="w-1.5 md:w-2 bg-primary rounded-full opacity-90"></div>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight text-white py-1">
                 {t('h1').split(/(Converter|Convertidor|Convertisseur|Umwandler|Conversor)/i).map((part: string, i: number) => 
                   /(Converter|Convertidor|Convertisseur|Umwandler|Conversor)/i.test(part) ? 

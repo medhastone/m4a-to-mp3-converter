@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../globals.css';
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages, getTranslations } from 'next-intl/server';
+import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '../../i18n/routing';
 
@@ -26,6 +26,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const resolvedParams = await params;
   const locale = resolvedParams.locale;
+  setRequestLocale(locale);
   const t = await getTranslations({locale, });
   const domain = 'https://m4atomp3converter.com';
   
@@ -66,6 +67,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function RootLayout({children, params}: {children: React.ReactNode, params: Promise<{ locale: string }>}) {
   const resolvedParams = await params;
   const locale = resolvedParams.locale;
+  setRequestLocale(locale);
   
   if (!routing.locales.includes(locale as any)) {
     notFound();

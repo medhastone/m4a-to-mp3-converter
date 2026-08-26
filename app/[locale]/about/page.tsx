@@ -1,8 +1,11 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Cpu, XCircle, CheckCircle, Mail, Clock, Send } from 'lucide-react';
 import Converter from '../../components/Converter';
 
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
+  const resolvedParams = await params;
+  const locale = resolvedParams.locale;
+  setRequestLocale(locale);
   const t = await getTranslations('about');
 
   return (
