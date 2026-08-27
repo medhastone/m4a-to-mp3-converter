@@ -5,7 +5,7 @@ import { FileAudio, Download, RotateCcw, Music } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Script from 'next/script';
 
-const ID3Writer = require('browser-id3-writer');
+import { ID3Writer } from 'browser-id3-writer';
 
 type ProcessingStatus = 'idle' | 'processing' | 'done' | 'error';
 type Bitrate = '128' | '192' | '320';
@@ -178,7 +178,7 @@ export default function Converter() {
       a.click();
       URL.revokeObjectURL(url);
     } catch (e) {
-       // console.error('ID3 Tagging failed:', e instanceof Error ? e.message : "Error");
+       console.error('ID3 Tagging failed:', e);
       // Fallback without tags
       const blob = new Blob([rawMp3Buffer], { type: 'audio/mp3' });
       const url = URL.createObjectURL(blob);
