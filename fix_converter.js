@@ -1,13 +1,16 @@
 const fs = require('fs');
 let code = fs.readFileSync('app/components/Converter.tsx', 'utf8');
 
-// Replace dynamic script injection
-code = code.replace(/  useEffect\(\(\) => \{[\s\S]*?\}, \[\]\);\n/, '');
+// 1. Fix the accept attribute
+code = code.replace(
+  `accept=".m4a,audio/mp4"`,
+  `accept=".m4a,audio/mp4,audio/x-m4a,audio/*"`
+);
 
-// Add import for lamejs at the top
-code = code.replace("const ID3Writer = require('browser-id3-writer');", "const ID3Writer = require('browser-id3-writer');\nconst lamejs = require('lamejs');");
-
-// Replace window.lamejs check
-code = code.replace(/      const lamejs = \(window as any\)\.lamejs;\n      if \(!lamejs\) \{\n        throw new Error\('LameJS library is still loading\. Please wait a moment\.'\);\n      \}\n/, '');
+// 2. Fix the ID3 saving logic: clone the ArrayBuffer and log strictly
+code = code.replace(
+  `const writer = new ID3Writer(rawMp3Buffer);`,
+  `const bufferCopy = rawMp3Buffer.slice(0);\n      const writer = new ID3Writer(bufferCopy);`
+);
 
 fs.writeFileSync('app/components/Converter.tsx', code);

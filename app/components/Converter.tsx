@@ -5,8 +5,6 @@ import { FileAudio, Download, RotateCcw, Music } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Script from 'next/script';
 
-import { ID3Writer } from 'browser-id3-writer';
-
 type ProcessingStatus = 'idle' | 'processing' | 'done' | 'error';
 type Bitrate = '128' | '192' | '320';
 type Topology = 'mono' | 'stereo';
@@ -161,10 +159,12 @@ export default function Converter() {
     }
   };
 
-  const handleDownload = () => {
+  const handleDownload = async () => {
     if (!rawMp3Buffer) return;
     try {
-      const writer = new ID3Writer(rawMp3Buffer);
+      const bufferCopy = rawMp3Buffer.slice(0);
+      const { ID3Writer } = await new Function("return import('https://unpkg.com/browser-id3-writer@6.4.0/dist/browser-id3-writer.mjs')")();
+      const writer = new ID3Writer(bufferCopy);
       if (id3Title) writer.setFrame('TIT2', id3Title);
       if (id3Artist) writer.setFrame('TPE1', [id3Artist]);
       if (id3Album) writer.setFrame('TALB', id3Album);
@@ -276,7 +276,7 @@ export default function Converter() {
           >
             <input 
               type="file" 
-              accept=".m4a,audio/mp4" 
+              accept=".m4a,audio/mp4,audio/x-m4a,audio/*" 
               className="hidden" 
               ref={fileInputRef}
               onChange={(e) => e.target.files && handleFile(e.target.files[0])} onClick={(e) => e.stopPropagation()}
