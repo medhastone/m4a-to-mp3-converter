@@ -6,7 +6,7 @@ import '../globals.css';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { routing } from '../../i18n/routing';
+import { routing } from '../../src/i18n/routing';
 
 const inter = Inter({
   subsets: ['latin'],

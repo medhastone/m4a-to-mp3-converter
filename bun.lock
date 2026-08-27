@@ -14,7 +14,7 @@
         "jsmediatags": "^3.9.7",
         "lucide-react": "^0.553.0",
         "motion": "^12.23.24",
-        "next": "^15.4.9",
+        "next": "^15.5.23",
         "next-intl": "^4.13.7",
         "postcss": "^8.5.6",
         "react": "^19.2.1",

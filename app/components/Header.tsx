@@ -1,6 +1,6 @@
 import { AudioLines, ChevronDown } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { Link } from '../../i18n/routing';
+import { Link } from '../../src/i18n/routing';
 import LanguageSwitcher from './LanguageSwitcher';
 import MobileMenu from './MobileMenu';
 

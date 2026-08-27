@@ -1,19 +1,15 @@
 import createNextIntlPlugin from 'next-intl/plugin';
- 
 const withNextIntl = createNextIntlPlugin();
- 
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
   images: {
     unoptimized: true,
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**',
-      },
-    ],
   },
 };
- 
-export default withNextIntl(nextConfig);
+
+const finalConfig = {images: {unoptimized: true},basePath: "/repo",output: "export"}
+Object.assign(finalConfig, withNextIntl(nextConfig))
+
+export default finalConfig;
