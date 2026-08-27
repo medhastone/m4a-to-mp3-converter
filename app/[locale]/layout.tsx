@@ -78,8 +78,8 @@ export default async function RootLayout({children, params}: {children: React.Re
   return (
     <html lang={locale} className={`${inter.variable} ${jbMono.variable}`}>
       <head>
-        <script src="https://unpkg.com/lucide@latest" crossOrigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/lamejs/1.2.1/lame.min.js" crossOrigin="anonymous"></script>
+        
+        
       </head>
       <body className="bg-surface text-on-surface antialiased min-h-screen flex flex-col selection:bg-primary-container/30 selection:text-primary" suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>

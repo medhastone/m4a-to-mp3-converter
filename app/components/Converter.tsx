@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { FileAudio, Download, RotateCcw, Music } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 const ID3Writer = require('browser-id3-writer');
+const lamejs = require('lamejs');
 
 type ProcessingStatus = 'idle' | 'processing' | 'done' | 'error';
 type Bitrate = '128' | '192' | '320';
@@ -27,15 +28,6 @@ export default function Converter() {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Load LameJS via CDN
-  useEffect(() => {
-    if (!document.getElementById('lamejs-script')) {
-      const script = document.createElement('script');
-      script.id = 'lamejs-script';
-      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lamejs/1.2.1/lame.min.js';
-      script.async = true;
-      document.head.appendChild(script);
-    }
-  }, []);
 
   const processAudioFile = async (file: File) => {
     try {
@@ -43,10 +35,6 @@ export default function Converter() {
       setProgress(0);
       setErrorMsg(null);
 
-      const lamejs = (window as any).lamejs;
-      if (!lamejs) {
-        throw new Error('LameJS library is still loading. Please wait a moment.');
-      }
 
       const arrayBuffer = await file.arrayBuffer();
       const audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
