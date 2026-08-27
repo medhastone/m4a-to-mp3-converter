@@ -3,8 +3,9 @@
 import { useState, useRef, useEffect } from 'react';
 import { FileAudio, Download, RotateCcw, Music } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import Script from 'next/script';
+
 const ID3Writer = require('browser-id3-writer');
-const lamejs = require('lamejs');
 
 type ProcessingStatus = 'idle' | 'processing' | 'done' | 'error';
 type Bitrate = '128' | '192' | '320';
@@ -50,6 +51,10 @@ export default function Converter() {
       const sampleRate = audioBuffer.sampleRate;
       const kbps = parseInt(bitrate);
       
+      const lamejs = (window as any).lamejs;
+      if (!lamejs || !lamejs.Mp3Encoder) {
+        throw new Error('LameJS encoder failed to load. Please refresh and try again.');
+      }
       const mp3encoder = new lamejs.Mp3Encoder(channels, sampleRate, kbps);
       const mp3Data: any[] = [];
 
@@ -187,6 +192,7 @@ export default function Converter() {
 
   return (
     <div className="w-full flex flex-col gap-4">
+      <Script src="https://cdnjs.cloudflare.com/ajax/libs/lamejs/1.2.1/lame.min.js" strategy="beforeInteractive" />
       {/* Converter Card */}
       <div className="w-full bg-surface-container/80 backdrop-blur-2xl rounded-2xl border border-white/5 shadow-2xl relative overflow-hidden group p-6 md:p-10">
         

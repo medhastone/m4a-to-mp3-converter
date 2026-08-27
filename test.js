@@ -1,9 +1,7 @@
-const { ConfigParser } = require('/tmp/configure-pages-repo/src/config-parser');
-const settings = {
-  configurationFile: 'test-config.mjs',
-  blankConfigurationFile: '/tmp/configure-pages-repo/src/blank-configurations/next.js',
-  properties: { output: 'export', basePath: '/repo', 'images.unoptimized': true },
-  allowWrappingCall: false
-}
-const parser = new ConfigParser(settings)
-parser.injectAll()
+const fs = require('fs');
+const code = fs.readFileSync('node_modules/lamejs/lame.all.js', 'utf8');
+const vm = require('vm');
+const sandbox = {};
+vm.createContext(sandbox);
+vm.runInContext(code, sandbox);
+console.log(Object.keys(sandbox));
