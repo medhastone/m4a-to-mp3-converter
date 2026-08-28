@@ -46,3 +46,7 @@ export default async function MetadataViewerPage({ params }: { params: Promise<{
     </main>
   );
 }
+
+export function generateStaticParams() {
+  return ['en', 'es', 'fr', 'de', 'pt'].map((locale) => ({ locale }));
+}
