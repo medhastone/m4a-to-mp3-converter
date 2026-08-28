@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { FileAudio, Download, RotateCcw, Music } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import { FileAudio, Download, RotateCcw, Music, Smartphone, Layers, ShieldCheck, Monitor } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { FFmpeg } from '@ffmpeg/ffmpeg';
 import { fetchFile } from '@ffmpeg/util';
@@ -11,6 +12,14 @@ type Bitrate = '128' | '192' | '320';
 type Topology = 'mono' | 'stereo';
 
 export default function Converter() {
+  const pathname = usePathname() || '';
+  let DropIcon = FileAudio;
+  if (pathname.includes('iphone-voice-memos')) DropIcon = Smartphone;
+  else if (pathname.includes('batch-converter')) DropIcon = Layers;
+  else if (pathname.includes('client-side-safe')) DropIcon = ShieldCheck;
+  else if (pathname.includes('mac') || pathname.includes('windows')) DropIcon = Monitor;
+  else if (pathname.includes('320kbps')) DropIcon = Music;
+
   const t = useTranslations('converter');
   const [status, setStatus] = useState<ProcessingStatus>('idle');
   const [progress, setProgress] = useState(0);
@@ -246,7 +255,7 @@ export default function Converter() {
             />
             <div className={`pointer-events-none w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center shadow-lg transition-all duration-300
               ${isDragging ? 'shadow-[0_0_30px_rgba(249,115,22,0.4)] scale-110' : 'group-hover/drop:shadow-[0_0_20px_rgba(249,115,22,0.2)]'}`}>
-              <FileAudio className={`w-8 h-8 transition-colors ${isDragging ? 'text-primary-container' : 'text-primary'}`} />
+              <DropIcon className={`w-8 h-8 transition-colors ${isDragging ? 'text-primary-container' : 'text-primary'}`} />
             </div>
             <div className="text-center pointer-events-none">
               <h3 className="font-semibold text-xl text-on-surface group-hover/drop:text-primary transition-colors">{t('drop_m4a_here')}</h3>
