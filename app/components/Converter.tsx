@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { FileAudio, Download, RotateCcw, Music } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import Script from 'next/script';
 
 type ProcessingStatus = 'idle' | 'processing' | 'done' | 'error';
 type Bitrate = '128' | '192' | '320';
@@ -34,7 +33,6 @@ export default function Converter() {
       setProgress(0);
       setErrorMsg(null);
 
-
       const arrayBuffer = await file.arrayBuffer();
       const audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
       
@@ -48,77 +46,45 @@ export default function Converter() {
       const channels = topology === 'stereo' ? 2 : 1;
       const sampleRate = audioBuffer.sampleRate;
       const kbps = parseInt(bitrate);
-      
-      const lamejs = (window as any).lamejs;
-      if (!lamejs || !lamejs.Mp3Encoder) {
-        throw new Error('LameJS encoder failed to load. Please refresh and try again.');
-      }
-      const mp3encoder = new lamejs.Mp3Encoder(channels, sampleRate, kbps);
-      const mp3Data: any[] = [];
 
       const left = audioBuffer.getChannelData(0);
       const right = channels === 2 && audioBuffer.numberOfChannels > 1 
         ? audioBuffer.getChannelData(1) 
-        : left; 
+        : left;
 
-      const CHUNK_SIZE = 1152 * 40; 
-      let offset = 0;
-
-      const encodeChunk = () => {
-        const limit = Math.min(offset + CHUNK_SIZE, left.length);
-        const leftFloatChunk = left.subarray(offset, limit);
-        const leftInt16Chunk = new Int16Array(leftFloatChunk.length);
-        
-        for (let i = 0; i < leftFloatChunk.length; i++) {
-          const s = Math.max(-1, Math.min(1, leftFloatChunk[i]));
-          leftInt16Chunk[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
-        }
-
-        let mp3buf;
-        if (channels === 2) {
-          const rightFloatChunk = right.subarray(offset, limit);
-          const rightInt16Chunk = new Int16Array(rightFloatChunk.length);
-          for (let i = 0; i < rightFloatChunk.length; i++) {
-            const s = Math.max(-1, Math.min(1, rightFloatChunk[i]));
-            rightInt16Chunk[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
-          }
-          mp3buf = mp3encoder.encodeBuffer(leftInt16Chunk, rightInt16Chunk);
-        } else {
-          mp3buf = mp3encoder.encodeBuffer(leftInt16Chunk);
-        }
-
-        if (mp3buf.length > 0) {
-          mp3Data.push(mp3buf);
-        }
-
-        offset += CHUNK_SIZE;
-        setProgress((offset / left.length) * 100);
-
-        if (offset < left.length) {
-          requestAnimationFrame(encodeChunk);
-        } else {
-          const mp3bufFinal = mp3encoder.flush();
-          if (mp3bufFinal.length > 0) {
-            mp3Data.push(mp3bufFinal);
-          }
-          
-          const totalLength = mp3Data.reduce((acc, val) => acc + val.length, 0);
-          const combined = new Int8Array(totalLength);
-          let offsetBuffer = 0;
-          for (const buf of mp3Data) {
-            combined.set(buf, offsetBuffer);
-            offsetBuffer += buf.length;
-          }
-          
-          setRawMp3Buffer(combined.buffer);
+      // Initialize Web Worker for background processing
+      const worker = new Worker('/lame-worker.js');
+      
+      worker.onmessage = (e) => {
+        if (e.data.type === 'progress') {
+          setProgress(e.data.progress);
+        } else if (e.data.type === 'done') {
+          setRawMp3Buffer(e.data.buffer);
           setStatus('done');
+          worker.terminate();
+        } else if (e.data.type === 'error') {
+          setErrorMsg(e.data.message || 'An unknown error occurred in the worker.');
+          setStatus('error');
+          worker.terminate();
         }
       };
 
-      requestAnimationFrame(encodeChunk);
+      worker.onerror = (err) => {
+        setErrorMsg('Web Worker failed to execute properly.');
+        setStatus('error');
+        worker.terminate();
+      };
+
+      // Send data to worker
+      worker.postMessage({
+        left: left,
+        right: right,
+        channels: channels,
+        sampleRate: sampleRate,
+        kbps: kbps
+      });
 
     } catch (error: any) {
-       // console.error(error instanceof Error ? error.message : "Error processing file");
       setErrorMsg(error.message || 'An unknown error occurred.');
       setStatus('error');
     }
@@ -192,7 +158,6 @@ export default function Converter() {
 
   return (
     <div className="w-full flex flex-col gap-4">
-      <Script src="https://cdnjs.cloudflare.com/ajax/libs/lamejs/1.2.1/lame.min.js" strategy="beforeInteractive" />
       {/* Converter Card */}
       <div className="w-full bg-surface-container/80 backdrop-blur-2xl rounded-2xl border border-white/5 shadow-2xl relative overflow-hidden group p-6 md:p-10">
         
