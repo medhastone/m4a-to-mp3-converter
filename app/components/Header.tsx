@@ -43,6 +43,10 @@ export default function Header() {
                 <Link href="/mac" className="px-4 py-2 text-sm text-on-surface-variant hover:text-primary hover:bg-surface-dim transition-colors flex items-center gap-2">
                   <span className="text-lg">🍏</span> {t('mac_android_chromeos')}
                 </Link>
+
+                <Link href="/metadata-viewer" className="px-4 py-2 text-sm text-on-surface-variant hover:text-primary hover:bg-surface-dim transition-colors flex items-center gap-2">
+                  <span className="text-lg">🏷️</span> {t('metadata_viewer')}
+                </Link>
                 <Link href="/client-side-safe" className="px-4 py-2 text-sm text-on-surface-variant hover:text-primary hover:bg-surface-dim transition-colors flex items-center gap-2">
                   <span className="text-lg">🔒</span> {t('client_side_safe')}
                 </Link>

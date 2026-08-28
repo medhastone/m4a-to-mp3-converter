@@ -11,7 +11,9 @@ export default function Footer() {
             <div>
               <h3 className="font-bold text-white mb-4">{t('devices_systems_title')}</h3>
               <ul className="space-y-3">
-                <li><Link href="/iphone-voice-memos" className="text-on-surface-variant hover:text-white transition-colors text-sm font-medium">{t('iphone_voice_memos')}</Link></li>
+  
+              <li><Link href="/metadata-viewer" className="hover:text-primary transition-colors">{t('metadata_viewer')}</Link></li>
+              <li><Link href="/iphone-voice-memos" className="text-on-surface-variant hover:text-white transition-colors text-sm font-medium">{t('iphone_voice_memos')}</Link></li>
                 <li><Link href="/windows" className="text-on-surface-variant hover:text-white transition-colors text-sm font-medium">{t('windows_fix')}</Link></li>
                 <li><Link href="/mac" className="text-on-surface-variant hover:text-white transition-colors text-sm font-medium">{t('mac_android_chromebook')}</Link></li>
               </ul>
