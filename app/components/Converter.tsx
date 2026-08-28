@@ -3,6 +3,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { FileAudio, Download, RotateCcw, Music } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { FFmpeg } from '@ffmpeg/ffmpeg';
+import { fetchFile } from '@ffmpeg/util';
 
 type ProcessingStatus = 'idle' | 'processing' | 'done' | 'error';
 type Bitrate = '128' | '192' | '320';
@@ -24,6 +26,8 @@ export default function Converter() {
   const [id3Album, setId3Album] = useState('');
 
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const ffmpegRef = useRef<any>(null);
+  const [ffmpegLoaded, setFfmpegLoaded] = useState(false);
 
   // Load LameJS via CDN
 
@@ -33,59 +37,53 @@ export default function Converter() {
       setProgress(0);
       setErrorMsg(null);
 
-      const arrayBuffer = await file.arrayBuffer();
-      const audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
+            if (!ffmpegRef.current) {
+        ffmpegRef.current = new FFmpeg();
+      }
+      const ffmpeg = ffmpegRef.current;
       
-      let audioBuffer: AudioBuffer;
-      try {
-        audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
-      } catch (err) {
-        throw new Error('Could not decode audio. The file might be corrupted or DRM-protected (.m4p).');
+      if (!ffmpegLoaded) {
+        // Load FFmpeg from CDN for maximum speed via WebAssembly
+        await ffmpeg.load({
+          coreURL: 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/umd/ffmpeg-core.js',
+          wasmURL: 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/umd/ffmpeg-core.wasm'
+        });
+        setFfmpegLoaded(true);
       }
 
-      const channels = topology === 'stereo' ? 2 : 1;
-      const sampleRate = audioBuffer.sampleRate;
-      const kbps = parseInt(bitrate);
-
-      const left = audioBuffer.getChannelData(0);
-      const right = channels === 2 && audioBuffer.numberOfChannels > 1 
-        ? audioBuffer.getChannelData(1) 
-        : left;
-
-      // Initialize Web Worker for background processing
-      const worker = new Worker('/lame-worker.js');
-      
-      worker.onmessage = (e) => {
-        if (e.data.type === 'progress') {
-          setProgress(e.data.progress);
-        } else if (e.data.type === 'done') {
-          setRawMp3Buffer(e.data.buffer);
-          setStatus('done');
-          worker.terminate();
-        } else if (e.data.type === 'error') {
-          setErrorMsg(e.data.message || 'An unknown error occurred in the worker.');
-          setStatus('error');
-          worker.terminate();
-        }
-      };
-
-      worker.onerror = (err) => {
-        setErrorMsg('Web Worker failed to execute properly.');
-        setStatus('error');
-        worker.terminate();
-      };
-
-      // Send data to worker
-      worker.postMessage({
-        left: left,
-        right: right,
-        channels: channels,
-        sampleRate: sampleRate,
-        kbps: kbps
+      ffmpeg.on('progress', ({ progress }: any) => {
+        setProgress(Math.round(progress * 100));
       });
 
+      const inputName = 'input.m4a';
+      const outputName = 'output.mp3';
+
+      await ffmpeg.writeFile(inputName, await fetchFile(file));
+
+      const channelsStr = topology === 'stereo' ? '2' : '1';
+      
+      // Execute FFmpeg Wasm
+      await ffmpeg.exec([
+        '-i', inputName,
+        '-b:a', `${bitrate}k`,
+        '-ac', channelsStr,
+        outputName
+      ]);
+
+      const data = await ffmpeg.readFile(outputName);
+      
+      // Cleanup
+      await ffmpeg.deleteFile(inputName);
+      await ffmpeg.deleteFile(outputName);
+      ffmpeg.off('progress', () => {}); // remove listener
+
+      const dataArray = data as Uint8Array;
+      setRawMp3Buffer(dataArray.buffer.slice(dataArray.byteOffset, dataArray.byteOffset + dataArray.byteLength) as ArrayBuffer);
+      setStatus('done');
+
     } catch (error: any) {
-      setErrorMsg(error.message || 'An unknown error occurred.');
+      console.error(error);
+      setErrorMsg(error.message || 'An error occurred during high-speed conversion.');
       setStatus('error');
     }
   };
