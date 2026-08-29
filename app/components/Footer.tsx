@@ -89,12 +89,30 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <Link
+                  href="/mp3-to-m4a"
+                  className="text-on-surface-variant hover:text-white transition-colors text-sm font-medium"
+                >
+                  MP3 to M4A Converter
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/batch-converter"
+
                   className="text-on-surface-variant hover:text-white transition-colors text-sm font-medium"
                 >
                   {t("batch_converter")}
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/audio-metadata-remover"
+                  className="text-on-surface-variant hover:text-white transition-colors text-sm font-medium"
+                >
+                  Metadata Remover
+                </Link>
+              </li>
+
               <li>
                 <Link
                   href="/client-side-safe"
