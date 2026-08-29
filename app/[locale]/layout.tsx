@@ -42,13 +42,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       alternateLocale: routing.locales.filter(l => l !== locale),
       type: 'website',
     },
-    twitter: {
+        twitter: {
       card: 'summary_large_image',
       title: t('title'),
       description: t('description'),
     },
     icons: {
-      icon: '/icon.svg',
+      icon: [
+        { url: '/favicon.ico', sizes: '32x32' },
+        { url: '/icon.svg', type: 'image/svg+xml', sizes: 'any' }
+      ],
+      apple: '/apple-touch-icon.png',
     },
     alternates: {
       canonical: `${domain}/${locale}`,
