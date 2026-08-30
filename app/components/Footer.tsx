@@ -89,6 +89,14 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <Link
+                  href="/wav-to-mp3"
+                  className="text-on-surface-variant hover:text-white transition-colors text-sm font-medium"
+                >
+                  WAV to MP3 Converter
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/mp3-to-m4a"
                   className="text-on-surface-variant hover:text-white transition-colors text-sm font-medium"
                 >

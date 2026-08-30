@@ -49,6 +49,4 @@ export default async function Mp3ToM4aPage({ params }: { params: Promise<{ local
   );
 }
 
-export function generateStaticParams() {
-  return ['en', 'es', 'fr', 'de', 'pt'].map((locale) => ({ locale }));
-}
+

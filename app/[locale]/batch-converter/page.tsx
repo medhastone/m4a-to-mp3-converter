@@ -95,6 +95,4 @@ export default function Page({ params }: { params: Promise<{ locale: string }> }
   );
 }
 
-export function generateStaticParams() {
-  return ['en', 'es', 'fr', 'de', 'pt'].map((locale) => ({ locale }));
-}
+

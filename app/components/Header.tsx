@@ -28,7 +28,8 @@ export default function Header() {
               </button>
               
               <div className="absolute top-full left-0 mt-2 w-64 bg-surface-container-high border border-outline-variant/30 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 flex flex-col py-2 z-50">
-                                <Link href="/mp3-to-m4a" className="px-4 py-2 text-sm text-on-surface-variant hover:text-primary hover:bg-surface-dim transition-colors flex items-center gap-2">
+                                <Link href="/wav-to-mp3" className="px-4 py-2 text-sm text-on-surface-variant hover:text-primary hover:bg-surface-dim transition-colors flex items-center gap-2"><span className="text-lg">🌊</span> WAV to MP3 Converter</Link>
+                <Link href="/mp3-to-m4a" className="px-4 py-2 text-sm text-on-surface-variant hover:text-primary hover:bg-surface-dim transition-colors flex items-center gap-2">
                   <span className="text-lg">🔄</span> MP3 to M4A
                 </Link>
                 <Link href="/iphone-voice-memos" className="px-4 py-2 text-sm text-on-surface-variant hover:text-primary hover:bg-surface-dim transition-colors flex items-center gap-2">

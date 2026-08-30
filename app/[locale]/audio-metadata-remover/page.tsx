@@ -47,6 +47,4 @@ export default async function AudioMetadataRemoverPage({ params }: { params: Pro
   );
 }
 
-export function generateStaticParams() {
-  return ['en', 'es', 'fr', 'de', 'pt'].map((locale) => ({ locale }));
-}
+

@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "PORT=3000 next dev",
-    "build": "NODE_ENV=production next build",
-    "start": "next start",
+    "dev": "NODE_OPTIONS='--max-old-space-size=1024' PORT=3000 next dev",
+    "build": "NODE_OPTIONS='--max-old-space-size=1024' NODE_ENV=production next build",
+    "start": "PORT=3000 next start",
     "lint": "eslint .",
     "clean": "next clean"
   },
@@ -15,6 +15,7 @@
     "@ffmpeg/util": "^0.12.2",
     "@google/genai": "^2.19.0",
     "@hookform/resolvers": "^5.9.1",
+    "@vitalets/google-translate-api": "^9.2.1",
     "autoprefixer": "^10.5.4",
     "browser-id3-writer": "^6.4.0",
     "class-variance-authority": "^0.7.1",

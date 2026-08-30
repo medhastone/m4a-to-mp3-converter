@@ -259,6 +259,4 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   );
 }
 
-export function generateStaticParams() {
-  return ['en', 'es', 'fr', 'de', 'pt'].map((locale) => ({ locale }));
-}
+
