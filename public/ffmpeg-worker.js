@@ -20,8 +20,8 @@ try {
     self.document = { baseURI: self.location.href };
   }
 
-  importScripts(`${basePath}/ffmpeg/ffmpeg.js?v=1.0.1`);
-  importScripts(`${basePath}/ffmpeg/index.js?v=1.0.1`);
+  importScripts(`${basePath}/ffmpeg/ffmpeg.js?v=2.0.0`);
+  importScripts(`${basePath}/ffmpeg/index.js?v=2.0.0`);
   
   FFmpeg = self.FFmpegWASM.FFmpeg;
   fetchFile = self.FFmpegUtil.fetchFile;
@@ -54,13 +54,11 @@ self.onmessage = async (e) => {
       });
 
       self.postMessage({ type: "PHASE", payload: "Fetching WASM & Core..." });
-      const classWorkerURL = `${basePath}/814.ffmpeg.js?v=1.0.1`;
-      const coreURL = `${basePath}/ffmpeg/core/ffmpeg-core.js?v=1.0.1`;
-      const wasmURL = await toBlobURL(`${basePath}/ffmpeg/core/ffmpeg-core.wasm?v=1.0.1`, "application/wasm", true, (e) => { const percent = e.total > 0 ? Math.round((e.received / e.total) * 100) : 0; self.postMessage({ type: "PHASE", payload: `Downloading WASM Engine: ${percent}%` }); });
+      const coreURL = `${basePath}/ffmpeg/core/ffmpeg-core.js?v=2.0.0`;
+      const wasmURL = await toBlobURL(`${basePath}/ffmpeg/core/ffmpeg-core.wasm?v=2.0.0`, "application/wasm", true, (e) => { const percent = e.total > 0 ? Math.round((e.received / e.total) * 100) : 0; self.postMessage({ type: "PHASE", payload: `Downloading WASM Engine: ${percent}%` }); });
       
       self.postMessage({ type: "PHASE", payload: "Mounting File System..." });
       await ffmpeg.load({
-        classWorkerURL,
         coreURL,
         wasmURL,
       });
