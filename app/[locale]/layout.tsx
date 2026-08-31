@@ -49,8 +49,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     icons: {
       icon: [
-        { url: '/favicon.ico', sizes: '32x32' },
-        { url: '/icon.svg', type: 'image/svg+xml', sizes: 'any' }
+        { url: '/favicon.ico', sizes: '32x32' }, { url: '/favicon-48x48.png', sizes: '48x48', type: 'image/png' }, { url: '/icon.svg', type: 'image/svg+xml', sizes: 'any' }, { url: '/icon-192x192.png', sizes: '192x192', type: 'image/png' }
+        
       ],
       apple: '/apple-touch-icon.png',
     },
