@@ -1,0 +1,15 @@
+
+> ai-studio-applet@0.1.0 dev
+> NODE_OPTIONS='--max-old-space-size=1024' PORT=3000 next dev
+
+ ⨯ Failed to start server
+Error: listen EADDRINUSE: address already in use :::3000
+    at <unknown> (Error: listen EADDRINUSE: address already in use :::3000)
+    at new Promise (<anonymous>) {
+  code: 'EADDRINUSE',
+  errno: -98,
+  syscall: 'listen',
+  address: '::',
+  port: 3000
+}
+[?25h

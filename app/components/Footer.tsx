@@ -89,19 +89,21 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <Link
+                  href="/video-to-mp3"
+                  className="text-on-surface-variant hover:text-white transition-colors text-sm font-medium"
+                >{t('mp4_to_mp3_converter')}</Link>
+              </li>
+              <li>
+                <Link
                   href="/wav-to-mp3"
                   className="text-on-surface-variant hover:text-white transition-colors text-sm font-medium"
-                >
-                  WAV to MP3 Converter
-                </Link>
+                >{t('wav_to_mp3_converter')}</Link>
               </li>
               <li>
                 <Link
                   href="/mp3-to-m4a"
                   className="text-on-surface-variant hover:text-white transition-colors text-sm font-medium"
-                >
-                  MP3 to M4A Converter
-                </Link>
+                >{t('mp3_to_m4a_converter')}</Link>
               </li>
               <li>
                 <Link
@@ -116,9 +118,7 @@ export default function Footer() {
                 <Link
                   href="/audio-metadata-remover"
                   className="text-on-surface-variant hover:text-white transition-colors text-sm font-medium"
-                >
-                  Metadata Remover
-                </Link>
+                >{t('metadata_remover')}</Link>
               </li>
 
               <li>
@@ -181,7 +181,7 @@ export default function Footer() {
             </p>
             <div className="bg-white p-2 rounded-xl mb-3 w-full flex justify-center max-w-[120px]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/qr-code.png`} alt="Buy Me a Coffee QR Code" className="w-full h-auto aspect-square object-contain" />
+              <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/bmc-qr.png`} alt="Buy Me a Coffee QR Code" className="w-full h-auto aspect-square object-contain" />
             </div>
             <a 
               href="https://buymeacoffee.com/medhastone" 
