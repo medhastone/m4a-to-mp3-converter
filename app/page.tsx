@@ -1,5 +1,12 @@
-import { redirect } from 'next/navigation';
-
 export default function RootPage() {
-  redirect('/en');
+  return (
+    <html>
+      <head>
+        <meta httpEquiv="refresh" content="0; url=/en" />
+      </head>
+      <body>
+        <p>Redirecting to <a href="/en">/en</a>...</p>
+      </body>
+    </html>
+  );
 }
