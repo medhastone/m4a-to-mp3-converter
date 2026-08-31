@@ -49,7 +49,7 @@ export default function VideoToMp3Converter() {
 
   // Initialize FFmpeg worker
   useEffect(() => {
-    workerRef.current = new Worker(`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/ffmpeg-worker.js?v=2.0.0`);
+    workerRef.current = new Worker(`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/ffmpeg-worker.js?v=2.0.1`);
     
     workerRef.current.onerror = (err) => {
       console.error("Worker load error", err);
