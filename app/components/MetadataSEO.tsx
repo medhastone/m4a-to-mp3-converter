@@ -54,7 +54,7 @@ export default function MetadataSEO() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
           
-          <div className="bg-surface-container rounded-2xl p-6 border border-white/5 hover:border-primary/30 transition-colors">
+          <div className="bg-surface-container rounded-2xl p-6 border border-outline-variant/10 hover:border-primary/30 transition-colors">
             <h3 className="text-lg font-bold text-on-surface mb-3 flex items-center gap-2">
               <div className="w-2 h-2 bg-red-500 rounded-full"></div>
               {t('mv_seo_cap1_title')}
@@ -66,7 +66,7 @@ export default function MetadataSEO() {
             </ul>
           </div>
           
-          <div className="bg-surface-container rounded-2xl p-6 border border-white/5 hover:border-primary/30 transition-colors">
+          <div className="bg-surface-container rounded-2xl p-6 border border-outline-variant/10 hover:border-primary/30 transition-colors">
             <h3 className="text-lg font-bold text-on-surface mb-3 flex items-center gap-2">
               <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
               {t('mv_seo_cap2_title')}
@@ -78,7 +78,7 @@ export default function MetadataSEO() {
             </ul>
           </div>
 
-          <div className="bg-surface-container rounded-2xl p-6 border border-white/5 hover:border-primary/30 transition-colors">
+          <div className="bg-surface-container rounded-2xl p-6 border border-outline-variant/10 hover:border-primary/30 transition-colors">
             <h3 className="text-lg font-bold text-on-surface mb-3 flex items-center gap-2">
               <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
               {t('mv_seo_cap3_title')}
@@ -90,7 +90,7 @@ export default function MetadataSEO() {
             </ul>
           </div>
 
-          <div className="bg-surface-container rounded-2xl p-6 border border-white/5 hover:border-primary/30 transition-colors">
+          <div className="bg-surface-container rounded-2xl p-6 border border-outline-variant/10 hover:border-primary/30 transition-colors">
             <h3 className="text-lg font-bold text-on-surface mb-3 flex items-center gap-2">
               <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
               {t('mv_seo_cap4_title')}
@@ -106,7 +106,7 @@ export default function MetadataSEO() {
       </section>
 
       {/* 5. Why In-Browser Deep Audio Inspection Matters (Use Cases) */}
-      <section className="w-full mb-20 bg-surface-container/50 rounded-3xl p-8 md:p-12 border border-white/5">
+      <section className="w-full mb-20 bg-surface-container/50 rounded-3xl p-8 md:p-12 border border-outline-variant/10">
         <h2 className="text-3xl font-bold mb-8 text-center">{t('mv_seo_h2_why')}</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
@@ -133,10 +133,10 @@ export default function MetadataSEO() {
       {/* 4. Detailed Feature Matrix Table */}
       <section className="w-full mb-20">
         <h2 className="text-3xl font-bold mb-8 text-center">{t('mv_seo_h2_adv')}</h2>
-        <div className="overflow-x-auto rounded-2xl border border-white/10">
+        <div className="overflow-x-auto rounded-2xl border border-outline-variant/30">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-surface-container border-b border-white/10">
+              <tr className="bg-surface-container border-b border-outline-variant/30">
                 <th className="p-4 text-on-surface font-bold w-1/3">{t('mv_seo_adv_th1')}</th>
                 <th className="p-4 text-on-surface font-bold w-1/3">{t('mv_seo_adv_th2')}</th>
                 <th className="p-4 text-primary font-bold w-1/3 bg-primary/5">{t('mv_seo_adv_th3')}</th>
@@ -182,7 +182,7 @@ export default function MetadataSEO() {
       <section className="w-full max-w-3xl mx-auto mb-10">
         <h2 className="text-3xl font-bold mb-8 text-center">{t('mv_seo_h2_faq')}</h2>
         <div className="space-y-6">
-          <div className="bg-surface-container rounded-2xl p-6 border border-white/5">
+          <div className="bg-surface-container rounded-2xl p-6 border border-outline-variant/10">
             <h3 className="text-lg font-bold text-on-surface flex items-center gap-2 mb-2">
               <Lock className="w-5 h-5 text-primary" /> {t('mv_seo_faq1_q')}
             </h3>
@@ -191,7 +191,7 @@ export default function MetadataSEO() {
             </p>
           </div>
           
-          <div className="bg-surface-container rounded-2xl p-6 border border-white/5">
+          <div className="bg-surface-container rounded-2xl p-6 border border-outline-variant/10">
             <h3 className="text-lg font-bold text-on-surface mb-2">{t('mv_seo_faq2_q')}</h3>
             <p className="text-on-surface-variant leading-relaxed">
               {t.rich('mv_seo_faq2_a', { 
@@ -202,7 +202,7 @@ export default function MetadataSEO() {
             </p>
           </div>
 
-          <div className="bg-surface-container rounded-2xl p-6 border border-white/5">
+          <div className="bg-surface-container rounded-2xl p-6 border border-outline-variant/10">
             <h3 className="text-lg font-bold text-on-surface mb-2">{t('mv_seo_faq3_q')}</h3>
             <p className="text-on-surface-variant leading-relaxed">
               {t.rich('mv_seo_faq3_a', { 
@@ -212,7 +212,7 @@ export default function MetadataSEO() {
             </p>
           </div>
 
-          <div className="bg-surface-container rounded-2xl p-6 border border-white/5">
+          <div className="bg-surface-container rounded-2xl p-6 border border-outline-variant/10">
             <h3 className="text-lg font-bold text-on-surface mb-2">{t('mv_seo_faq4_q')}</h3>
             <p className="text-on-surface-variant leading-relaxed">
               {t.rich('mv_seo_faq4_a', { 

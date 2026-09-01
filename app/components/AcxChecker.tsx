@@ -351,7 +351,7 @@ export default function AcxChecker() {
       {!isAnalyzing && !results && (
         <div 
           className={`group w-full aspect-[21/9] min-h-[300px] border-2 border-dashed rounded-3xl flex flex-col items-center justify-center p-8 transition-all duration-300 cursor-pointer 
-            ${isDragging ? 'border-orange-500 bg-orange-500/10 scale-[1.02] shadow-xl shadow-orange-500/20' : 'border-slate-700 bg-slate-900/50 hover:bg-slate-800 hover:border-orange-500'}`}
+            ${isDragging ? 'border-orange-500 bg-orange-500/10 scale-[1.02] shadow-xl shadow-orange-500/20' : 'border-outline bg-surface-container-high/50 hover:bg-surface-container-highest hover:border-orange-500'}`}
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
@@ -360,8 +360,8 @@ export default function AcxChecker() {
           <div className="w-20 h-20 bg-orange-500/10 rounded-full flex items-center justify-center mb-6 text-orange-500 group-hover:scale-110 group-hover:bg-orange-500/20 transition-all duration-300">
              <Upload className="w-10 h-10" />
           </div>
-          <h3 className="text-2xl font-bold text-white mb-2">{t('dropzone_title')}</h3>
-          <p className="text-slate-400 text-sm mb-6">{t('dropzone_subtitle')} (Full chapters supported)</p>
+          <h3 className="text-2xl font-bold text-on-surface mb-2">{t('dropzone_title')}</h3>
+          <p className="text-on-surface-variant text-sm mb-6">{t('dropzone_subtitle')} (Full chapters supported)</p>
           <button className="bg-primary hover:bg-primary/90 text-on-primary px-8 py-3 rounded-full font-bold transition-colors shadow-lg shadow-primary/20">
             Select Audiobook File
           </button>
@@ -370,15 +370,15 @@ export default function AcxChecker() {
       )}
 
       {isAnalyzing && (
-        <div className="w-full min-h-[300px] border border-slate-800 bg-slate-900/50 rounded-3xl flex flex-col items-center justify-center p-8">
+        <div className="w-full min-h-[300px] border border-outline-variant bg-surface-container-high/50 rounded-3xl flex flex-col items-center justify-center p-8">
           <Activity className="w-12 h-12 text-primary animate-pulse mb-6" />
-          <h3 className="text-2xl font-bold text-white mb-2">{t('analyzing')}</h3>
-          <p className="text-slate-400">Processing complex DSP offline buffer locally...</p>
+          <h3 className="text-2xl font-bold text-on-surface mb-2">{t('analyzing')}</h3>
+          <p className="text-on-surface-variant">Processing complex DSP offline buffer locally...</p>
         </div>
       )}
 
       {error && (
-        <div className="mt-6 p-4 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 flex items-center gap-3">
+        <div className="mt-6 p-4 bg-red-500/10 border border-red-500/30 rounded-xl text-red-600 dark:text-red-400 flex items-center gap-3">
           <AlertTriangle className="w-5 h-5 shrink-0" />
           <p>{error}</p>
         </div>
@@ -398,16 +398,16 @@ export default function AcxChecker() {
                      <h2 className={`text-3xl font-extrabold ${results.overallPass ? 'text-emerald-500' : 'text-red-500'}`}>
                        {results.overallPass ? t('overall_pass') : t('overall_fail')}
                      </h2>
-                     <p className="text-slate-300 mt-1 flex items-center justify-center md:justify-start gap-2">
-                         <FileAudio className="w-4 h-4 text-slate-400" /> {results.filename} 
-                         <span className="text-slate-600">|</span> 
-                         <Clock className="w-4 h-4 text-slate-400" /> {results.durationFormatted}
+                     <p className="text-on-surface-variant mt-1 flex items-center justify-center md:justify-start gap-2">
+                         <FileAudio className="w-4 h-4 text-on-surface-variant" /> {results.filename} 
+                         <span className="text-outline-variant">|</span> 
+                         <Clock className="w-4 h-4 text-on-surface-variant" /> {results.durationFormatted}
                      </p>
                  </div>
              </div>
              <button 
                 onClick={generatePDF}
-                className="bg-white text-slate-900 hover:bg-slate-200 px-6 py-3 rounded-xl font-bold transition-colors flex items-center gap-2 shadow-xl"
+                className="bg-surface text-on-surface hover:bg-surface-dim border border-outline-variant px-6 py-3 rounded-xl font-bold transition-colors flex items-center gap-2 shadow-xl"
              >
                  <Download className="w-5 h-5" />
                  Download PDF Inspection Report
@@ -417,13 +417,13 @@ export default function AcxChecker() {
           {/* Remediation Summary */}
           {results.issues.length > 0 && (
               <div className="bg-red-500/5 border border-red-500/20 rounded-3xl p-6 md:p-8">
-                  <h3 className="text-xl font-bold text-red-400 flex items-center gap-2 mb-4">
+                  <h3 className="text-xl font-bold text-red-600 dark:text-red-400 flex items-center gap-2 mb-4">
                       <AlertTriangle className="w-6 h-6" /> Required Engineering Action Items
                   </h3>
                   <ul className="space-y-3">
                       {results.issues.map((issue, idx) => (
-                          <li key={idx} className="text-slate-300 flex items-start gap-3 bg-red-500/10 p-4 rounded-xl border border-red-500/20">
-                              <span className="bg-red-500/20 text-red-400 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">{idx + 1}</span>
+                          <li key={idx} className="text-on-surface-variant flex items-start gap-3 bg-red-500/10 p-4 rounded-xl border border-red-500/20">
+                              <span className="bg-red-500/20 text-red-600 dark:text-red-400 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">{idx + 1}</span>
                               {issue}
                           </li>
                       ))}
@@ -502,7 +502,7 @@ export default function AcxChecker() {
           <div className="flex justify-center mt-12 mb-8">
             <button 
               onClick={() => setResults(null)}
-              className="bg-slate-800 hover:bg-slate-700 text-white px-8 py-3 rounded-full font-bold transition-colors border border-slate-700"
+              className="bg-surface-container-highest hover:bg-surface-container-highest text-on-surface px-8 py-3 rounded-full font-bold transition-colors border border-outline"
             >
               Analyze Another Chapter
             </button>
@@ -527,9 +527,9 @@ function MetricCard({ title, icon, value, pass, warning, target }: { title: stri
   }
 
   return (
-    <div className={`bg-slate-900 border ${pass ? 'border-slate-800' : 'border-red-500/30'} rounded-2xl p-6 flex flex-col relative overflow-hidden`}>
+    <div className={`bg-surface-container-high border ${pass ? 'border-outline-variant' : 'border-red-500/30'} rounded-2xl p-6 flex flex-col relative overflow-hidden`}>
       <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-2 text-slate-400 font-medium text-sm">
+        <div className="flex items-center gap-2 text-on-surface-variant font-medium text-sm">
           {icon}
           {title}
         </div>
@@ -537,8 +537,8 @@ function MetricCard({ title, icon, value, pass, warning, target }: { title: stri
           {badgeText}
         </div>
       </div>
-      <div className="text-3xl font-extrabold text-white mb-2">{value}</div>
-      <div className="mt-auto pt-4 border-t border-slate-800/50 text-xs text-slate-500 font-medium">
+      <div className="text-3xl font-extrabold text-on-surface mb-2">{value}</div>
+      <div className="mt-auto pt-4 border-t border-outline-variant/50 text-xs text-outline font-medium">
           {target}
       </div>
     </div>

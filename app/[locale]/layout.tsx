@@ -7,6 +7,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '../../src/i18n/routing';
+import { ThemeProvider } from '../components/ThemeProvider';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -80,16 +81,19 @@ export default async function RootLayout({children, params}: {children: React.Re
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={`${inter.variable} ${jbMono.variable}`}>
+    <html lang={locale} className={`${inter.variable} ${jbMono.variable}`} suppressHydrationWarning>
       <head>
         
         
       </head>
       <body className="bg-surface text-on-surface antialiased min-h-screen flex flex-col selection:bg-primary-container/30 selection:text-primary" suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+
           <Header />
           {children}
           <Footer />
+                  </ThemeProvider>
         </NextIntlClientProvider>
       </body>
     </html>

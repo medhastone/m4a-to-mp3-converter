@@ -2,6 +2,7 @@ import { AudioLines, ChevronDown } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Link } from '../../src/i18n/routing';
 import LanguageSwitcher from './LanguageSwitcher';
+import { ThemeToggle } from './ThemeToggle';
 import MobileMenu from './MobileMenu';
 
 export default function Header() {
@@ -71,6 +72,7 @@ export default function Header() {
                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
                {t('client_side_badge')}
             </div>
+            <ThemeToggle />
             <LanguageSwitcher />
             
             <MobileMenu />

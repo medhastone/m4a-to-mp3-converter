@@ -43,7 +43,7 @@ export default function Page({ params }: { params: Promise<{ locale: string }> }
             {t('hero_title_highlight')}
           </span>
         </h1>
-        <p className="text-slate-400 text-lg leading-relaxed">
+        <p className="text-on-surface-variant text-lg leading-relaxed">
           {t('hero_description')}
         </p>
       </section>
@@ -53,13 +53,13 @@ export default function Page({ params }: { params: Promise<{ locale: string }> }
 
       {/* Audio Fidelity Comparison Table */}
       <section className="mt-8">
-        <h2 className="text-2xl font-bold mb-6 flex items-center gap-3 text-white">
+        <h2 className="text-2xl font-bold mb-6 flex items-center gap-3 text-on-surface">
           <BarChart3 className="text-emerald-400 w-6 h-6" />
           {t('fidelity_title')}
         </h2>
-        <div className="overflow-x-auto border border-white/10 rounded-2xl bg-surface-dim/30 backdrop-blur-sm">
-          <table className="w-full text-left text-sm text-slate-300">
-            <thead className="bg-surface-dim border-b border-white/10 text-slate-100 font-mono text-xs uppercase tracking-wider">
+        <div className="overflow-x-auto border border-outline-variant/30 rounded-2xl bg-surface-dim/30 backdrop-blur-sm">
+          <table className="w-full text-left text-sm text-on-surface-variant">
+            <thead className="bg-surface-dim border-b border-outline-variant/30 text-on-surface font-mono text-xs uppercase tracking-wider">
               <tr>
                 <th className="px-6 py-4 rounded-tl-2xl">{t('table_col_bitrate')}</th>
                 <th className="px-6 py-4">{t('table_col_use_case')}</th>
@@ -68,14 +68,14 @@ export default function Page({ params }: { params: Promise<{ locale: string }> }
               </tr>
             </thead>
             <tbody className="divide-y divide-white/5">
-              <tr className="hover:bg-white/5 transition-colors">
-                <td className="px-6 py-4 font-bold text-white">{t('bitrate_128')}</td>
+              <tr className="hover:bg-on-surface/5 transition-colors">
+                <td className="px-6 py-4 font-bold text-on-surface">{t('bitrate_128')}</td>
                 <td className="px-6 py-4">{t('use_case_128')}</td>
                 <td className="px-6 py-4">{t('freq_128')}</td>
                 <td className="px-6 py-4">{t('stereo_128')}</td>
               </tr>
-              <tr className="hover:bg-white/5 transition-colors">
-                <td className="px-6 py-4 font-bold text-white">{t('bitrate_192')}</td>
+              <tr className="hover:bg-on-surface/5 transition-colors">
+                <td className="px-6 py-4 font-bold text-on-surface">{t('bitrate_192')}</td>
                 <td className="px-6 py-4">{t('use_case_192')}</td>
                 <td className="px-6 py-4">{t('freq_192')}</td>
                 <td className="px-6 py-4">{t('stereo_192')}</td>
@@ -87,9 +87,9 @@ export default function Page({ params }: { params: Promise<{ locale: string }> }
                     {t('badge_master')}
                   </span>
                 </td>
-                <td className="px-6 py-4 text-white font-medium">{t('use_case_320')}</td>
-                <td className="px-6 py-4 text-white font-medium">{t('freq_320')}</td>
-                <td className="px-6 py-4 text-white font-medium">{t('stereo_320')}</td>
+                <td className="px-6 py-4 text-on-surface font-medium">{t('use_case_320')}</td>
+                <td className="px-6 py-4 text-on-surface font-medium">{t('freq_320')}</td>
+                <td className="px-6 py-4 text-on-surface font-medium">{t('stereo_320')}</td>
               </tr>
             </tbody>
           </table>
@@ -98,17 +98,17 @@ export default function Page({ params }: { params: Promise<{ locale: string }> }
 
       {/* Technical Content & FAQ */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-8">
-        <article className="prose prose-invert prose-orange max-w-none">
+        <article className="prose dark:prose-invert prose-orange max-w-none">
           <h2 className="text-2xl font-bold mb-4">{t('tech_heading')}</h2>
-          <p className="text-slate-400 leading-relaxed mb-4">
+          <p className="text-on-surface-variant leading-relaxed mb-4">
             {t('tech_p1')}
           </p>
-          <p className="text-slate-400 leading-relaxed mb-4">
+          <p className="text-on-surface-variant leading-relaxed mb-4">
             {t('tech_p2_1')}
             <strong>{t('tech_p2_bold')}</strong>
             {t('tech_p2_2')}
           </p>
-          <p className="text-slate-400 leading-relaxed">
+          <p className="text-on-surface-variant leading-relaxed">
             {t('tech_p3_1')}
             <strong>{t('tech_p3_bold1')}</strong>
             {t('tech_p3_2')}
@@ -119,17 +119,17 @@ export default function Page({ params }: { params: Promise<{ locale: string }> }
 
         <div className="flex flex-col gap-6">
           <h2 className="text-2xl font-bold mb-2">{t('faq_heading')}</h2>
-          <div className="bg-slate-900/50 p-5 rounded-xl border border-white/5">
-            <h4 className="font-bold text-white mb-2 text-lg">{t('faq_q1')}</h4>
-            <p className="text-slate-400 text-sm leading-relaxed">{t('faq_a1')}</p>
+          <div className="bg-surface-container-high/50 p-5 rounded-xl border border-outline-variant/10">
+            <h4 className="font-bold text-on-surface mb-2 text-lg">{t('faq_q1')}</h4>
+            <p className="text-on-surface-variant text-sm leading-relaxed">{t('faq_a1')}</p>
           </div>
-          <div className="bg-slate-900/50 p-5 rounded-xl border border-white/5">
-            <h4 className="font-bold text-white mb-2 text-lg">{t('faq_q2')}</h4>
-            <p className="text-slate-400 text-sm leading-relaxed">{t('faq_a2')}</p>
+          <div className="bg-surface-container-high/50 p-5 rounded-xl border border-outline-variant/10">
+            <h4 className="font-bold text-on-surface mb-2 text-lg">{t('faq_q2')}</h4>
+            <p className="text-on-surface-variant text-sm leading-relaxed">{t('faq_a2')}</p>
           </div>
-          <div className="bg-slate-900/50 p-5 rounded-xl border border-white/5">
-            <h4 className="font-bold text-white mb-2 text-lg">{t('faq_q3')}</h4>
-            <p className="text-slate-400 text-sm leading-relaxed">{t('faq_a3')}</p>
+          <div className="bg-surface-container-high/50 p-5 rounded-xl border border-outline-variant/10">
+            <h4 className="font-bold text-on-surface mb-2 text-lg">{t('faq_q3')}</h4>
+            <p className="text-on-surface-variant text-sm leading-relaxed">{t('faq_a3')}</p>
           </div>
         </div>
       </div>

@@ -1,12 +1,8 @@
 const fs = require('fs');
+let header = fs.readFileSync('app/components/Header.tsx', 'utf8');
 
-let content = fs.readFileSync('app/components/Header.tsx', 'utf8');
-
-// Replace the Support Us link with empty string
-content = content.replace(
-  /<a href="https:\/\/buymeacoffee\.com\/medhastone".*?Support Us<\/a>/g,
-  ''
-);
-
-fs.writeFileSync('app/components/Header.tsx', content);
-console.log('patched header');
+if (!header.includes('ThemeToggle')) {
+    header = header.replace("import LanguageSwitcher from './LanguageSwitcher';", "import LanguageSwitcher from './LanguageSwitcher';\nimport { ThemeToggle } from './ThemeToggle';");
+    header = header.replace("<LanguageSwitcher />", "<ThemeToggle />\n            <LanguageSwitcher />");
+    fs.writeFileSync('app/components/Header.tsx', header);
+}

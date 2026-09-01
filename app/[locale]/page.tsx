@@ -51,7 +51,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           <div className="flex-1 flex flex-col items-start text-left">
             <div className="flex items-stretch gap-5 mb-6">
               <div className="w-1.5 md:w-2 bg-primary rounded-full opacity-90"></div>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight text-white py-1">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight text-on-surface py-1">
                 {t('h1').split(/(Converter|Convertidor|Convertisseur|Umwandler|Conversor)/i).map((part: string, i: number) => 
                   /(Converter|Convertidor|Convertisseur|Umwandler|Conversor)/i.test(part) ? 
                     <span key={i} className="text-primary">{part}</span> : part
@@ -68,11 +68,11 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             <div className="flex gap-12 text-sm font-bold">
                <div>
                  <span className="text-amber-500 uppercase tracking-wider text-xs block mb-1">{t('engine')}</span>
-                 <span className="text-white text-lg">{t('engine_value')}</span>
+                 <span className="text-on-surface text-lg">{t('engine_value')}</span>
                </div>
                <div>
                  <span className="text-amber-500 uppercase tracking-wider text-xs block mb-1">{t('latency')}</span>
-                 <span className="text-white text-lg">{t('latency_value')}</span>
+                 <span className="text-on-surface text-lg">{t('latency_value')}</span>
                </div>
             </div>
           </div>
@@ -80,10 +80,10 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           {/* Right Column: Converter */}
           <div className="w-full lg:w-[60%] xl:w-[65%] flex flex-col gap-4">
              <Converter />
-             <div className="flex items-start gap-3 bg-white/5 border border-white/10 rounded-xl p-4 mt-2">
+             <div className="flex items-start gap-3 bg-on-surface/5 border border-outline-variant/30 rounded-xl p-4 mt-2">
                <ShieldCheck className="w-4 h-4 md:w-5 md:h-5 text-amber-400 flex-shrink-0 mt-0.5" />
                <p className="text-xs md:text-sm text-on-surface-variant font-medium leading-relaxed">
-                 <strong className="text-white">{t('privacy_badge_title')}</strong> {t('privacy_badge_text')}
+                 <strong className="text-on-surface">{t('privacy_badge_title')}</strong> {t('privacy_badge_text')}
                </p>
              </div>
           </div>
@@ -95,7 +95,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
           <section id="how-it-works" className="mt-8 flex flex-col gap-10 scroll-mt-24">
             <div className="flex flex-col items-center text-center gap-4 w-full">
-              <h2 className="text-2xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70 tracking-tight leading-tight">{t('h2_how_it_works')}</h2>
+              <h2 className="text-2xl md:text-4xl font-extrabold text-on-surface tracking-tight leading-tight">{t('h2_how_it_works')}</h2>
               <p className="text-on-surface-variant text-lg leading-relaxed">
                 {t('how_it_works_desc_1')}
                 <br/><br/>
@@ -105,7 +105,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* Step 1 */}
-              <div className="bg-surface-container-low rounded-3xl p-8 flex flex-col items-center text-center gap-5 border border-white/5 shadow-xl relative overflow-hidden group hover:border-primary/30 transition-all duration-300">
+              <div className="bg-surface-container-low rounded-3xl p-8 flex flex-col items-center text-center gap-5 border border-outline-variant/10 shadow-xl relative overflow-hidden group hover:border-primary/30 transition-all duration-300">
                 <div className="absolute top-0 right-0 p-4 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity duration-500 pointer-events-none transform translate-x-4 -translate-y-4">
                   <span className="font-black text-9xl text-on-surface">1</span>
                 </div>
@@ -119,7 +119,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               </div>
 
               {/* Step 2 */}
-              <div className="bg-surface-container-low rounded-3xl p-8 flex flex-col items-center text-center gap-5 border border-white/5 shadow-xl relative overflow-hidden group hover:border-secondary/30 transition-all duration-300">
+              <div className="bg-surface-container-low rounded-3xl p-8 flex flex-col items-center text-center gap-5 border border-outline-variant/10 shadow-xl relative overflow-hidden group hover:border-secondary/30 transition-all duration-300">
                 <div className="absolute top-0 right-0 p-4 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity duration-500 pointer-events-none transform translate-x-4 -translate-y-4">
                   <span className="font-black text-9xl text-on-surface">2</span>
                 </div>
@@ -133,7 +133,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               </div>
 
               {/* Step 3 */}
-              <div className="bg-surface-container-low rounded-3xl p-8 flex flex-col items-center text-center gap-5 border border-white/5 shadow-xl relative overflow-hidden group hover:border-emerald-500/30 transition-all duration-300">
+              <div className="bg-surface-container-low rounded-3xl p-8 flex flex-col items-center text-center gap-5 border border-outline-variant/10 shadow-xl relative overflow-hidden group hover:border-emerald-500/30 transition-all duration-300">
                 <div className="absolute top-0 right-0 p-4 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity duration-500 pointer-events-none transform translate-x-4 -translate-y-4">
                   <span className="font-black text-9xl text-on-surface">3</span>
                 </div>
@@ -151,13 +151,13 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           {/* Technical Specs Table (Expanded) */}
           <section id="specs" className="mt-20 flex flex-col gap-10 scroll-mt-24">
             <div className="flex flex-col items-center text-center gap-4 w-full">
-              <h2 className="text-2xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70 tracking-tight leading-tight">{t('h2_specs')}</h2>
+              <h2 className="text-2xl md:text-4xl font-extrabold text-on-surface tracking-tight leading-tight">{t('h2_specs')}</h2>
               <p className="text-on-surface-variant text-lg leading-relaxed">
                 {t('specs_desc')}
               </p>
             </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-[1px] bg-outline-variant/30 rounded-3xl overflow-hidden shadow-2xl border border-white/5">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-[1px] bg-outline-variant/30 rounded-3xl overflow-hidden shadow-2xl border border-outline-variant/10">
               {/* Headers */}
               <div className="hidden sm:block bg-surface-container p-6"></div>
               
@@ -223,7 +223,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           {/* Comprehensive FAQ Section */}
           <section id="faq" className="mt-24 mb-12 flex flex-col gap-10 scroll-mt-24">
             <div className="flex flex-col items-center text-center gap-4 w-full">
-              <h2 className="text-2xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70 tracking-tight leading-tight">{t('h2_faq')}</h2>
+              <h2 className="text-2xl md:text-4xl font-extrabold text-on-surface tracking-tight leading-tight">{t('h2_faq')}</h2>
               <p className="text-on-surface-variant text-lg leading-relaxed">
                 {t('faq_desc')}
               </p>
@@ -232,7 +232,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
               
               {/* Question 1 */}
-              <div className="bg-surface-container-low p-8 rounded-3xl border border-white/5 shadow-lg hover:bg-surface-container transition-colors duration-300">
+              <div className="bg-surface-container-low p-8 rounded-3xl border border-outline-variant/10 shadow-lg hover:bg-surface-container transition-colors duration-300">
                 <h4 className="font-bold text-xl text-on-surface mb-3 flex items-start gap-3">
                   <span className="text-primary mt-1"><Mic className="w-5 h-5" /></span>
                   {t('faq_q1')}
@@ -243,7 +243,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               </div>
 
               {/* Question 2 */}
-              <div className="bg-surface-container-low p-8 rounded-3xl border border-white/5 shadow-lg hover:bg-surface-container transition-colors duration-300">
+              <div className="bg-surface-container-low p-8 rounded-3xl border border-outline-variant/10 shadow-lg hover:bg-surface-container transition-colors duration-300">
                 <h4 className="font-bold text-xl text-on-surface mb-3 flex items-start gap-3">
                   <span className="text-primary mt-1"><Layers className="w-5 h-5" /></span>
                   {t('faq_q2')}
@@ -254,7 +254,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               </div>
 
               {/* Question 3 */}
-              <div className="bg-surface-container-low p-8 rounded-3xl border border-white/5 shadow-lg hover:bg-surface-container transition-colors duration-300">
+              <div className="bg-surface-container-low p-8 rounded-3xl border border-outline-variant/10 shadow-lg hover:bg-surface-container transition-colors duration-300">
                 <h4 className="font-bold text-xl text-on-surface mb-3 flex items-start gap-3">
                   <span className="text-primary mt-1"><Smartphone className="w-5 h-5" /></span>
                   {t('faq_q3')}
@@ -265,7 +265,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               </div>
 
               {/* Question 4 */}
-              <div className="bg-surface-container-low p-8 rounded-3xl border border-white/5 shadow-lg hover:bg-surface-container transition-colors duration-300">
+              <div className="bg-surface-container-low p-8 rounded-3xl border border-outline-variant/10 shadow-lg hover:bg-surface-container transition-colors duration-300">
                 <h4 className="font-bold text-xl text-on-surface mb-3 flex items-start gap-3">
                   <span className="text-primary mt-1"><AudioLines className="w-5 h-5" /></span>
                   {t('faq_q4')}
@@ -276,7 +276,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               </div>
               
               {/* Question 5 */}
-              <div className="bg-surface-container-low p-8 rounded-3xl border border-white/5 shadow-lg hover:bg-surface-container transition-colors duration-300">
+              <div className="bg-surface-container-low p-8 rounded-3xl border border-outline-variant/10 shadow-lg hover:bg-surface-container transition-colors duration-300">
                 <h4 className="font-bold text-xl text-on-surface mb-3 flex items-start gap-3">
                   <span className="text-primary mt-1"><Activity className="w-5 h-5" /></span>
                   {t('faq_q5')}
@@ -287,7 +287,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               </div>
 
               {/* Question 6 */}
-              <div className="bg-surface-container-low p-8 rounded-3xl border border-white/5 shadow-lg hover:bg-surface-container transition-colors duration-300">
+              <div className="bg-surface-container-low p-8 rounded-3xl border border-outline-variant/10 shadow-lg hover:bg-surface-container transition-colors duration-300">
                 <h4 className="font-bold text-xl text-on-surface mb-3 flex items-start gap-3">
                   <span className="text-primary mt-1"><Monitor className="w-5 h-5" /></span>
                   {t('faq_q6')}

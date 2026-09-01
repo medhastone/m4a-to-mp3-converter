@@ -164,7 +164,7 @@ export default function MetadataRemover() {
     
     if (foundTags.length === 0) {
       return (
-        <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50 text-center text-slate-300">
+        <div className="bg-surface-container-highest/50 p-4 rounded-xl border border-outline/50 text-center text-on-surface-variant">
           No standard metadata tags detected, but there may still be hidden identifying chunks. 
           Stripping will ensure a completely clean file.
         </div>
@@ -172,9 +172,9 @@ export default function MetadataRemover() {
     }
     
     return (
-      <div className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden">
-        <div className="px-4 py-3 bg-slate-800 border-b border-slate-700/50 flex justify-between items-center">
-          <h4 className="font-semibold text-slate-200">Detected Metadata</h4>
+      <div className="bg-surface-container-highest/50 rounded-xl border border-outline/50 overflow-hidden">
+        <div className="px-4 py-3 bg-surface-container-highest border-b border-outline/50 flex justify-between items-center">
+          <h4 className="font-semibold text-on-surface">Detected Metadata</h4>
           <span className="text-xs font-medium px-2 py-1 bg-amber-500/20 text-amber-400 rounded-full">
             {foundTags.length} tags found
           </span>
@@ -182,8 +182,8 @@ export default function MetadataRemover() {
         <div className="p-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
           {foundTags.map(tag => (
             <div key={tag} className="flex flex-col overflow-hidden">
-              <span className="text-xs text-slate-400 uppercase tracking-wider mb-1">{tag}</span>
-              <span className="text-slate-200 font-medium truncate" title={metadata[tag]}>{metadata[tag]}</span>
+              <span className="text-xs text-on-surface-variant uppercase tracking-wider mb-1">{tag}</span>
+              <span className="text-on-surface font-medium truncate" title={metadata[tag]}>{metadata[tag]}</span>
             </div>
           ))}
         </div>
@@ -208,19 +208,19 @@ export default function MetadataRemover() {
           onDrop={onDrop}
           className={`
             border-2 border-dashed rounded-3xl p-12 transition-all duration-200 cursor-pointer text-center
-            flex flex-col items-center justify-center min-h-[320px] bg-slate-900/40
-            ${isDragging ? 'border-primary bg-primary/5' : 'border-slate-700 hover:border-primary hover:bg-primary/5 group'}
+            flex flex-col items-center justify-center min-h-[320px] bg-surface-container-high/40
+            ${isDragging ? 'border-primary bg-primary/5' : 'border-outline hover:border-primary hover:bg-primary/5 group'}
           `}
           onClick={() => fileInputRef.current?.click()}
         >
           <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 ${isDragging ? 'bg-primary/20 text-primary' : 'bg-primary/10 text-primary group-hover:bg-primary/20'}`}>
             <Upload className="w-8 h-8" />
           </div>
-          <h3 className="text-xl font-bold text-white mb-2">Drop your audio file here</h3>
-          <p className="text-slate-400 mb-6 max-w-sm">
+          <h3 className="text-xl font-bold text-on-surface mb-2">Drop your audio file here</h3>
+          <p className="text-on-surface-variant mb-6 max-w-sm">
             Supports MP3, WAV, M4A, FLAC, and OGG. Processing happens entirely in your browser.
           </p>
-          <button className="bg-white text-slate-900 hover:bg-slate-100 px-6 py-3 rounded-full font-bold transition-all shadow-lg shadow-white/10">
+          <button className="bg-surface text-on-surface hover:bg-surface-dim border border-outline-variant px-6 py-3 rounded-full font-bold transition-all shadow-lg shadow-white/10">
             Select File
           </button>
           <input 
@@ -235,16 +235,16 @@ export default function MetadataRemover() {
 
       {/* File Processing Area */}
       {file && (
-        <div className="bg-slate-900/60 border border-slate-700/50 rounded-3xl p-6 sm:p-8 flex flex-col gap-8">
+        <div className="bg-surface-container-high/60 border border-outline/50 rounded-3xl p-6 sm:p-8 flex flex-col gap-8">
           {/* Header */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-slate-800">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-outline-variant">
             <div className="flex items-center gap-4 overflow-hidden">
               <div className="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center text-primary shrink-0">
                 <FileMusic className="w-6 h-6" />
               </div>
               <div className="overflow-hidden">
-                <h3 className="font-bold text-white text-lg truncate" title={file.name}>{file.name}</h3>
-                <p className="text-slate-400 text-sm">{(file.size / (1024 * 1024)).toFixed(2)} MB • {file.type || 'Audio file'}</p>
+                <h3 className="font-bold text-on-surface text-lg truncate" title={file.name}>{file.name}</h3>
+                <p className="text-on-surface-variant text-sm">{(file.size / (1024 * 1024)).toFixed(2)} MB • {file.type || 'Audio file'}</p>
               </div>
             </div>
             
@@ -255,7 +255,7 @@ export default function MetadataRemover() {
                 setIsStripped(false);
                 setOutputUrl(null);
               }}
-              className="text-slate-400 hover:text-white p-2 rounded-full hover:bg-slate-800 transition-colors shrink-0"
+              className="text-on-surface-variant hover:text-on-surface p-2 rounded-full hover:bg-surface-container-highest transition-colors shrink-0"
               title="Remove file"
             >
               <X className="w-5 h-5" />
@@ -266,7 +266,7 @@ export default function MetadataRemover() {
           {!isStripped && (
             <div className="flex flex-col gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
               {metadata ? renderMetadata() : (
-                <div className="h-32 flex items-center justify-center text-slate-400 animate-pulse">
+                <div className="h-32 flex items-center justify-center text-on-surface-variant animate-pulse">
                   Scanning file for hidden metadata...
                 </div>
               )}
@@ -315,15 +315,15 @@ export default function MetadataRemover() {
               </div>
               
               <div className="text-center">
-                <h3 className="text-2xl font-bold text-white mb-2">Metadata Removed!</h3>
-                <p className="text-slate-400">
+                <h3 className="text-2xl font-bold text-on-surface mb-2">Metadata Removed!</h3>
+                <p className="text-on-surface-variant">
                   All tags & identifiers stripped successfully. Your file is 100% clean and ready.
                 </p>
               </div>
 
               <button 
                 onClick={handleDownload}
-                className="w-full sm:w-auto mt-4 bg-white text-slate-900 hover:bg-slate-100 px-8 py-4 rounded-xl font-bold transition-all shadow-lg shadow-white/10 flex items-center justify-center gap-3"
+                className="w-full sm:w-auto mt-4 bg-surface text-on-surface hover:bg-surface-dim border border-outline-variant px-8 py-4 rounded-xl font-bold transition-all shadow-lg shadow-white/10 flex items-center justify-center gap-3"
               >
                 <Download className="w-5 h-5" />
                 Download Clean Audio

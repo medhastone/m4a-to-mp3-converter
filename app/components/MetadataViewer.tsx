@@ -159,7 +159,7 @@ Track: ${tags.track || t('mv_unknown')}
       )}
 
       {loading && (
-        <div className="w-full p-12 flex flex-col items-center justify-center bg-surface-container rounded-2xl border border-white/5">
+        <div className="w-full p-12 flex flex-col items-center justify-center bg-surface-container rounded-2xl border border-outline-variant/10">
           <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin mb-4"></div>
           <p className="text-on-surface-variant">{t('mv_extracting')}</p>
         </div>
@@ -185,11 +185,11 @@ Track: ${tags.track || t('mv_unknown')}
       )}
       {tags && (
 
-        <div className="w-full bg-surface-container/80 backdrop-blur-2xl rounded-2xl border border-white/5 shadow-2xl overflow-hidden p-6 md:p-10">
+        <div className="w-full bg-surface-container/80 backdrop-blur-2xl rounded-2xl border border-outline-variant/10 shadow-2xl overflow-hidden p-6 md:p-10">
           <div className="flex flex-col md:flex-row gap-8">
             {/* Artwork */}
             <div className="w-full md:w-1/3 flex flex-col gap-4">
-              <div className="aspect-square bg-surface-dim rounded-xl overflow-hidden border border-white/5 flex items-center justify-center relative shadow-inner">
+              <div className="aspect-square bg-surface-dim rounded-xl overflow-hidden border border-outline-variant/10 flex items-center justify-center relative shadow-inner">
                 {pictureUrl ? (
                   <img src={pictureUrl} alt="Album Art" className="w-full h-full object-cover" />
                 ) : (
@@ -200,7 +200,7 @@ Track: ${tags.track || t('mv_unknown')}
                 )}
               </div>
               <div className="flex flex-col gap-2">
-                <button onClick={handleCopy} className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-surface-bright hover:bg-surface-dim text-on-surface rounded-lg transition-colors text-sm font-medium border border-white/5">
+                <button onClick={handleCopy} className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-surface-bright hover:bg-surface-dim text-on-surface rounded-lg transition-colors text-sm font-medium border border-outline-variant/10">
                   <Copy className="w-4 h-4" /> {t('mv_copy_details')}
                 </button>
                 <button onClick={handleShare} className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg transition-colors text-sm font-medium">
@@ -211,7 +211,7 @@ Track: ${tags.track || t('mv_unknown')}
 
             {/* Metadata Details */}
             <div className="w-full md:w-2/3 flex flex-col">
-              <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/5">
+              <div className="flex items-center justify-between mb-6 pb-4 border-b border-outline-variant/10">
                 <div className="overflow-hidden">
                   <h2 className="text-2xl font-bold text-on-surface truncate pr-4" title={file?.name}>{file?.name}</h2>
                   <p className="text-sm text-on-surface-variant flex items-center gap-1 mt-1">
@@ -224,38 +224,38 @@ Track: ${tags.track || t('mv_unknown')}
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="flex flex-col p-3 bg-surface-dim/50 rounded-lg border border-white/5 overflow-hidden">
+                <div className="flex flex-col p-3 bg-surface-dim/50 rounded-lg border border-outline-variant/10 overflow-hidden">
                   <span className="text-[10px] text-on-surface-variant uppercase tracking-wider font-jb-mono mb-1">{t('mv_tag_title')}</span>
                   <span className="text-on-surface font-medium truncate" title={tags.title || t('mv_unknown')}>{tags.title || t('mv_unknown')}</span>
                 </div>
-                <div className="flex flex-col p-3 bg-surface-dim/50 rounded-lg border border-white/5 overflow-hidden">
+                <div className="flex flex-col p-3 bg-surface-dim/50 rounded-lg border border-outline-variant/10 overflow-hidden">
                   <span className="text-[10px] text-on-surface-variant uppercase tracking-wider font-jb-mono mb-1">{t('mv_tag_artist')}</span>
                   <span className="text-on-surface font-medium truncate" title={tags.artist || t('mv_unknown')}>{tags.artist || t('mv_unknown')}</span>
                 </div>
-                <div className="flex flex-col p-3 bg-surface-dim/50 rounded-lg border border-white/5 overflow-hidden">
+                <div className="flex flex-col p-3 bg-surface-dim/50 rounded-lg border border-outline-variant/10 overflow-hidden">
                   <span className="text-[10px] text-on-surface-variant uppercase tracking-wider font-jb-mono mb-1">{t('mv_tag_album')}</span>
                   <span className="text-on-surface font-medium truncate" title={tags.album || t('mv_unknown')}>{tags.album || t('mv_unknown')}</span>
                 </div>
-                <div className="flex flex-col p-3 bg-surface-dim/50 rounded-lg border border-white/5 overflow-hidden">
+                <div className="flex flex-col p-3 bg-surface-dim/50 rounded-lg border border-outline-variant/10 overflow-hidden">
                   <span className="text-[10px] text-on-surface-variant uppercase tracking-wider font-jb-mono mb-1">{t('mv_tag_year')}</span>
                   <span className="text-on-surface font-medium truncate">{tags.year || t('mv_unknown')}</span>
                 </div>
-                <div className="flex flex-col p-3 bg-surface-dim/50 rounded-lg border border-white/5 overflow-hidden">
+                <div className="flex flex-col p-3 bg-surface-dim/50 rounded-lg border border-outline-variant/10 overflow-hidden">
                   <span className="text-[10px] text-on-surface-variant uppercase tracking-wider font-jb-mono mb-1">{t('mv_tag_genre')}</span>
                   <span className="text-on-surface font-medium truncate">{tags.genre || t('mv_unknown')}</span>
                 </div>
-                <div className="flex flex-col p-3 bg-surface-dim/50 rounded-lg border border-white/5 overflow-hidden">
+                <div className="flex flex-col p-3 bg-surface-dim/50 rounded-lg border border-outline-variant/10 overflow-hidden">
                   <span className="text-[10px] text-on-surface-variant uppercase tracking-wider font-jb-mono mb-1">{t('mv_tag_track')}</span>
                   <span className="text-on-surface font-medium truncate">{tags.track || t('mv_unknown')}</span>
                 </div>
               </div>
 
               {/* Advanced Tags Dropdown/List */}
-              <div className="mt-6 pt-4 border-t border-white/5">
+              <div className="mt-6 pt-4 border-t border-outline-variant/10">
                 <h4 className="text-sm font-semibold text-on-surface mb-3 flex items-center gap-2">
                   <Info className="w-4 h-4 text-primary" /> {t('mv_advanced_tags')}
                 </h4>
-                <div className="bg-black/20 p-4 rounded-lg overflow-x-auto max-h-48 custom-scrollbar border border-white/5">
+                <div className="bg-black/20 p-4 rounded-lg overflow-x-auto max-h-48 custom-scrollbar border border-outline-variant/10">
                   <pre className="text-xs text-on-surface-variant font-jb-mono">
                     {JSON.stringify(
                       Object.fromEntries(

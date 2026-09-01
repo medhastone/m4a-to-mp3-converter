@@ -2,47 +2,119 @@
 @plugin "@tailwindcss/typography";
 @import "tw-animate-css";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
-  --color-surface: #020617; 
-  --color-surface-dim: #0f172a;
-  --color-surface-bright: #1e293b;
-  --color-surface-container-lowest: #000000;
-  --color-surface-container-low: #0f172a;
-  --color-surface-container: #1e293b;
-  --color-surface-container-high: #334155;
-  --color-surface-container-highest: #475569;
+  --color-surface: var(--surface); 
+  --color-surface-dim: var(--surface-dim);
+  --color-surface-bright: var(--surface-bright);
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-surface-container-highest: var(--surface-container-highest);
   
-  --color-on-surface: #ffffff;
-  --color-on-surface-variant: #94a3b8;
+  --color-on-surface: var(--on-surface);
+  --color-on-surface-variant: var(--on-surface-variant);
   
-  --color-inverse-surface: #ffffff;
-  --color-inverse-on-surface: #0f172a;
+  --color-inverse-surface: var(--inverse-surface);
+  --color-inverse-on-surface: var(--inverse-on-surface);
   
-  --color-outline: #475569;
-  --color-outline-variant: #334155;
-  --color-surface-tint: #f97316;
+  --color-outline: var(--outline);
+  --color-outline-variant: var(--outline-variant);
+  --color-surface-tint: var(--surface-tint);
   
-  --color-primary: #f97316;
-  --color-on-primary: #ffffff;
-  --color-primary-container: #ea580c;
-  --color-on-primary-container: #ffffff;
-  --color-inverse-primary: #fb923c;
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-primary-container: var(--primary-container);
+  --color-on-primary-container: var(--on-primary-container);
+  --color-inverse-primary: var(--inverse-primary);
   
-  --color-secondary: #fb923c;
-  --color-on-secondary: #000000;
-  --color-secondary-container: #fdba74;
-  --color-on-secondary-container: #000000;
+  --color-secondary: var(--secondary);
+  --color-on-secondary: var(--on-secondary);
+  --color-secondary-container: var(--secondary-container);
+  --color-on-secondary-container: var(--on-secondary-container);
   
-  --color-error: #ef4444;
-  --color-on-error: #ffffff;
+  --color-error: var(--error);
+  --color-on-error: var(--on-error);
   
   --font-inter: var(--font-inter), sans-serif;
   --font-jb-mono: var(--font-jb-mono), monospace;
 }
 
+:root {
+  --surface: #f4f4f1; 
+  --surface-dim: #ebebe6;
+  --surface-bright: #f9f9f8;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f9f9f8;
+  --surface-container: #f4f4f1;
+  --surface-container-high: #ebebe6;
+  --surface-container-highest: #e2e2dc;
+  
+  --on-surface: #0f172a;
+  --on-surface-variant: #475569;
+  
+  --inverse-surface: #0f172a;
+  --inverse-on-surface: #f1f5f9;
+  
+  --outline: #94a3b8;
+  --outline-variant: #cbd5e1;
+  --surface-tint: #f97316;
+  
+  --primary: #f97316;
+  --on-primary: #ffffff;
+  --primary-container: #ffedd5;
+  --on-primary-container: #c2410c;
+  --inverse-primary: #ea580c;
+  
+  --secondary: #fb923c;
+  --on-secondary: #ffffff;
+  --secondary-container: #ffedd5;
+  --on-secondary-container: #c2410c;
+  
+  --error: #ef4444;
+  --on-error: #ffffff;
+}
+
+.dark {
+  --surface: #020617; 
+  --surface-dim: #0f172a;
+  --surface-bright: #1e293b;
+  --surface-container-lowest: #000000;
+  --surface-container-low: #0f172a;
+  --surface-container: #1e293b;
+  --surface-container-high: #334155;
+  --surface-container-highest: #475569;
+  
+  --on-surface: #ffffff;
+  --on-surface-variant: #94a3b8;
+  
+  --inverse-surface: #ffffff;
+  --inverse-on-surface: #0f172a;
+  
+  --outline: #475569;
+  --outline-variant: #334155;
+  --surface-tint: #f97316;
+  
+  --primary: #f97316;
+  --on-primary: #ffffff;
+  --primary-container: #ea580c;
+  --on-primary-container: #ffffff;
+  --inverse-primary: #fb923c;
+  
+  --secondary: #fb923c;
+  --on-secondary: #000000;
+  --secondary-container: #fdba74;
+  --on-secondary-container: #000000;
+  
+  --error: #ef4444;
+  --on-error: #ffffff;
+}
+
 @layer base {
   body {
-    @apply bg-surface text-on-surface font-inter antialiased;
+    @apply bg-surface text-on-surface font-inter antialiased transition-colors duration-200;
   }
 }
 
@@ -51,7 +123,6 @@
   0%, 100% { height: 20%; }
   50% { height: 100%; }
 }
-
 .animate-eq-1 { animation: eq-pulse 1.2s ease-in-out infinite; }
 .animate-eq-2 { animation: eq-pulse 0.8s ease-in-out infinite 0.2s; }
 .animate-eq-3 { animation: eq-pulse 1.0s ease-in-out infinite 0.4s; }

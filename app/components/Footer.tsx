@@ -6,12 +6,12 @@ export default function Footer() {
   const t = useTranslations("footer");
 
   return (
-    <footer className="mt-auto border-t border-white/10 bg-surface py-16">
+    <footer className="mt-auto border-t border-outline-variant/30 bg-surface py-16">
       <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-8 xl:px-12">
         <div className="flex flex-col xl:flex-row gap-12 mb-12">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 flex-1">
           <div>
-            <h3 className="font-bold text-white mb-4">
+            <h3 className="font-bold text-on-surface mb-4">
               {t("devices_systems_title")}
             </h3>
             <ul className="space-y-3">
@@ -26,7 +26,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/iphone-voice-memos"
-                  className="text-on-surface-variant hover:text-white transition-colors text-sm font-medium"
+                  className="text-on-surface-variant hover:text-on-surface transition-colors text-sm font-medium"
                 >
                   {t("iphone_voice_memos")}
                 </Link>
@@ -34,7 +34,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/windows"
-                  className="text-on-surface-variant hover:text-white transition-colors text-sm font-medium"
+                  className="text-on-surface-variant hover:text-on-surface transition-colors text-sm font-medium"
                 >
                   {t("windows_fix")}
                 </Link>
@@ -42,7 +42,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/mac"
-                  className="text-on-surface-variant hover:text-white transition-colors text-sm font-medium"
+                  className="text-on-surface-variant hover:text-on-surface transition-colors text-sm font-medium"
                 >
                   {t("mac_android_chromebook")}
                 </Link>
@@ -51,14 +51,14 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-bold text-white mb-4">
+            <h3 className="font-bold text-on-surface mb-4">
               {t("audio_fidelity_title")}
             </h3>
             <ul className="space-y-3">
               <li>
                 <Link
                   href="/320kbps"
-                  className="text-on-surface-variant hover:text-white transition-colors text-sm font-medium"
+                  className="text-on-surface-variant hover:text-on-surface transition-colors text-sm font-medium"
                 >
                   {t("studio_master_320kbps")}
                 </Link>
@@ -66,7 +66,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/#specs"
-                  className="text-on-surface-variant hover:text-white transition-colors text-sm font-medium"
+                  className="text-on-surface-variant hover:text-on-surface transition-colors text-sm font-medium"
                 >
                   {t("standard_mp3_192kbps")}
                 </Link>
@@ -74,7 +74,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/#specs"
-                  className="text-on-surface-variant hover:text-white transition-colors text-sm font-medium"
+                  className="text-on-surface-variant hover:text-on-surface transition-colors text-sm font-medium"
                 >
                   {t("speech_bitrate_128kbps")}
                 </Link>
@@ -83,33 +83,33 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-bold text-white mb-4">
+            <h3 className="font-bold text-on-surface mb-4">
               {t("tools_performance_title")}
             </h3>
             <ul className="space-y-3">
               <li>
                 <Link
                   href="/video-to-mp3"
-                  className="text-on-surface-variant hover:text-white transition-colors text-sm font-medium"
+                  className="text-on-surface-variant hover:text-on-surface transition-colors text-sm font-medium"
                 >{t('mp4_to_mp3_converter')}</Link>
               </li>
               <li>
                 <Link
                   href="/wav-to-mp3"
-                  className="text-on-surface-variant hover:text-white transition-colors text-sm font-medium"
+                  className="text-on-surface-variant hover:text-on-surface transition-colors text-sm font-medium"
                 >{t('wav_to_mp3_converter')}</Link>
               </li>
               <li>
                 <Link
                   href="/mp3-to-m4a"
-                  className="text-on-surface-variant hover:text-white transition-colors text-sm font-medium"
+                  className="text-on-surface-variant hover:text-on-surface transition-colors text-sm font-medium"
                 >{t('mp3_to_m4a_converter')}</Link>
               </li>
               <li>
                 <Link
                   href="/batch-converter"
 
-                  className="text-on-surface-variant hover:text-white transition-colors text-sm font-medium"
+                  className="text-on-surface-variant hover:text-on-surface transition-colors text-sm font-medium"
                 >
                   {t("batch_converter")}
                 </Link>
@@ -117,7 +117,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/acx-checker"
-                  className="text-on-surface-variant hover:text-white transition-colors text-sm font-medium"
+                  className="text-on-surface-variant hover:text-on-surface transition-colors text-sm font-medium"
                 >
                   ACX Audio Checker
                 </Link>
@@ -125,14 +125,14 @@ export default function Footer() {
               <li>
                 <Link
                   href="/audio-metadata-remover"
-                  className="text-on-surface-variant hover:text-white transition-colors text-sm font-medium"
+                  className="text-on-surface-variant hover:text-on-surface transition-colors text-sm font-medium"
                 >{t('metadata_remover')}</Link>
               </li>
 
               <li>
                 <Link
                   href="/client-side-safe"
-                  className="text-on-surface-variant hover:text-white transition-colors text-sm font-medium"
+                  className="text-on-surface-variant hover:text-on-surface transition-colors text-sm font-medium"
                 >
                   {t("client_side_safe")}
                 </Link>
@@ -140,7 +140,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/client-side-safe"
-                  className="text-on-surface-variant hover:text-white transition-colors text-sm font-medium"
+                  className="text-on-surface-variant hover:text-on-surface transition-colors text-sm font-medium"
                 >
                   {t("zero_upload_architecture")}
                 </Link>
@@ -149,14 +149,14 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-bold text-white mb-4">
+            <h3 className="font-bold text-on-surface mb-4">
               {t("platform_legal_title")}
             </h3>
             <ul className="space-y-3">
               <li>
                 <Link
                   href="/privacy-policy"
-                  className="text-on-surface-variant hover:text-white transition-colors text-sm font-medium"
+                  className="text-on-surface-variant hover:text-on-surface transition-colors text-sm font-medium"
                 >
                   {t("privacy_policy")}
                 </Link>
@@ -164,7 +164,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/terms"
-                  className="text-on-surface-variant hover:text-white transition-colors text-sm font-medium"
+                  className="text-on-surface-variant hover:text-on-surface transition-colors text-sm font-medium"
                 >
                   {t("terms_of_service")}
                 </Link>
@@ -172,7 +172,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/about"
-                  className="text-on-surface-variant hover:text-white transition-colors text-sm font-medium"
+                  className="text-on-surface-variant hover:text-on-surface transition-colors text-sm font-medium"
                 >
                   {t("about_us")}
                 </Link>
@@ -182,9 +182,9 @@ export default function Footer() {
         </div>
         
         <div className="w-full xl:w-72 shrink-0 flex flex-col items-center xl:items-start">
-          <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-4 flex flex-col items-center text-center w-full max-w-[260px]">
-            <h3 className="font-bold text-white mb-1.5 text-sm">Support This Free Tool</h3>
-            <p className="text-slate-400 text-xs mb-3 leading-snug">
+          <div className="bg-surface-container-high/50 border border-outline-variant rounded-2xl p-4 flex flex-col items-center text-center w-full max-w-[260px]">
+            <h3 className="font-bold text-on-surface mb-1.5 text-sm">Support This Free Tool</h3>
+            <p className="text-on-surface-variant text-xs mb-3 leading-snug">
               Scan with any payment app or camera to buy a coffee ☕
             </p>
             <div className="bg-white p-2 rounded-xl mb-3 w-full flex justify-center max-w-[120px]">
@@ -203,7 +203,7 @@ export default function Footer() {
         </div>
       </div>
       
-            <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="border-t border-outline-variant/30 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-6 text-on-surface-variant">
             <a
               href="https://www.facebook.com/share/1FadEdrneX/"

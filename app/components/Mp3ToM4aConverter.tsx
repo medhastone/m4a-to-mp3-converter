@@ -141,8 +141,8 @@ export default function Mp3ToM4aConverter() {
   return (
     <div className="w-full max-w-4xl mx-auto flex flex-col gap-8">
       {/* Settings Panel */}
-      <div className="bg-surface-container-low p-6 rounded-3xl border border-white/10 shadow-lg">
-        <h3 className="text-lg font-bold text-white mb-4">Encoding Options</h3>
+      <div className="bg-surface-container-low p-6 rounded-3xl border border-outline-variant/30 shadow-lg">
+        <h3 className="text-lg font-bold text-on-surface mb-4">Encoding Options</h3>
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
           {(['128', '192', '256', '320'] as Bitrate[]).map((b) => (
             <button
@@ -152,7 +152,7 @@ export default function Mp3ToM4aConverter() {
               className={`p-4 rounded-xl border-2 transition-all flex flex-col items-center gap-1 ${
                 bitrate === b
                   ? 'border-primary bg-primary/10 text-primary'
-                  : 'border-white/5 bg-white/5 text-slate-400 hover:border-white/10 hover:text-white'
+                  : 'border-outline-variant/10 bg-on-surface/5 text-on-surface-variant hover:border-outline-variant/30 hover:text-on-surface'
               } ${status === 'processing' ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
               <span className="font-bold text-lg">{b} kbps</span>
@@ -176,16 +176,16 @@ export default function Mp3ToM4aConverter() {
           onDrop={handleDrop}
           className={`
             border-2 border-dashed rounded-3xl p-12 transition-all duration-200 cursor-pointer text-center
-            flex flex-col items-center justify-center min-h-[320px] bg-slate-900/40
-            ${isDragging ? 'border-primary bg-primary/5' : 'border-slate-700 hover:border-primary hover:bg-primary/5 group'}
+            flex flex-col items-center justify-center min-h-[320px] bg-surface-container-high/40
+            ${isDragging ? 'border-primary bg-primary/5' : 'border-outline hover:border-primary hover:bg-primary/5 group'}
           `}
           onClick={() => fileInputRef.current?.click()}
         >
           <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 ${isDragging ? 'bg-primary/20 text-primary' : 'bg-primary/10 text-primary group-hover:bg-primary/20'}`}>
             <Upload className="w-8 h-8" />
           </div>
-          <h3 className="text-xl font-bold text-white mb-2">Drop MP3 files here</h3>
-          <p className="text-slate-400 mb-6 max-w-sm">
+          <h3 className="text-xl font-bold text-on-surface mb-2">Drop MP3 files here</h3>
+          <p className="text-on-surface-variant mb-6 max-w-sm">
             Drag and drop multiple .mp3 files to batch convert to .m4a format securely in your browser.
           </p>
           <button className="bg-primary hover:bg-primary-hover text-on-primary font-bold py-3 px-8 rounded-full shadow-lg shadow-primary/20 transition-all active:scale-95">
@@ -203,14 +203,14 @@ export default function Mp3ToM4aConverter() {
       )}
 
       {status === 'processing' && (
-        <div className="bg-surface-container-low p-12 rounded-3xl border border-white/5 flex flex-col items-center text-center min-h-[320px] justify-center">
+        <div className="bg-surface-container-low p-12 rounded-3xl border border-outline-variant/10 flex flex-col items-center text-center min-h-[320px] justify-center">
           <Layers className="w-12 h-12 text-primary animate-pulse mb-6" />
-          <h3 className="text-2xl font-bold text-white mb-2">Converting to M4A...</h3>
-          <p className="text-slate-400 mb-8 max-w-md">
+          <h3 className="text-2xl font-bold text-on-surface mb-2">Converting to M4A...</h3>
+          <p className="text-on-surface-variant mb-8 max-w-md">
             Processing {currentProcessingFile}
           </p>
           
-          <div className="w-full max-w-md bg-white/5 rounded-full h-4 mb-3 overflow-hidden border border-white/10 relative p-0.5">
+          <div className="w-full max-w-md bg-on-surface/5 rounded-full h-4 mb-3 overflow-hidden border border-outline-variant/30 relative p-0.5">
             <div 
               className="bg-gradient-to-r from-primary to-amber-500 h-full rounded-full transition-all duration-300 ease-out"
               style={{ width: `${globalProgress}%` }}
@@ -225,18 +225,18 @@ export default function Mp3ToM4aConverter() {
           <div className="w-16 h-16 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center mb-6">
             <CheckCircle2 className="w-8 h-8" />
           </div>
-          <h3 className="text-2xl font-bold text-white mb-2">Conversion Complete!</h3>
-          <p className="text-slate-400 mb-8">
+          <h3 className="text-2xl font-bold text-on-surface mb-2">Conversion Complete!</h3>
+          <p className="text-on-surface-variant mb-8">
             Successfully converted {processedFiles.length} file{processedFiles.length !== 1 ? 's' : ''}.
           </p>
 
           {/* File List */}
-          <div className="w-full max-w-2xl bg-slate-900/50 rounded-2xl border border-slate-700/50 overflow-hidden mb-8">
+          <div className="w-full max-w-2xl bg-surface-container-high/50 rounded-2xl border border-outline/50 overflow-hidden mb-8">
             {processedFiles.map((file, idx) => (
-              <div key={file.id} className={`flex items-center justify-between p-4 ${idx !== processedFiles.length - 1 ? 'border-b border-slate-700/50' : ''}`}>
+              <div key={file.id} className={`flex items-center justify-between p-4 ${idx !== processedFiles.length - 1 ? 'border-b border-outline/50' : ''}`}>
                 <div className="flex items-center gap-3 overflow-hidden">
                   <Music className="w-5 h-5 text-primary shrink-0" />
-                  <span className="text-slate-300 truncate font-medium">{file.m4aName}</span>
+                  <span className="text-on-surface-variant truncate font-medium">{file.m4aName}</span>
                 </div>
                 <button
                   onClick={() => {
@@ -247,7 +247,7 @@ export default function Mp3ToM4aConverter() {
                     a.click();
                     URL.revokeObjectURL(url);
                   }}
-                  className="flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-xl text-sm font-semibold transition-colors shrink-0 ml-4"
+                  className="flex items-center gap-2 bg-on-surface/10 hover:bg-white/20 text-on-surface px-4 py-2 rounded-xl text-sm font-semibold transition-colors shrink-0 ml-4"
                 >
                   <Download className="w-4 h-4" /> Download
                 </button>
@@ -266,7 +266,7 @@ export default function Mp3ToM4aConverter() {
             )}
             <button 
               onClick={reset}
-              className="bg-white/10 hover:bg-white/20 text-white font-bold py-3 px-8 rounded-full transition-all active:scale-95 flex items-center gap-2"
+              className="bg-on-surface/10 hover:bg-white/20 text-on-surface font-bold py-3 px-8 rounded-full transition-all active:scale-95 flex items-center gap-2"
             >
               <RotateCcw className="w-5 h-5" /> Convert More
             </button>

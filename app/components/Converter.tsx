@@ -166,7 +166,7 @@ export default function Converter() {
   return (
     <div className="w-full flex flex-col gap-4">
       {/* Converter Card */}
-      <div className="w-full bg-surface-container/80 backdrop-blur-2xl rounded-2xl border border-white/5 shadow-2xl relative overflow-hidden group p-6 md:p-10">
+      <div className="w-full bg-surface-container/80 backdrop-blur-2xl rounded-2xl border border-outline-variant/10 shadow-2xl relative overflow-hidden group p-6 md:p-10">
         
         {/* Configuration Bar */}
       <div className="flex flex-col sm:flex-row gap-6 mb-8 pb-6 border-b border-outline-variant/30">
@@ -274,7 +274,7 @@ export default function Converter() {
         )}
 
         {(status === 'processing' || status === 'done') && (
-          <div className="flex-auto flex flex-col items-center justify-center gap-4 bg-surface-dim/80 rounded-xl border border-white/5 py-8 relative">
+          <div className="flex-auto flex flex-col items-center justify-center gap-4 bg-surface-dim/80 rounded-xl border border-outline-variant/10 py-8 relative">
              {/* Ambient Glow */}
              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(249,115,22,0.1)_0%,transparent_70%)] pointer-events-none"></div>
              

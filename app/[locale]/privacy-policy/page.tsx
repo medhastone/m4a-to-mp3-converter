@@ -34,27 +34,27 @@ export default function Page({ params }: { params: Promise<{ locale: string }> }
 
   return (
     <main className="flex-1 relative z-10 w-full max-w-4xl mx-auto px-6 py-12 md:py-20 flex flex-col gap-10">
-      <div className="text-center md:text-left border-b border-slate-800 pb-10">
-        <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
+      <div className="text-center md:text-left border-b border-outline-variant pb-10">
+        <h1 className="text-4xl md:text-5xl font-bold text-on-surface mb-4 tracking-tight">
           {t('hero_title')}
         </h1>
-        <p className="text-slate-400 text-lg">
+        <p className="text-on-surface-variant text-lg">
           {t('last_updated')}{' '}
-          <strong className="text-slate-200">{t('last_updated_date')}</strong>
+          <strong className="text-on-surface">{t('last_updated_date')}</strong>
         </p>
       </div>
 
       {/* Section 1: Client-Side Guarantee */}
-      <section className="bg-slate-900/80 border border-slate-800 rounded-2xl p-8 relative overflow-hidden shadow-lg">
+      <section className="bg-surface-container-high/80 border border-outline-variant rounded-2xl p-8 relative overflow-hidden shadow-lg">
         <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-[50px]"></div>
-        <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+        <h2 className="text-2xl font-bold text-on-surface mb-4 flex items-center gap-3">
           <ShieldCheck className="w-6 h-6 text-emerald-400" />
           {t('section1_title')}
         </h2>
-        <p className="text-slate-400 leading-relaxed mb-4">
+        <p className="text-on-surface-variant leading-relaxed mb-4">
           {t('section1_p1')}
         </p>
-        <ul className="list-disc list-inside text-slate-400 space-y-2 ml-2">
+        <ul className="list-disc list-inside text-on-surface-variant space-y-2 ml-2">
           <li>
             {t('section1_li1_prefix')}
             <strong>{t('section1_li1_bold')}</strong>
@@ -67,22 +67,22 @@ export default function Page({ params }: { params: Promise<{ locale: string }> }
 
       {/* Section 2: Log Files & Analytics */}
       <section>
-        <h2 className="text-xl font-bold text-white mb-3">{t('section2_title')}</h2>
-        <p className="text-slate-400 leading-relaxed mb-4">
+        <h2 className="text-xl font-bold text-on-surface mb-3">{t('section2_title')}</h2>
+        <p className="text-on-surface-variant leading-relaxed mb-4">
           {t('section2_p1')}
         </p>
-        <p className="text-slate-400 leading-relaxed">
+        <p className="text-on-surface-variant leading-relaxed">
           {t('section2_p2')}
         </p>
       </section>
 
       {/* Section 3: AdSense & Cookies */}
-      <section className="bg-slate-900/50 border border-slate-800 rounded-2xl p-8">
-        <h2 className="text-xl font-bold text-white mb-4">{t('section3_title')}</h2>
-        <p className="text-slate-400 leading-relaxed mb-4">
+      <section className="bg-surface-container-high/50 border border-outline-variant rounded-2xl p-8">
+        <h2 className="text-xl font-bold text-on-surface mb-4">{t('section3_title')}</h2>
+        <p className="text-on-surface-variant leading-relaxed mb-4">
           {t('section3_p1')}
         </p>
-        <ul className="list-disc list-inside text-slate-400 space-y-2 ml-2 mb-4">
+        <ul className="list-disc list-inside text-on-surface-variant space-y-2 ml-2 mb-4">
           <li>{t('section3_li1')}</li>
           <li>
             {t('section3_li2_prefix')}
@@ -109,18 +109,18 @@ export default function Page({ params }: { params: Promise<{ locale: string }> }
             .
           </li>
         </ul>
-        <p className="text-slate-400 leading-relaxed">
+        <p className="text-on-surface-variant leading-relaxed">
           {t('section3_p2')}
         </p>
       </section>
 
       {/* Section 4: GDPR */}
       <section>
-        <h2 className="text-xl font-bold text-white mb-3">{t('section4_title')}</h2>
-        <p className="text-slate-400 leading-relaxed mb-4">
+        <h2 className="text-xl font-bold text-on-surface mb-3">{t('section4_title')}</h2>
+        <p className="text-on-surface-variant leading-relaxed mb-4">
           {t('section4_p1')}
         </p>
-        <ul className="list-disc list-inside text-slate-400 space-y-2 ml-2">
+        <ul className="list-disc list-inside text-on-surface-variant space-y-2 ml-2">
           <li>
             <strong>{t('section4_li1_bold')}</strong>
             {t('section4_li1_text')}
@@ -142,30 +142,30 @@ export default function Page({ params }: { params: Promise<{ locale: string }> }
 
       {/* Section 5: CCPA */}
       <section>
-        <h2 className="text-xl font-bold text-white mb-3">{t('section5_title')}</h2>
-        <p className="text-slate-400 leading-relaxed mb-4">
+        <h2 className="text-xl font-bold text-on-surface mb-3">{t('section5_title')}</h2>
+        <p className="text-on-surface-variant leading-relaxed mb-4">
           {t('section5_p1')}
         </p>
-        <p className="text-slate-400 leading-relaxed">
+        <p className="text-on-surface-variant leading-relaxed">
           <strong>{t('section5_p2_bold')}</strong> {t('section5_p2_text')}
         </p>
       </section>
 
       {/* Section 6: COPPA */}
       <section>
-        <h2 className="text-xl font-bold text-white mb-3">{t('section6_title')}</h2>
-        <p className="text-slate-400 leading-relaxed">
+        <h2 className="text-xl font-bold text-on-surface mb-3">{t('section6_title')}</h2>
+        <p className="text-on-surface-variant leading-relaxed">
           {t('section6_p1')}
         </p>
       </section>
 
       {/* Section 7: Contact */}
-      <section className="bg-slate-900/80 border border-slate-800 rounded-2xl p-8 mt-4">
-        <h2 className="text-xl font-bold text-white mb-4">{t('section7_title')}</h2>
-        <p className="text-slate-400 leading-relaxed mb-4">
+      <section className="bg-surface-container-high/80 border border-outline-variant rounded-2xl p-8 mt-4">
+        <h2 className="text-xl font-bold text-on-surface mb-4">{t('section7_title')}</h2>
+        <p className="text-on-surface-variant leading-relaxed mb-4">
           {t('section7_p1')}
         </p>
-        <div className="flex items-center gap-3 text-slate-300 bg-slate-950 border border-slate-800 px-4 py-3 rounded-lg inline-flex">
+        <div className="flex items-center gap-3 text-on-surface-variant bg-surface border border-outline-variant px-4 py-3 rounded-lg inline-flex">
           <Mail className="w-5 h-5 text-emerald-400" />
           <a
             href="mailto:medhastone@gmail.com"
@@ -174,7 +174,7 @@ export default function Page({ params }: { params: Promise<{ locale: string }> }
             {t('section7_email')}
           </a>
         </div>
-        <p className="text-slate-500 text-sm mt-4 italic">
+        <p className="text-outline text-sm mt-4 italic">
           {t('section7_note')}
         </p>
       </section>

@@ -166,24 +166,24 @@ export default function WavToMp3Converter() {
   return (
     <div className="w-full max-w-5xl mx-auto py-12 px-4 sm:px-6">
       <div className="text-center mb-10">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-on-surface tracking-tight mb-4">
           {t('title_prefix')} <span className="text-indigo-400">{t('title_highlight')}</span>
         </h1>
-        <p className="text-lg text-slate-300 max-w-2xl mx-auto">
+        <p className="text-lg text-on-surface-variant max-w-2xl mx-auto">
           {t('description')}
         </p>
       </div>
 
       {/* Controls */}
-      <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 mb-8 backdrop-blur-sm shadow-xl">
+      <div className="bg-surface-container-highest/50 rounded-2xl p-6 border border-outline/50 mb-8 backdrop-blur-sm shadow-xl">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-indigo-500/20 rounded-lg text-indigo-400">
               <Settings className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-sm font-semibold text-white">{t('audio_quality')}</h3>
-              <p className="text-xs text-slate-400">{t('select_bitrate')}</p>
+              <h3 className="text-sm font-semibold text-on-surface">{t('audio_quality')}</h3>
+              <p className="text-xs text-on-surface-variant">{t('select_bitrate')}</p>
             </div>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -193,8 +193,8 @@ export default function WavToMp3Converter() {
                 onClick={() => setKbps(rate)}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                   kbps === rate 
-                    ? 'bg-indigo-500 text-white shadow-lg shadow-indigo-500/25 ring-2 ring-indigo-400 ring-offset-2 ring-offset-slate-900' 
-                    : 'bg-slate-700/50 text-slate-300 hover:bg-slate-700'
+                    ? 'bg-indigo-500 text-on-surface shadow-lg shadow-indigo-500/25 ring-2 ring-indigo-400 ring-offset-2 ring-offset-slate-900' 
+                    : 'bg-surface-container-highest/50 text-on-surface-variant hover:bg-surface-container-highest'
                 }`}
               >
                 {rate} {t('kbps')} {rate === 320 && t('best')}
@@ -212,7 +212,7 @@ export default function WavToMp3Converter() {
         className={`relative group border-2 border-dashed rounded-3xl p-12 text-center transition-all duration-300 ${
           isDragging 
             ? 'border-indigo-400 bg-indigo-500/10' 
-            : 'border-slate-700 hover:border-indigo-500/50 hover:bg-slate-800/40'
+            : 'border-outline hover:border-indigo-500/50 hover:bg-surface-container-highest/40'
         }`}
       >
         <input 
@@ -222,11 +222,11 @@ export default function WavToMp3Converter() {
           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
           onChange={(e) => e.target.files && addFiles(Array.from(e.target.files))}
         />
-        <div className="mx-auto w-20 h-20 mb-6 bg-slate-800 rounded-full flex items-center justify-center shadow-lg border border-slate-700 transition-all duration-300 group-hover:scale-110 group-hover:border-indigo-400/50 group-hover:shadow-indigo-500/20">
+        <div className="mx-auto w-20 h-20 mb-6 bg-surface-container-highest rounded-full flex items-center justify-center shadow-lg border border-outline transition-all duration-300 group-hover:scale-110 group-hover:border-indigo-400/50 group-hover:shadow-indigo-500/20">
           <UploadCloud className="w-10 h-10 text-indigo-400 transition-colors duration-300 group-hover:text-indigo-300" />
         </div>
-        <h3 className="text-xl font-semibold text-white mb-2 transition-colors duration-300 group-hover:text-indigo-50">{t('drop_title')}</h3>
-        <p className="text-slate-400 text-sm max-w-sm mx-auto transition-colors duration-300 group-hover:text-slate-300">
+        <h3 className="text-xl font-semibold text-on-surface mb-2 transition-colors duration-300 group-hover:text-indigo-50">{t('drop_title')}</h3>
+        <p className="text-on-surface-variant text-sm max-w-sm mx-auto transition-colors duration-300 group-hover:text-on-surface-variant">
           {t('drop_desc')}
         </p>
       </div>
@@ -235,12 +235,12 @@ export default function WavToMp3Converter() {
       {tasks.length > 0 && (
         <div className="mt-8 space-y-4">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-white">{t('conversion_queue')}</h2>
+            <h2 className="text-lg font-semibold text-on-surface">{t('conversion_queue')}</h2>
             {tasks.filter(t => t.status === 'done').length > 0 && (
               <div className="flex items-center gap-2">
                 <button 
                   onClick={handleShare}
-                  className="flex items-center gap-2 px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white font-medium rounded-lg transition-colors text-sm"
+                  className="flex items-center gap-2 px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-on-surface font-medium rounded-lg transition-colors text-sm"
                   title={t('share_tool_title')}
                 >
                   <Share2 className="w-4 h-4" />
@@ -266,36 +266,36 @@ export default function WavToMp3Converter() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="bg-slate-800/80 rounded-xl p-4 border border-slate-700/50 shadow-sm flex flex-col md:flex-row items-center gap-4"
+                className="bg-surface-container-highest/80 rounded-xl p-4 border border-outline/50 shadow-sm flex flex-col md:flex-row items-center gap-4"
               >
-                <div className="p-3 bg-slate-900/50 rounded-lg shrink-0">
+                <div className="p-3 bg-surface-container-high/50 rounded-lg shrink-0">
                   <FileAudio className="w-6 h-6 text-indigo-400" />
                 </div>
                 
                 <div className="flex-1 w-full min-w-0">
                   <div className="flex justify-between items-start mb-2">
-                    <p className="text-sm font-medium text-white truncate pr-4">{task.file.name}</p>
-                    <button onClick={() => removeTask(task.id)} className="text-slate-500 hover:text-red-400 shrink-0">
+                    <p className="text-sm font-medium text-on-surface truncate pr-4">{task.file.name}</p>
+                    <button onClick={() => removeTask(task.id)} className="text-outline hover:text-red-400 shrink-0">
                       <X className="w-4 h-4" />
                     </button>
                   </div>
                   
                   {task.status === 'processing' && (
                     <div className="space-y-1.5">
-                      <div className="h-2 w-full bg-slate-900 rounded-full overflow-hidden">
+                      <div className="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
                         <div 
                           className="h-full bg-indigo-500 transition-all duration-300 ease-out" 
                           style={{ width: `${task.progress}%` }} 
                         />
                       </div>
-                      <div className="flex justify-between text-xs text-slate-400">
+                      <div className="flex justify-between text-xs text-on-surface-variant">
                         <span>{Math.round(task.progress)}%</span>
                         <span>{task.speedStr || t('converting')}</span>
                       </div>
                     </div>
                   )}
 
-                  {task.status === 'pending' && <p className="text-xs text-slate-500">{t('waiting_in_queue')}</p>}
+                  {task.status === 'pending' && <p className="text-xs text-outline">{t('waiting_in_queue')}</p>}
                   {task.status === 'error' && <p className="text-xs text-red-400">{t('error_prefix')}: {task.error}</p>}
                   
                   {task.status === 'done' && (
@@ -312,7 +312,7 @@ export default function WavToMp3Converter() {
                   <div className="shrink-0 flex items-center gap-2">
                     <button
                       onClick={handleShare}
-                      className="flex items-center gap-2 px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition-colors text-sm font-medium border border-slate-700"
+                      className="flex items-center gap-2 px-3 py-2 bg-surface-container-highest hover:bg-surface-container-highest text-on-surface-variant rounded-lg transition-colors text-sm font-medium border border-outline"
                       title={t('share_title_attr')}
                     >
                       <Share2 className="w-4 h-4" />
@@ -321,7 +321,7 @@ export default function WavToMp3Converter() {
                     <a 
                       href={task.previewUrl} 
                       download={task.file.name.replace(/\.wav$/i, '.mp3')}
-                      className="flex items-center gap-2 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors text-sm font-medium"
+                      className="flex items-center gap-2 px-4 py-2 bg-surface-container-highest hover:bg-outline-variant/30 text-on-surface rounded-lg transition-colors text-sm font-medium"
                     >
                       <Download className="w-4 h-4" />
                       {t('download_mp3')}

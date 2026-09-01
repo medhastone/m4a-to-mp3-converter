@@ -39,11 +39,11 @@ export default function Page({ params }: { params: Promise<{ locale: string }> }
       <section className="text-center max-w-3xl mx-auto">
         <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
           {t('hero_title_prefix')}{' '}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-primary drop-shadow-md">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 dark:from-emerald-400 to-primary drop-shadow-md">
             {t('hero_title_span')}
           </span>
         </h1>
-        <p className="text-slate-400 text-lg leading-relaxed">
+        <p className="text-on-surface-variant text-lg leading-relaxed">
           {t('hero_desc_1')}{' '}
           <strong className="text-emerald-400 font-semibold">{t('hero_desc_strong')}</strong>{' '}
           {t('hero_desc_2')}
@@ -55,22 +55,22 @@ export default function Page({ params }: { params: Promise<{ locale: string }> }
 
       {/* Technical Content & FAQ */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-8">
-        <article className="prose prose-invert prose-emerald max-w-none">
+        <article className="prose dark:prose-invert prose-emerald max-w-none">
           <h2 className="text-2xl font-bold mb-4">{t('whitepaper_title')}</h2>
 
-          <h3 className="text-xl font-bold text-white mt-8 mb-3">{t('cloud_problem_title')}</h3>
-          <p className="text-slate-400 leading-relaxed mb-4">{t('cloud_problem_p1')}</p>
-          <p className="text-slate-400 leading-relaxed mb-4">{t('cloud_problem_p2')}</p>
+          <h3 className="text-xl font-bold text-on-surface mt-8 mb-3">{t('cloud_problem_title')}</h3>
+          <p className="text-on-surface-variant leading-relaxed mb-4">{t('cloud_problem_p1')}</p>
+          <p className="text-on-surface-variant leading-relaxed mb-4">{t('cloud_problem_p2')}</p>
 
-          <h3 className="text-xl font-bold text-white mt-8 mb-3 flex items-center gap-2">
+          <h3 className="text-xl font-bold text-on-surface mt-8 mb-3 flex items-center gap-2">
             <Terminal className="w-5 h-5 text-emerald-400" />
             {t('verify_title')}
           </h3>
-          <p className="text-slate-400 leading-relaxed mb-4">{t('verify_intro')}</p>
-          <ol className="list-decimal list-inside text-slate-400 space-y-2 mb-6">
+          <p className="text-on-surface-variant leading-relaxed mb-4">{t('verify_intro')}</p>
+          <ol className="list-decimal list-inside text-on-surface-variant space-y-2 mb-6">
             <li>
               {t('verify_step1_1')}{' '}
-              <code className="text-xs bg-white/10 px-1.5 py-0.5 rounded text-emerald-400 font-mono">
+              <code className="text-xs bg-on-surface/10 px-1.5 py-0.5 rounded text-emerald-400 font-mono">
                 {t('verify_step1_code')}
               </code>{' '}
               {t('verify_step1_2')}
@@ -88,22 +88,22 @@ export default function Page({ params }: { params: Promise<{ locale: string }> }
             </li>
           </ol>
 
-          <p className="text-slate-400 leading-relaxed">{t('verify_conclusion')}</p>
+          <p className="text-on-surface-variant leading-relaxed">{t('verify_conclusion')}</p>
         </article>
 
         <div className="flex flex-col gap-6">
           <h2 className="text-2xl font-bold mb-2">{t('faq_title')}</h2>
-          <div className="bg-slate-900/50 p-5 rounded-xl border border-emerald-500/10 shadow-[0_0_10px_rgba(16,185,129,0.03)] hover:border-emerald-500/30 transition-colors">
-            <h4 className="font-bold text-white mb-2 text-lg">{t('faq1_q')}</h4>
-            <p className="text-slate-400 text-sm leading-relaxed">{t('faq1_a')}</p>
+          <div className="bg-surface-container-high/50 p-5 rounded-xl border border-emerald-500/10 shadow-[0_0_10px_rgba(16,185,129,0.03)] hover:border-emerald-500/30 transition-colors">
+            <h4 className="font-bold text-on-surface mb-2 text-lg">{t('faq1_q')}</h4>
+            <p className="text-on-surface-variant text-sm leading-relaxed">{t('faq1_a')}</p>
           </div>
-          <div className="bg-slate-900/50 p-5 rounded-xl border border-emerald-500/10 shadow-[0_0_10px_rgba(16,185,129,0.03)] hover:border-emerald-500/30 transition-colors">
-            <h4 className="font-bold text-white mb-2 text-lg">{t('faq2_q')}</h4>
-            <p className="text-slate-400 text-sm leading-relaxed">{t('faq2_a')}</p>
+          <div className="bg-surface-container-high/50 p-5 rounded-xl border border-emerald-500/10 shadow-[0_0_10px_rgba(16,185,129,0.03)] hover:border-emerald-500/30 transition-colors">
+            <h4 className="font-bold text-on-surface mb-2 text-lg">{t('faq2_q')}</h4>
+            <p className="text-on-surface-variant text-sm leading-relaxed">{t('faq2_a')}</p>
           </div>
-          <div className="bg-slate-900/50 p-5 rounded-xl border border-emerald-500/10 shadow-[0_0_10px_rgba(16,185,129,0.03)] hover:border-emerald-500/30 transition-colors">
-            <h4 className="font-bold text-white mb-2 text-lg">{t('faq3_q')}</h4>
-            <p className="text-slate-400 text-sm leading-relaxed">{t('faq3_a')}</p>
+          <div className="bg-surface-container-high/50 p-5 rounded-xl border border-emerald-500/10 shadow-[0_0_10px_rgba(16,185,129,0.03)] hover:border-emerald-500/30 transition-colors">
+            <h4 className="font-bold text-on-surface mb-2 text-lg">{t('faq3_q')}</h4>
+            <p className="text-on-surface-variant text-sm leading-relaxed">{t('faq3_a')}</p>
           </div>
         </div>
       </div>

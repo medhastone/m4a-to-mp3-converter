@@ -39,7 +39,7 @@ export default function Page({ params }: { params: Promise<{ locale: string }> }
         <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
           {t('hero_title')}
         </h1>
-        <p className="text-slate-400 text-lg leading-relaxed">
+        <p className="text-on-surface-variant text-lg leading-relaxed">
           {t('hero_subtitle')}
         </p>
       </section>
@@ -49,20 +49,20 @@ export default function Page({ params }: { params: Promise<{ locale: string }> }
 
       {/* Technical Content & FAQ */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-8">
-        <article className="prose prose-invert prose-orange max-w-none">
+        <article className="prose dark:prose-invert prose-orange max-w-none">
           <h2 className="text-2xl font-bold mb-4">{t('tech_title')}</h2>
-          <p className="text-slate-400 leading-relaxed mb-4">
+          <p className="text-on-surface-variant leading-relaxed mb-4">
             {t('tech_p1')}
           </p>
-          <p className="text-slate-400 leading-relaxed mb-4">
+          <p className="text-on-surface-variant leading-relaxed mb-4">
             {t('tech_p2')}
           </p>
-          <p className="text-slate-400 leading-relaxed">
+          <p className="text-on-surface-variant leading-relaxed">
             {t('tech_p3')}
           </p>
 
-          <h3 className="text-xl font-bold text-white mt-8 mb-3">{t('guide_title')}</h3>
-          <ol className="list-decimal list-inside text-slate-400 space-y-2">
+          <h3 className="text-xl font-bold text-on-surface mt-8 mb-3">{t('guide_title')}</h3>
+          <ol className="list-decimal list-inside text-on-surface-variant space-y-2">
             <li>
               <strong>{t('guide_step1_title')}</strong> {t('guide_step1_desc')}
             </li>
@@ -77,17 +77,17 @@ export default function Page({ params }: { params: Promise<{ locale: string }> }
 
         <div className="flex flex-col gap-6">
           <h2 className="text-2xl font-bold mb-2">{t('faq_title')}</h2>
-          <div className="bg-slate-900/50 p-5 rounded-xl border border-white/5">
-            <h4 className="font-bold text-white mb-2 text-lg">{t('faq_1_q')}</h4>
-            <p className="text-slate-400 text-sm leading-relaxed">{t('faq_1_a')}</p>
+          <div className="bg-surface-container-high/50 p-5 rounded-xl border border-outline-variant/10">
+            <h4 className="font-bold text-on-surface mb-2 text-lg">{t('faq_1_q')}</h4>
+            <p className="text-on-surface-variant text-sm leading-relaxed">{t('faq_1_a')}</p>
           </div>
-          <div className="bg-slate-900/50 p-5 rounded-xl border border-white/5">
-            <h4 className="font-bold text-white mb-2 text-lg">{t('faq_2_q')}</h4>
-            <p className="text-slate-400 text-sm leading-relaxed">{t('faq_2_a')}</p>
+          <div className="bg-surface-container-high/50 p-5 rounded-xl border border-outline-variant/10">
+            <h4 className="font-bold text-on-surface mb-2 text-lg">{t('faq_2_q')}</h4>
+            <p className="text-on-surface-variant text-sm leading-relaxed">{t('faq_2_a')}</p>
           </div>
-          <div className="bg-slate-900/50 p-5 rounded-xl border border-white/5">
-            <h4 className="font-bold text-white mb-2 text-lg">{t('faq_3_q')}</h4>
-            <p className="text-slate-400 text-sm leading-relaxed">{t('faq_3_a')}</p>
+          <div className="bg-surface-container-high/50 p-5 rounded-xl border border-outline-variant/10">
+            <h4 className="font-bold text-on-surface mb-2 text-lg">{t('faq_3_q')}</h4>
+            <p className="text-on-surface-variant text-sm leading-relaxed">{t('faq_3_a')}</p>
           </div>
         </div>
       </div>
