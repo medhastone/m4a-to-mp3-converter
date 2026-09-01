@@ -61,6 +61,9 @@ export default function MobileMenu() {
                 <Link onClick={() => setIsOpen(false)} href="/client-side-safe" className="py-3 text-sm text-on-surface-variant hover:text-primary flex items-center gap-3">
                   <span className="text-lg">🔒</span> {t('client_side_safe')}
                 </Link>
+                <Link onClick={() => setIsOpen(false)} href="/acx-checker" className="py-3 text-sm text-on-surface-variant hover:text-primary flex items-center gap-3">
+                  <span className="text-lg">🎙️</span> ACX Audio Checker
+                </Link>
               </div>
             )}
           </div>

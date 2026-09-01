@@ -24,7 +24,7 @@ export default function MetadataViewer() {
       const script = document.createElement('script');
       script.src = "https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js";
       script.async = true;
-      script.onload = () => // eslint-disable-next-line react-hooks/set-state-in-effect
+      script.onload = () =>  
         setIsScriptLoaded(true);
       document.body.appendChild(script);
     }

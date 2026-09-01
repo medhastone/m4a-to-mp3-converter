@@ -58,6 +58,9 @@ export default function Header() {
                 <Link href="/client-side-safe" className="px-4 py-2 text-sm text-on-surface-variant hover:text-primary hover:bg-surface-dim transition-colors flex items-center gap-2">
                   <span className="text-lg">🔒</span> {t('client_side_safe')}
                 </Link>
+                <Link href="/acx-checker" className="px-4 py-2 text-sm text-on-surface-variant hover:text-primary hover:bg-surface-dim transition-colors flex items-center gap-2">
+                  <span className="text-lg">🎙️</span> ACX Audio Checker
+                </Link>
               </div>
             </div>
           </nav>
@@ -69,6 +72,7 @@ export default function Header() {
                {t('client_side_badge')}
             </div>
             <LanguageSwitcher />
+            
             <MobileMenu />
           </div>
         </div>

@@ -121,7 +121,7 @@ export default function VideoToMp3Converter() {
 
     return () => {
       workerRef.current?.terminate();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+       
       tasks.forEach(t => t.previewUrl && URL.revokeObjectURL(t.previewUrl));
     };
   }, []);

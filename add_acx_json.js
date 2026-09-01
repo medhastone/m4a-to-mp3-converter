@@ -1,6 +1,7 @@
 const fs = require('fs');
+const data = JSON.parse(fs.readFileSync('messages/en.json', 'utf8'));
 
-const acx_checker = {
+data.acx_checker = {
   "h1": "ACX Audio <highlight>Compliance Checker</highlight>",
   "subtitle": "Instantly verify your audiobooks against ACX standards. 100% private in-browser analysis.",
   "dropzone_title": "Drop Audio Here",
@@ -22,12 +23,5 @@ const acx_checker = {
   "bmc_cta": "Support our free tools"
 };
 
-['es', 'fr', 'de', 'pt'].forEach(lang => {
-  const file = `messages/${lang}.json`;
-  if (fs.existsSync(file)) {
-    const data = JSON.parse(fs.readFileSync(file, 'utf8'));
-    data.acx_checker = acx_checker;
-    fs.writeFileSync(file, JSON.stringify(data, null, 2));
-    console.log(`Updated ${file}`);
-  }
-});
+fs.writeFileSync('messages/en.json', JSON.stringify(data, null, 2));
+console.log('done!');

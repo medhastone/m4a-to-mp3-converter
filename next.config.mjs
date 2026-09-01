@@ -10,6 +10,13 @@ const nextConfig = {
   },
   typescript: { ignoreBuildErrors: true },
   eslint: { ignoreDuringBuilds: true },
+  webpack: (config) => {
+    config.ignoreWarnings = [
+      { module: /node_modules\/next-intl/ },
+      /PackFileCacheStrategy/
+    ];
+    return config;
+  },
   experimental: {
     workerThreads: false,
     cpus: 1

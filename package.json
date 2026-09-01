@@ -21,6 +21,8 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "jsmediatags": "^3.9.7",
+    "jspdf": "^4.2.1",
+    "jspdf-autotable": "^5.0.8",
     "jszip": "^3.10.1",
     "lamejs": "^1.2.1",
     "lucide-react": "^0.553.0",

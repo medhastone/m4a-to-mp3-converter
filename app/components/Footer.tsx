@@ -116,6 +116,14 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/acx-checker"
+                  className="text-on-surface-variant hover:text-white transition-colors text-sm font-medium"
+                >
+                  ACX Audio Checker
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/audio-metadata-remover"
                   className="text-on-surface-variant hover:text-white transition-colors text-sm font-medium"
                 >{t('metadata_remover')}</Link>
