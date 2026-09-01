@@ -27,7 +27,7 @@ export default async function MetadataViewerPage({ params }: { params: Promise<{
         {/* 1. Hero Section & H1 */}
         <div className="text-center mb-12 w-full max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 text-transparent bg-clip-text bg-gradient-to-r from-on-surface via-on-surface to-on-surface-variant">
-            {t('mv_h1')}
+            {t.rich('mv_h1', { highlight: (chunks) => <span className="text-orange-500">{chunks}</span> })}
           </h1>
           <p className="text-lg md:text-xl text-on-surface-variant leading-relaxed" >
             {t.rich('mv_hero_desc', { strong: (chunks) => <strong>{chunks}</strong> })}
