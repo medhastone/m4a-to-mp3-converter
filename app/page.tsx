@@ -1,11 +1,11 @@
 export default function RootPage() {
   return (
-    <html>
+    <html lang="en">
       <head>
         <meta httpEquiv="refresh" content="0; url=/en" />
+        <script dangerouslySetInnerHTML={{ __html: `window.location.replace('/en');` }} />
       </head>
-      <body>
-        <p>Redirecting to <a href="/en">/en</a>...</p>
+      <body className="bg-surface-dim">
       </body>
     </html>
   );

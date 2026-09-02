@@ -45,7 +45,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       
 
       <main className="flex-1 flex flex-col relative w-full items-center">
-        <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-8 xl:px-12 py-12 md:py-24 flex flex-col lg:flex-row items-center justify-between gap-12">
+        <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-16 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center">
           
           {/* Left Column */}
           <div className="flex-1 flex flex-col items-start text-left">
@@ -78,7 +78,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           </div>
 
           {/* Right Column: Converter */}
-          <div className="w-full lg:w-[60%] xl:w-[65%] flex flex-col gap-4">
+          <div className="w-full flex flex-col gap-4">
              <Converter />
              <div className="flex items-start gap-3 bg-on-surface/5 border border-outline-variant/30 rounded-xl p-4 mt-2">
                <ShieldCheck className="w-4 h-4 md:w-5 md:h-5 text-amber-400 flex-shrink-0 mt-0.5" />

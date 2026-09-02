@@ -4,7 +4,7 @@ export const dynamic = 'force-static'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const domain = 'https://m4atomp3converter.com'
-  const locales = ['en', 'es', 'fr', 'de', 'pt']
+  const locales = ['en', 'es', 'fr', 'de', 'pt', 'ru']
   
   const routes = [
     { path: '', priority: 1.0 },

@@ -19,6 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         'fr': `${domain}/fr${path}`,
         'de': `${domain}/de${path}`,
         'pt': `${domain}/pt${path}`,
+        'ru': `${domain}/ru${path}`,
         'x-default': `${domain}/en${path}`,
       },
     },
@@ -33,19 +34,23 @@ export default function Page({ params }: { params: Promise<{ locale: string }> }
   const t = useTranslations('batch_converter');
 
   return (
-    <main className="flex-1 relative z-10 w-full max-w-7xl mx-auto px-6 py-12 flex flex-col gap-16">
+    <main className="flex-1 relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-16 flex flex-col gap-12 md:gap-16">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
       {/* Hero Section */}
-      <section className="text-center max-w-3xl mx-auto">
+      <section className="text-left">
         <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
           {t('hero_title')}
         </h1>
         <p className="text-on-surface-variant text-lg leading-relaxed">
           {t('hero_subtitle')}
         </p>
+      
       </section>
-
+      <div className="w-full flex flex-col gap-4">
       {/* Interactive Workspace */}
       <Converter />
+      </div>
+    </div>
 
       {/* Technical Content & FAQ */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-8">

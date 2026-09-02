@@ -12,7 +12,7 @@ export default function AutoTranslate() {
     
     // Extract locale from pathname (e.g. /de/mac -> de)
     const segments = pathname.split('/');
-    const supportedLocales = ['en', 'es', 'fr', 'de', 'pt'];
+    const supportedLocales = ['en', 'es', 'fr', 'de', 'pt', 'ru'];
     const locale = (segments[1] && supportedLocales.includes(segments[1])) ? segments[1] : 'en';
 
     // Set googtrans cookie
