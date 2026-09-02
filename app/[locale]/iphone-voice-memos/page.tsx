@@ -11,6 +11,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const path = '/iphone-voice-memos';
   
   return {
+    title: "Iphone Voice Memos - M4A to MP3 Converter",
+    description: "Convert M4A to MP3 easily and locally.",
     alternates: {
       canonical: `${domain}/${locale}${path}`,
       languages: {

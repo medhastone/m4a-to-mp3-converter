@@ -2,6 +2,7 @@ import type {Metadata} from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import BreadcrumbJsonLd from '../components/BreadcrumbJsonLd';
 import '../globals.css';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
@@ -67,6 +68,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         'x-default': `${domain}/en`,
       },
     },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
   };
 }
 
@@ -94,6 +106,7 @@ export default async function RootLayout({children, params}: {children: React.Re
           <Header />
           {children}
           <Footer />
+          <BreadcrumbJsonLd />
                   </ThemeProvider>
         </NextIntlClientProvider>
       </body>

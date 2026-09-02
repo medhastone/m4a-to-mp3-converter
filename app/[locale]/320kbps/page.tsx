@@ -12,6 +12,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const path = '/320kbps';
   
   return {
+    title: "320kbps - M4A to MP3 Converter",
+    description: "Convert M4A to MP3 easily and locally.",
     alternates: {
       canonical: `${domain}/${locale}${path}`,
       languages: {

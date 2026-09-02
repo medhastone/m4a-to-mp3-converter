@@ -497,7 +497,9 @@
     "form_message_placeholder": "Wie können wir Ihnen helfen?",
     "form_submit_btn": "Anfrage senden",
     "form_success_msg": "Nachricht erfolgreich an unsere sichere Warteschlange gesendet. Wir werden innerhalb von 24–48 Stunden antworten.",
-    "form_error_msg": "Hoppla! Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal."
+    "form_error_msg": "Hoppla! Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal.",
+    "meta_title": "Über Uns - M4A zu MP3 Konverter",
+    "meta_description": "Erfahren Sie mehr über unsere datenschutzorientierte Audio-Konvertierungs-Engineering-Mission ohne Uploads."
   },
   "mv_meta_title": "Kostenloser Audio-Metadaten-Viewer Online - Codec & Stream Inspektor",
   "mv_meta_desc": "Nutzen Sie unseren kostenlosen Audio-Metadaten-Viewer, um Audio-Codecs online zu überprüfen, genaue Bitraten zu extrahieren und MP3/WAV/FLAC-Streams nativ in Ihrem Browser zu inspizieren.",

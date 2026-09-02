@@ -497,7 +497,9 @@
     "form_message_placeholder": "Comment pouvons-nous vous aider ?",
     "form_submit_btn": "Envoyer la demande",
     "form_success_msg": "Message envoyé avec succès à notre file d'attente sécurisée. Nous vous répondrons sous 24 à 48 heures.",
-    "form_error_msg": "Oups ! Une erreur est survenue. Veuillez réessayer plus tard."
+    "form_error_msg": "Oups ! Une erreur est survenue. Veuillez réessayer plus tard.",
+    "meta_title": "À propos de nous - Convertisseur M4A en MP3",
+    "meta_description": "Découvrez notre mission d'ingénierie de conversion audio axée sur la confidentialité et sans téléchargement."
   },
   "mv_meta_title": "Visionneuse de Métadonnées Audio Gratuite en Ligne - Inspecteur de Codec et Flux",
   "mv_meta_desc": "Utilisez notre visionneuse gratuite de métadonnées audio en ligne pour vérifier les codecs, extraire le débit exact et inspecter les flux MP3/WAV/FLAC nativement dans votre navigateur.",

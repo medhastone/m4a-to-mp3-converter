@@ -12,6 +12,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const path = '/mac';
   
   return {
+    title: "Mac - M4A to MP3 Converter",
+    description: "Convert M4A to MP3 easily and locally.",
     alternates: {
       canonical: `${domain}/${locale}${path}`,
       languages: {

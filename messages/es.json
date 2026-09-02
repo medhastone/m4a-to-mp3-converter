@@ -497,7 +497,9 @@
     "form_message_placeholder": "¿Cómo podemos ayudarte?",
     "form_submit_btn": "Enviar consulta",
     "form_success_msg": "Mensaje enviado correctamente a nuestra cola segura. Responderemos en un plazo de 24 a 48 horas.",
-    "form_error_msg": "¡Ups! Algo salió mal. Por favor, inténtalo de nuevo más tarde."
+    "form_error_msg": "¡Ups! Algo salió mal. Por favor, inténtalo de nuevo más tarde.",
+    "meta_title": "Sobre Nosotros - Convertidor de M4A a MP3",
+    "meta_description": "Conozca nuestra misión de ingeniería de conversión de audio sin cargas y con privacidad primero."
   },
   "mv_meta_title": "Visor de metadatos de audio gratuito en línea - Inspector de códecs y secuencias",
   "mv_meta_desc": "Utiliza nuestro visor de metadatos de audio gratuito en línea para comprobar códecs de audio, extraer la tasa de bits exacta e inspeccionar secuencias MP3/WAV/FLAC de forma nativa en tu navegador.",

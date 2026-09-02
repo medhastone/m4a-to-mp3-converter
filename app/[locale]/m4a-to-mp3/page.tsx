@@ -1,2 +1,3 @@
-import Home from '../page';
+import Home, { generateMetadata } from '../page';
+export { generateMetadata };
 export default Home;

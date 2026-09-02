@@ -2,6 +2,18 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Cpu, XCircle, CheckCircle, Mail, Clock, Send } from 'lucide-react';
 import Converter from '../../components/Converter';
 
+import { Metadata } from 'next';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const resolvedParams = await params;
+  const locale = resolvedParams.locale;
+  const t = await getTranslations({ locale, namespace: 'about' });
+  return {
+    title: t('meta_title'),
+    description: t('meta_description'),
+  };
+}
+
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
   const resolvedParams = await params;
   const locale = resolvedParams.locale;

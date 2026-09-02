@@ -497,7 +497,9 @@
     "form_message_placeholder": "How can we help you?",
     "form_submit_btn": "Submit Inquiry",
     "form_success_msg": "Message successfully sent to our secure queue. We will respond within 24-48 hours.",
-    "form_error_msg": "Oops! Something went wrong. Please try again later."
+    "form_error_msg": "Oops! Something went wrong. Please try again later.",
+    "meta_title": "About Us - M4A to MP3 Converter",
+    "meta_description": "Learn about our privacy-first, zero-upload audio conversion engineering mission."
   },
   "mv_meta_title": "Free Audio Metadata Viewer Online - Codec & Stream Inspector",
   "mv_meta_desc": "Use our free audio metadata viewer online to check audio codec online, extract exact bitrate, and inspect mp3/wav/flac streams natively in your browser.",

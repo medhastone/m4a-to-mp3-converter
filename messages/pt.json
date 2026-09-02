@@ -497,7 +497,9 @@
     "form_message_placeholder": "Como podemos ajudar você?",
     "form_submit_btn": "Enviar Mensagem",
     "form_success_msg": "Mensagem enviada com sucesso para nossa fila segura. Responderemos dentro de 24 a 48 horas.",
-    "form_error_msg": "Ops! Algo deu errado. Por favor, tente novamente mais tarde."
+    "form_error_msg": "Ops! Algo deu errado. Por favor, tente novamente mais tarde.",
+    "meta_title": "Sobre Nós - Conversor de M4A para MP3",
+    "meta_description": "Saiba mais sobre nossa missão de engenharia de conversão de áudio sem upload, voltada para a privacidade."
   },
   "mv_meta_title": "Visualizador Gratuito de Metadados de Áudio Online - Inspetor de Codec e Stream",
   "mv_meta_desc": "Use nosso visualizador gratuito de metadados de áudio online para verificar codecs de áudio, extrair taxa de bits exata e inspecionar streams MP3/WAV/FLAC nativamente no seu navegador.",
