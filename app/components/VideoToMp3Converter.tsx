@@ -49,7 +49,7 @@ export default function VideoToMp3Converter() {
 
   // Initialize FFmpeg worker
   useEffect(() => {
-    workerRef.current = new Worker(`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/ffmpeg-worker.js?v=2.0.1`);
+    workerRef.current = new Worker(`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/ffmpeg-worker.js?v=2.5.0`);
     
     workerRef.current.onerror = (err) => {
       console.error("Worker load error", err);
@@ -124,11 +124,15 @@ export default function VideoToMp3Converter() {
        
       tasks.forEach(t => t.previewUrl && URL.revokeObjectURL(t.previewUrl));
     };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // When tasks are added or ffmpeg loads, try to process
   useEffect(() => {
     processNextTask();
+
+
   }, [tasks.length, processNextTask]);
 
   const handleFiles = (files: FileList | File[]) => {

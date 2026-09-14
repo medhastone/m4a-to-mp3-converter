@@ -10,6 +10,7 @@ export default function MobileMenu() {
   const tHeader = useTranslations('header');
   const [isOpen, setIsOpen] = useState(false);
   const [isToolsOpen, setIsToolsOpen] = useState(false);
+  const [isBlogOpen, setIsBlogOpen] = useState(false);
 
   return (
     <div className="lg:hidden flex items-center">
@@ -32,6 +33,44 @@ export default function MobileMenu() {
           <Link onClick={() => setIsOpen(false)} className="px-6 py-4 text-on-surface hover:bg-surface-dim transition-colors font-medium border-b border-outline-variant/10" href="/#faq">
             {t('faq')}
           </Link>
+          
+          {/* Blog Section */}
+          <div className="flex flex-col border-b border-outline-variant/10">
+            <div className="flex items-center justify-between px-6 py-4">
+              <Link 
+                onClick={() => setIsOpen(false)} 
+                className="text-on-surface hover:text-primary transition-colors font-medium flex items-center gap-2" 
+                href="/blog"
+              >
+                <span>📚</span> {t('blog')}
+                <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-primary/10 text-primary uppercase tracking-wider">Guides</span>
+              </Link>
+              <button 
+                onClick={() => setIsBlogOpen(!isBlogOpen)}
+                className="p-1 text-on-surface-variant hover:text-on-surface transition-colors"
+                aria-label="Toggle Blog Submenu"
+              >
+                <ChevronDown className={`w-5 h-5 transition-transform ${isBlogOpen ? 'rotate-180' : ''}`} />
+              </button>
+            </div>
+            
+            {isBlogOpen && (
+              <div className="bg-surface-dim/30 flex flex-col py-2 px-6">
+                <Link onClick={() => setIsOpen(false)} href="/blog" className="py-2.5 text-sm text-on-surface hover:text-primary flex items-center gap-2 font-medium">
+                  <span>📖</span> {t('all_articles')}
+                </Link>
+                <Link onClick={() => setIsOpen(false)} href="/blog/what-is-a-daw" className="py-2.5 text-sm text-on-surface-variant hover:text-primary flex items-center gap-2">
+                  <span>🎛️</span> {t('what_is_a_daw_title')}
+                </Link>
+                <Link onClick={() => setIsOpen(false)} href="/blog/sample-rate-vs-bit-depth" className="py-2.5 text-sm text-on-surface-variant hover:text-primary flex items-center gap-2">
+                  <span>🎚️</span> Sample Rate vs Bit Depth
+                </Link>
+                <Link onClick={() => setIsOpen(false)} href="/blog/lossless-vs-lossy-audio" className="py-2.5 text-sm text-on-surface-variant hover:text-primary flex items-center gap-2">
+                  <span>🎧</span> Lossless vs Lossy Audio
+                </Link>
+              </div>
+            )}
+          </div>
           
           <div className="flex flex-col border-b border-outline-variant/10">
             <button 
@@ -72,13 +111,16 @@ export default function MobileMenu() {
                   <span className="text-lg">🏷️</span> {tHeader('metadata_viewer')}
                 </Link>
                 <Link onClick={() => setIsOpen(false)} href="/audio-metadata-remover" className="py-3 text-sm text-on-surface-variant hover:text-primary flex items-center gap-3">
-                  <span className="text-lg">🛡️</span> Metadata Remover
+                  <span className="text-lg">🛡️</span> {tHeader('metadata_remover')}
                 </Link>
                 <Link onClick={() => setIsOpen(false)} href="/client-side-safe" className="py-3 text-sm text-on-surface-variant hover:text-primary flex items-center gap-3">
                   <span className="text-lg">🔒</span> {t('client_side_safe')}
                 </Link>
                 <Link onClick={() => setIsOpen(false)} href="/acx-checker" className="py-3 text-sm text-on-surface-variant hover:text-primary flex items-center gap-3">
-                  <span className="text-lg">🎙️</span> ACX Audio Checker
+                  <span className="text-lg">🎙️</span> {tHeader('acx_audio_checker')}
+                </Link>
+                <Link onClick={() => setIsOpen(false)} href="/mp3-to-wav" className="py-3 text-sm text-on-surface-variant hover:text-primary flex items-center gap-3">
+                  <span className="text-lg">🎼</span> MP3 to WAV Converter
                 </Link>
               </div>
             )}

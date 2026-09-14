@@ -22,73 +22,173 @@ export default function WavToMp3Converter() {
   const [tasks, setTasks] = useState<ConversionTask[]>([]);
   const [kbps, setKbps] = useState(320);
   const [isDragging, setIsDragging] = useState(false);
-  const workerPool = useRef<Worker[]>([]);
-  const taskQueue = useRef<string[]>([]);
-  const activeWorkers = useRef(0);
-
-  const processNextTask = useCallback(() => {
-    const concurrency = navigator.hardwareConcurrency || 4;
-    
-    setTasks(prev => {
-      let updatedTasks = [...prev];
-      let tasksChanged = false;
-      
-      while (activeWorkers.current < concurrency && taskQueue.current.length > 0) {
-        const nextId = taskQueue.current.shift();
-        if (!nextId) break;
-        
-        const taskIndex = updatedTasks.findIndex(t => t.id === nextId);
-        if (taskIndex !== -1) {
-          const task = updatedTasks[taskIndex];
-          const worker = workerPool.current[activeWorkers.current % workerPool.current.length];
-          activeWorkers.current++;
-          worker.postMessage({ id: nextId, file: task.file, config: { kbps } });
-          
-          updatedTasks[taskIndex] = { ...task, status: 'processing' };
-          tasksChanged = true;
-        }
-      }
-      return tasksChanged ? updatedTasks : prev;
-    });
-  }, [kbps]);
-
-  const handleWorkerMessage = useCallback((e: MessageEvent) => {
-    const { type, id, progress, speedStr, blob, error } = e.data;
-    
-    setTasks(prev => prev.map(t => {
-      if (t.id === id) {
-        if (type === 'progress') return { ...t, progress: progress * 100, speedStr };
-        if (type === 'done') {
-          const previewUrl = URL.createObjectURL(blob);
-          return { ...t, status: 'done', progress: 100, blob, previewUrl };
-        }
-        if (type === 'error') return { ...t, status: 'error', error };
-      }
-      return t;
-    }));
-
-    if (type === 'done' || type === 'error') {
-      activeWorkers.current--;
-      processNextTask();
-    }
-  }, [processNextTask]);
+  
+  const workers = useRef<{ worker: Worker; isBusy: boolean }[]>([]);
+  const tasksRef = useRef<ConversionTask[]>([]);
+  const kbpsRef = useRef(kbps);
 
   useEffect(() => {
-    const pool: Worker[] = [];
-    const concurrency = navigator.hardwareConcurrency || 4;
-    for (let i = 0; i < concurrency; i++) {
-      const worker = new Worker('/wav-worker.js');
-      worker.onmessage = handleWorkerMessage;
-      pool.push(worker);
+    tasksRef.current = tasks;
+  }, [tasks]);
+
+  useEffect(() => {
+    kbpsRef.current = kbps;
+  }, [kbps]);
+
+  const fallbackWithFFmpeg = useCallback((id: string, file: File, targetKbps: number) => {
+    try {
+      const ffmpegWorker = new Worker('/ffmpeg-worker.js?v=2.5.0');
+      
+      ffmpegWorker.onmessage = (e) => {
+        const { type, payload } = e.data;
+        if (type === 'INIT_DONE') {
+          ffmpegWorker.postMessage({
+            type: 'CONVERT',
+            payload: { file, quality: String(targetKbps), id }
+          });
+        } else if (type === 'PROGRESS') {
+          const prog = Math.min(100, Math.round((payload.progress || 0) * 100));
+          setTasks(prev => prev.map(t => t.id === id ? { ...t, progress: prog > 0 ? prog : t.progress, speedStr: 'Processing...' } : t));
+        } else if (type === 'DONE') {
+          const { blob, time } = payload;
+          const speed = (time / 1000).toFixed(1);
+          const previewUrl = URL.createObjectURL(blob);
+          setTasks(prev => prev.map(t => t.id === id ? { ...t, status: 'done', progress: 100, speedStr: `Converted in ${speed}s`, blob, previewUrl } : t));
+          ffmpegWorker.terminate();
+        } else if (type === 'ERROR') {
+          setTasks(prev => prev.map(t => t.id === id ? { ...t, status: 'error', error: payload?.error || 'Conversion failed' } : t));
+          ffmpegWorker.terminate();
+        }
+      };
+
+      ffmpegWorker.onerror = (err) => {
+        setTasks(prev => prev.map(t => t.id === id ? { ...t, status: 'error', error: err.message || 'Engine error' } : t));
+        ffmpegWorker.terminate();
+      };
+
+      ffmpegWorker.postMessage({ type: 'INIT' });
+    } catch (err: unknown) {
+      const errorMsg = err instanceof Error ? err.message : String(err);
+      setTasks(prev => prev.map(t => t.id === id ? { ...t, status: 'error', error: errorMsg || 'Unable to decode audio format' } : t));
     }
-    workerPool.current = pool;
+  }, []);
+
+  const handleDecodeFallback = useCallback(async (id: string, file: File, workerObj: { worker: Worker; isBusy: boolean }, currentKbps: number) => {
+    try {
+      const arrayBuffer = await file.arrayBuffer();
+      const AudioCtxClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+      if (!AudioCtxClass) {
+        throw new Error('Web Audio decoder not supported');
+      }
+      const audioCtx = new AudioCtxClass();
+      const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer.slice(0));
+
+      const sampleRate = audioBuffer.sampleRate;
+      const numChannels = Math.min(2, audioBuffer.numberOfChannels);
+      const left = audioBuffer.getChannelData(0);
+      const right = numChannels === 2 ? audioBuffer.getChannelData(1) : undefined;
+
+      const leftCopy = new Float32Array(left);
+      const rightCopy = right ? new Float32Array(right) : undefined;
+      const transferables = rightCopy ? [leftCopy.buffer, rightCopy.buffer] : [leftCopy.buffer];
+
+      workerObj.worker.postMessage({
+        type: 'ENCODE_RAW_PCM',
+        id,
+        left: leftCopy.buffer,
+        right: rightCopy ? rightCopy.buffer : undefined,
+        sampleRate,
+        numChannels,
+        config: { kbps: currentKbps }
+      }, transferables);
+
+      if (audioCtx.state !== 'closed') {
+        audioCtx.close().catch(() => {});
+      }
+    } catch {
+      // If Web Audio API cannot decode (e.g. ADPCM, proprietary codec, or unusual container), fallback to FFmpeg WASM
+      if (workerObj) workerObj.isBusy = false;
+      fallbackWithFFmpeg(id, file, currentKbps);
+    }
+  }, [fallbackWithFFmpeg]);
+
+  useEffect(() => {
+    const pool: { worker: Worker; isBusy: boolean }[] = [];
+    const concurrency = typeof navigator !== 'undefined' && navigator.hardwareConcurrency ? navigator.hardwareConcurrency : 4;
     
-  
-  return () => {
-      pool.forEach(w => w.terminate());
-      workerPool.current = [];
+    for (let i = 0; i < concurrency; i++) {
+      const worker = new Worker('/wav-worker.js?v=2.3.0');
+      
+      worker.onmessage = (e: MessageEvent) => {
+        const { type, id, progress, speedStr, blob, error } = e.data;
+        
+        if (type === 'FALLBACK_TO_DECODE') {
+          const task = tasksRef.current.find(t => t.id === id);
+          if (task && pool[i]) {
+            handleDecodeFallback(id, task.file, pool[i], kbpsRef.current);
+            return;
+          }
+        }
+
+        if (type === 'FALLBACK_TO_FFMPEG') {
+          const task = tasksRef.current.find(t => t.id === id);
+          if (pool[i]) pool[i].isBusy = false;
+          if (task) {
+            fallbackWithFFmpeg(id, task.file, kbpsRef.current);
+            return;
+          }
+        }
+
+        if (type === 'done' || type === 'error') {
+          if (pool[i]) pool[i].isBusy = false;
+        }
+
+        setTasks(prev => prev.map(t => {
+          if (t.id === id) {
+            if (type === 'progress') return { ...t, progress: progress * 100, speedStr };
+            if (type === 'done') {
+              const previewUrl = URL.createObjectURL(blob);
+              return { ...t, status: 'done', progress: 100, blob, previewUrl };
+            }
+            if (type === 'error') return { ...t, status: 'error', error };
+          }
+          return t;
+        }));
+      };
+      
+      pool.push({ worker, isBusy: false });
+    }
+    
+    workers.current = pool;
+    
+    return () => {
+      pool.forEach(w => w.worker.terminate());
+      workers.current = [];
     };
-  }, [handleWorkerMessage]);
+  }, [handleDecodeFallback, fallbackWithFFmpeg]); // Only initialize workers once
+
+  useEffect(() => {
+    const pendingTasks = tasks.filter(t => t.status === 'pending');
+    if (pendingTasks.length === 0) return;
+
+    const startedIds: string[] = [];
+    
+    for (const pTask of pendingTasks) {
+      const freeWorker = workers.current.find(w => !w.isBusy);
+      if (!freeWorker) break;
+      
+      freeWorker.isBusy = true;
+      freeWorker.worker.postMessage({ id: pTask.id, file: pTask.file, config: { kbps } });
+      startedIds.push(pTask.id);
+    }
+
+    if (startedIds.length > 0) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setTasks(prev => prev.map(t => 
+        startedIds.includes(t.id) ? { ...t, status: 'processing' } : t
+      ));
+    }
+  }, [tasks, kbps]);
 
   const addFiles = (files: File[]) => {
     const wavFiles = files.filter(f => f.name.toLowerCase().endsWith('.wav'));
@@ -105,11 +205,6 @@ export default function WavToMp3Converter() {
     }));
 
     setTasks(prev => [...prev, ...newTasks]);
-    
-    newTasks.forEach(t => {
-      taskQueue.current.push(t.id);
-    });
-    processNextTask();
   };
 
   const handleDrop = (e: React.DragEvent) => {
@@ -144,7 +239,10 @@ export default function WavToMp3Converter() {
   };
 
 
+  const [isSharing, setIsSharing] = useState(false);
+
   const handleShare = async () => {
+    if (isSharing) return;
     const shareData = {
       title: t('share_title'),
       text: t('share_text'),
@@ -152,10 +250,15 @@ export default function WavToMp3Converter() {
     };
 
     if (navigator.share && navigator.canShare(shareData)) {
+      setIsSharing(true);
       try {
         await navigator.share(shareData);
-      } catch (err) {
-        console.error('Error sharing:', err);
+      } catch (err: unknown) {
+        if (err instanceof Error && err.name !== 'AbortError' && !err.message.includes('Share canceled')) {
+          console.error('Error sharing:', err);
+        }
+      } finally {
+        setIsSharing(false);
       }
     } else {
       navigator.clipboard.writeText(`${shareData.title}\n${shareData.text}\n${shareData.url}`);

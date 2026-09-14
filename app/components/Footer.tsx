@@ -101,6 +101,12 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/mp3-to-wav"
+                  className="text-on-surface-variant hover:text-on-surface transition-colors text-sm font-medium"
+                >MP3 to WAV Converter</Link>
+              </li>
+              <li>
+                <Link
                   href="/mp3-to-m4a"
                   className="text-on-surface-variant hover:text-on-surface transition-colors text-sm font-medium"
                 >{t('mp3_to_m4a_converter')}</Link>
@@ -119,7 +125,7 @@ export default function Footer() {
                   href="/acx-checker"
                   className="text-on-surface-variant hover:text-on-surface transition-colors text-sm font-medium"
                 >
-                  ACX Audio Checker
+                  {t('acx_audio_checker')}
                 </Link>
               </li>
               <li>
@@ -153,6 +159,22 @@ export default function Footer() {
               {t("platform_legal_title")}
             </h3>
             <ul className="space-y-3">
+              <li>
+                <Link
+                  href="/blog"
+                  className="text-on-surface-variant hover:text-on-surface transition-colors text-sm font-medium"
+                >
+                  {t("blog_guides")}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/blog/what-is-a-daw"
+                  className="text-on-surface-variant hover:text-on-surface transition-colors text-sm font-medium"
+                >
+                  {t("what_is_a_daw_title")}
+                </Link>
+              </li>
               <li>
                 <Link
                   href="/privacy-policy"

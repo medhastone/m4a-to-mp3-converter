@@ -85,18 +85,25 @@ Track: ${tags.track || t('mv_unknown')}
     alert('Metadata copied to clipboard!');
   };
 
+  const [isSharing, setIsSharing] = useState(false);
+
   const handleShare = async () => {
-    if (!tags) return;
+    if (!tags || isSharing) return;
     const metadataText = `Check out this audio metadata:\nTitle: ${tags.title || t('mv_unknown')}\nArtist: ${tags.artist || t('mv_unknown')}\nAlbum: ${tags.album || t('mv_unknown')}`;
     
     if (navigator.share) {
+      setIsSharing(true);
       try {
         await navigator.share({
           title: 'Audio Metadata',
           text: metadataText,
         });
-      } catch (err) {
-        console.error('Error sharing:', err);
+      } catch (err: unknown) {
+        if (err instanceof Error && err.name !== 'AbortError' && !err.message.includes('Share canceled')) {
+          console.error('Error sharing:', err);
+        }
+      } finally {
+        setIsSharing(false);
       }
     } else {
       handleCopy();
@@ -191,6 +198,7 @@ Track: ${tags.track || t('mv_unknown')}
             <div className="w-full md:w-1/3 flex flex-col gap-4">
               <div className="aspect-square bg-surface-dim rounded-xl overflow-hidden border border-outline-variant/10 flex items-center justify-center relative shadow-inner">
                 {pictureUrl ? (
+                        // eslint-disable-next-line @next/next/no-img-element
                   <img src={pictureUrl} alt="Album Art" className="w-full h-full object-cover" />
                 ) : (
                   <div className="flex flex-col items-center text-on-surface-variant/50">

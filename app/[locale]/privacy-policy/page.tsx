@@ -1,18 +1,19 @@
-import { setRequestLocale } from 'next-intl/server';
+import type { Metadata } from 'next';
+import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { useTranslations } from 'next-intl';
 import { ShieldCheck, Mail } from 'lucide-react';
 
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const resolvedParams = await params;
   const locale = resolvedParams.locale;
-  setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: 'privacy_policy' });
   const domain = 'https://m4atomp3converter.com';
   const path = '/privacy-policy';
   
   return {
-    title: "Privacy Policy - M4A to MP3 Converter",
-    description: "Convert M4A to MP3 easily and locally.",
+    title: t('meta_title'),
+    description: t('meta_description'),
     alternates: {
       canonical: `${domain}/${locale}${path}`,
       languages: {

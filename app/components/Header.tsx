@@ -23,6 +23,52 @@ export default function Header() {
             <Link className="text-on-surface-variant hover:text-on-surface transition-colors font-medium text-sm" href="/#specs">{t('technical_specs')}</Link>
             <Link className="text-on-surface-variant hover:text-on-surface transition-colors font-medium text-sm" href="/#faq">{t('faq')}</Link>
             
+            {/* Blog Section */}
+            <div className="relative group">
+              <Link 
+                href="/blog" 
+                className="text-on-surface-variant hover:text-on-surface transition-colors font-medium text-sm flex items-center gap-1"
+              >
+                {t('blog')} <ChevronDown className="w-4 h-4 group-hover:rotate-180 transition-transform duration-200" />
+              </Link>
+              
+              <div className="absolute top-full left-0 mt-2 w-72 bg-surface-container-high border border-outline-variant/30 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 flex flex-col py-2 z-50">
+                <Link 
+                  href="/blog" 
+                  className="px-4 py-2.5 text-sm font-semibold text-on-surface hover:text-primary hover:bg-surface-dim transition-colors flex items-center gap-2 border-b border-outline-variant/15"
+                >
+                  <span className="text-base">📚</span> {t('all_articles')}
+                </Link>
+                <Link 
+                  href="/blog/what-is-a-daw" 
+                  className="px-4 py-2.5 text-sm text-on-surface-variant hover:text-primary hover:bg-surface-dim transition-colors flex flex-col gap-0.5"
+                >
+                  <div className="flex items-center gap-2 font-medium text-on-surface">
+                    <span className="text-base">🎛️</span> {t('what_is_a_daw_title')}
+                  </div>
+                  <span className="text-xs text-on-surface-variant/70 pl-6">Digital Audio Workstation Guide</span>
+                </Link>
+                <Link 
+                  href="/blog/sample-rate-vs-bit-depth" 
+                  className="px-4 py-2.5 text-sm text-on-surface-variant hover:text-primary hover:bg-surface-dim transition-colors flex flex-col gap-0.5"
+                >
+                  <div className="flex items-center gap-2 font-medium text-on-surface">
+                    <span className="text-base">🎚️</span> Sample Rate vs Bit Depth
+                  </div>
+                  <span className="text-xs text-on-surface-variant/70 pl-6">44.1kHz vs 48kHz &amp; 16 vs 24-Bit</span>
+                </Link>
+                <Link 
+                  href="/blog/lossless-vs-lossy-audio" 
+                  className="px-4 py-2.5 text-sm text-on-surface-variant hover:text-primary hover:bg-surface-dim transition-colors flex flex-col gap-0.5"
+                >
+                  <div className="flex items-center gap-2 font-medium text-on-surface">
+                    <span className="text-base">🎧</span> Lossless vs Lossy Audio
+                  </div>
+                  <span className="text-xs text-on-surface-variant/70 pl-6">WAV, FLAC, AAC &amp; MP3 Guide</span>
+                </Link>
+              </div>
+            </div>
+            
             <div className="relative group">
               <button className="text-on-surface-variant hover:text-on-surface transition-colors font-medium text-sm flex items-center gap-1">
                 {t('presets_and_tools')} <ChevronDown className="w-4 h-4" />
@@ -54,13 +100,16 @@ export default function Header() {
                   <span className="text-lg">🏷️</span> {t('metadata_viewer')}
                 </Link>
                 <Link href="/audio-metadata-remover" className="px-4 py-2 text-sm text-on-surface-variant hover:text-primary hover:bg-surface-dim transition-colors flex items-center gap-2">
-                  <span className="text-lg">🛡️</span> Metadata Remover
+                  <span className="text-lg">🛡️</span> {t('metadata_remover')}
                 </Link>
                 <Link href="/client-side-safe" className="px-4 py-2 text-sm text-on-surface-variant hover:text-primary hover:bg-surface-dim transition-colors flex items-center gap-2">
                   <span className="text-lg">🔒</span> {t('client_side_safe')}
                 </Link>
                 <Link href="/acx-checker" className="px-4 py-2 text-sm text-on-surface-variant hover:text-primary hover:bg-surface-dim transition-colors flex items-center gap-2">
-                  <span className="text-lg">🎙️</span> ACX Audio Checker
+                  <span className="text-lg">🎙️</span> {t('acx_audio_checker')}
+                </Link>
+                <Link href="/mp3-to-wav" className="px-4 py-2 text-sm text-on-surface-variant hover:text-primary hover:bg-surface-dim transition-colors flex items-center gap-2">
+                  <span className="text-lg">🎼</span> MP3 to WAV Converter
                 </Link>
               </div>
             </div>

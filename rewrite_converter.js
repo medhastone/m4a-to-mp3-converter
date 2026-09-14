@@ -1,44 +1,91 @@
-import fs from 'fs';
-import { GoogleGenAI } from '@google/genai';
+const fs = require('fs');
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+const path = '/app/applet/app/components/WavToMp3Converter.tsx';
+let code = fs.readFileSync(path, 'utf8');
 
-async function main() {
-  const file = 'app/components/Converter.tsx';
-  console.log(`Processing ${file}...`);
-  const content = fs.readFileSync(file, 'utf-8');
-  
-  const prompt = `
-  You are an expert React developer. Rewrite the following Next.js file to use next-intl translations.
-  1. Extract all raw user-facing text strings into translation keys.
-  2. Add import { useTranslations } from 'next-intl';
-  3. Use const t = useTranslations('converter');
-  4. Replace text strings in JSX with {t('key_name')}.
-  5. KEEP the rest of the code the same (logic, hooks, etc).
-  
-  Provide the output as a JSON object:
-  {
-    "newCode": "the complete new tsx file content",
-    "enKeys": { "key_name": "...", ... }
-  }
-  Respond ONLY with valid JSON. Do not wrap in markdown \`\`\`json.
-  `;
-  
-  try {
-    const response = await ai.models.generateContent({
-      model: 'gemini-3.6-flash',
-      contents: [prompt, content]
-    });
-    let text = response.text;
-    text = text.replace(/```json/g, '').replace(/```/g, '').trim();
-    const result = JSON.parse(text);
+const newLogic = `
+  const workers = useRef<{ worker: Worker; isBusy: boolean }[]>([]);
+
+  useEffect(() => {
+    const pool: { worker: Worker; isBusy: boolean }[] = [];
+    const concurrency = typeof navigator !== 'undefined' && navigator.hardwareConcurrency ? navigator.hardwareConcurrency : 4;
     
-    fs.writeFileSync(file, result.newCode);
-    fs.writeFileSync('converter_keys.json', JSON.stringify({ converter: result.enKeys }, null, 2));
-    console.log(`Saved ${file}`);
-  } catch (err) {
-    console.error(`Error processing ${file}:`, err.message);
-  }
-}
+    for (let i = 0; i < concurrency; i++) {
+      const worker = new Worker('/wav-worker.js');
+      
+      worker.onmessage = (e: MessageEvent) => {
+        const { type, id, progress, speedStr, blob, error } = e.data;
+        
+        if (type === 'done' || type === 'error') {
+          if (workers.current[i]) workers.current[i].isBusy = false;
+        }
 
-main();
+        setTasks(prev => prev.map(t => {
+          if (t.id === id) {
+            if (type === 'progress') return { ...t, progress: progress * 100, speedStr };
+            if (type === 'done') {
+              const previewUrl = URL.createObjectURL(blob);
+              return { ...t, status: 'done', progress: 100, blob, previewUrl };
+            }
+            if (type === 'error') return { ...t, status: 'error', error };
+          }
+          return t;
+        }));
+      };
+      
+      pool.push({ worker, isBusy: false });
+    }
+    
+    workers.current = pool;
+    
+    return () => {
+      pool.forEach(w => w.worker.terminate());
+      workers.current = [];
+    };
+  }, []); // Only initialize workers once
+
+  useEffect(() => {
+    const pendingTasks = tasks.filter(t => t.status === 'pending');
+    if (pendingTasks.length === 0) return;
+
+    const startedIds: string[] = [];
+    
+    for (const pTask of pendingTasks) {
+      const freeWorker = workers.current.find(w => !w.isBusy);
+      if (!freeWorker) break;
+      
+      freeWorker.isBusy = true;
+      freeWorker.worker.postMessage({ id: pTask.id, file: pTask.file, config: { kbps } });
+      startedIds.push(pTask.id);
+    }
+
+    if (startedIds.length > 0) {
+      setTasks(prev => prev.map(t => 
+        startedIds.includes(t.id) ? { ...t, status: 'processing' } : t
+      ));
+    }
+  }, [tasks, kbps]);
+
+  const addFiles = (files: File[]) => {
+    const wavFiles = files.filter(f => f.name.toLowerCase().endsWith('.wav'));
+    if (wavFiles.length === 0) {
+      alert(t('alert_wav_only'));
+      return;
+    }
+
+    const newTasks = wavFiles.map(file => ({
+      id: Math.random().toString(36).substring(7),
+      file,
+      progress: 0,
+      status: 'pending' as const
+    }));
+
+    setTasks(prev => [...prev, ...newTasks]);
+  };
+`;
+
+const regex = /const workerPool = useRef<Worker\[\]>\(\[\]\);([\s\S]*?)const handleDrop/m;
+
+code = code.replace(regex, `${newLogic}\n  const handleDrop`);
+
+fs.writeFileSync(path, code);

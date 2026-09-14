@@ -1,19 +1,20 @@
-import { setRequestLocale } from 'next-intl/server';
+import type { Metadata } from 'next';
+import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { useTranslations } from 'next-intl';
 import { Terminal } from 'lucide-react';
 import Converter from '../../components/Converter';
 
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const resolvedParams = await params;
   const locale = resolvedParams.locale;
-  setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: 'client_side_safe' });
   const domain = 'https://m4atomp3converter.com';
   const path = '/client-side-safe';
   
   return {
-    title: "Client Side Safe - M4A to MP3 Converter",
-    description: "Convert M4A to MP3 easily and locally.",
+    title: t('meta_title'),
+    description: t('meta_description'),
     alternates: {
       canonical: `${domain}/${locale}${path}`,
       languages: {

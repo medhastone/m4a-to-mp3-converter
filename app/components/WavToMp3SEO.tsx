@@ -1,195 +1,331 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { Shield, Zap, FileAudio, CheckCircle2, Music, Layers, HelpCircle } from 'lucide-react';
+import {
+  ShieldCheck,
+  Zap,
+  Cpu,
+  Layers,
+  HelpCircle,
+  ChevronDown,
+  Lock,
+  CheckCircle2,
+  XCircle,
+  FileAudio,
+  Radio,
+  Sliders,
+  Sparkles
+} from 'lucide-react';
 
 export default function WavToMp3SEO() {
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
   const t = useTranslations('wav_to_mp3_seo');
+
+  const toggleFaq = (index: number) => {
+    setOpenFaq(prev => (prev === index ? null : index));
+  };
+
   return (
-    <article className="w-full max-w-4xl mx-auto flex flex-col gap-12 mt-16 pb-20 px-4 md:px-0 text-on-surface-variant">
+    <article className="w-full max-w-4xl mx-auto flex flex-col gap-12 mt-4 pb-20 text-on-surface-variant">
       
-      {/* 1. Hero Section & Engineering Overview */}
-      <section className="bg-surface-container-low p-8 md:p-12 rounded-3xl border border-outline-variant/10 shadow-lg space-y-6">
-        <h1 className="text-2xl md:text-4xl font-extrabold text-on-surface tracking-tight leading-tight">{t('seo_text_1')}</h1>
-        <p className="text-on-surface-variant leading-relaxed">{t('seo_text_2')}</p>
-        <p className="text-on-surface-variant leading-relaxed">{t('seo_text_3')}</p>
+      {/* 1. 3-Step Workflow */}
+      <section id="how-to-convert-wav-to-mp3" className="bg-surface-container-low p-6 sm:p-10 rounded-3xl border border-outline-variant/20 shadow-md">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-10 h-10 rounded-xl bg-primary/15 text-primary flex items-center justify-center shrink-0">
+            <Sliders className="w-5 h-5" />
+          </div>
+          <h2 className="text-xl sm:text-2xl font-bold text-on-surface tracking-tight" dangerouslySetInnerHTML={{ __html: t.raw('seo_how_to_title') }} />
+        </div>
+        
+        <p className="text-sm sm:text-base text-on-surface-variant leading-relaxed mb-8" dangerouslySetInnerHTML={{ __html: t.raw('seo_how_to_desc') }} />
+
+        <ol className="grid grid-cols-1 md:grid-cols-3 gap-6 list-none p-0 m-0">
+          <li className="flex flex-col gap-3 p-5 rounded-2xl bg-surface-container border border-outline-variant/20 relative">
+            <div className="flex items-center justify-between">
+              <span className="w-8 h-8 rounded-lg bg-primary text-on-primary font-bold text-sm flex items-center justify-center shadow-xs">1</span>
+              <span className="text-[11px] font-semibold text-primary uppercase tracking-wider">{t('seo_step1_label')}</span>
+            </div>
+            <h3 className="text-base font-bold text-on-surface" dangerouslySetInnerHTML={{ __html: t.raw('seo_step1_title') }} />
+            <p className="text-xs sm:text-sm text-on-surface-variant leading-relaxed" dangerouslySetInnerHTML={{ __html: t.raw('seo_step1_desc') }} />
+          </li>
+
+          <li className="flex flex-col gap-3 p-5 rounded-2xl bg-surface-container border border-outline-variant/20 relative">
+            <div className="flex items-center justify-between">
+              <span className="w-8 h-8 rounded-lg bg-primary text-on-primary font-bold text-sm flex items-center justify-center shadow-xs">2</span>
+              <span className="text-[11px] font-semibold text-primary uppercase tracking-wider">{t('seo_step2_label')}</span>
+            </div>
+            <h3 className="text-base font-bold text-on-surface" dangerouslySetInnerHTML={{ __html: t.raw('seo_step2_title') }} />
+            <p className="text-xs sm:text-sm text-on-surface-variant leading-relaxed" dangerouslySetInnerHTML={{ __html: t.raw('seo_step2_desc') }} />
+          </li>
+
+          <li className="flex flex-col gap-3 p-5 rounded-2xl bg-surface-container border border-outline-variant/20 relative">
+            <div className="flex items-center justify-between">
+              <span className="w-8 h-8 rounded-lg bg-primary text-on-primary font-bold text-sm flex items-center justify-center shadow-xs">3</span>
+              <span className="text-[11px] font-semibold text-primary uppercase tracking-wider">{t('seo_step3_label')}</span>
+            </div>
+            <h3 className="text-base font-bold text-on-surface" dangerouslySetInnerHTML={{ __html: t.raw('seo_step3_title') }} />
+            <p className="text-xs sm:text-sm text-on-surface-variant leading-relaxed" dangerouslySetInnerHTML={{ __html: t.raw('seo_step3_desc') }} />
+          </li>
+        </ol>
       </section>
 
-      {/* 2. Step-by-Step Guide */}
-      <section className="bg-surface-container-low p-8 md:p-12 rounded-3xl border border-outline-variant/10 shadow-lg">
-        <h2 className="text-xl md:text-2xl font-bold text-on-surface mb-8 tracking-tight">{t('seo_text_4')}</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="flex flex-col gap-4">
-            <div className="w-12 h-12 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold text-xl mb-2">1</div>
-            <h3 className="font-bold text-on-surface text-lg">{t('seo_text_5')}</h3>
-            <p className="text-on-surface-variant leading-relaxed text-sm">{t('seo_text_6')}</p>
+      {/* 2. WASM vs Cloud */}
+      <section id="wasm-vs-cloud" className="bg-surface-container-low p-6 sm:p-10 rounded-3xl border border-outline-variant/20 shadow-md">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-10 h-10 rounded-xl bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
+            <Cpu className="w-5 h-5" />
           </div>
-          <div className="flex flex-col gap-4">
-            <div className="w-12 h-12 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold text-xl mb-2">2</div>
-            <h3 className="font-bold text-on-surface text-lg">{t('seo_text_7')}</h3>
-            <p className="text-on-surface-variant leading-relaxed text-sm">{t('seo_text_8')}</p>
+          <h2 className="text-xl sm:text-2xl font-bold text-on-surface tracking-tight" dangerouslySetInnerHTML={{ __html: t.raw('seo_wasm_title') }} />
+        </div>
+
+        <p className="text-sm sm:text-base text-on-surface-variant leading-relaxed mb-6" dangerouslySetInnerHTML={{ __html: t.raw('seo_wasm_desc1') }} />
+        <p className="text-sm sm:text-base text-on-surface-variant leading-relaxed mb-8" dangerouslySetInnerHTML={{ __html: t.raw('seo_wasm_desc2') }} />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="p-6 rounded-2xl bg-surface-container border border-emerald-500/30 flex flex-col gap-4">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
+                <ShieldCheck className="w-5 h-5" />
+              </div>
+              <h3 className="text-base font-bold text-on-surface" dangerouslySetInnerHTML={{ __html: t.raw('seo_wasm_client_title') }} />
+            </div>
+            <ul className="space-y-3 text-xs sm:text-sm text-on-surface-variant list-none p-0 m-0">
+              <li className="flex items-start gap-2.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                <span dangerouslySetInnerHTML={{ __html: t.raw('seo_wasm_client_1') }} />
+              </li>
+              <li className="flex items-start gap-2.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                <span dangerouslySetInnerHTML={{ __html: t.raw('seo_wasm_client_2') }} />
+              </li>
+              <li className="flex items-start gap-2.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                <span dangerouslySetInnerHTML={{ __html: t.raw('seo_wasm_client_3') }} />
+              </li>
+              <li className="flex items-start gap-2.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                <span dangerouslySetInnerHTML={{ __html: t.raw('seo_wasm_client_4') }} />
+              </li>
+            </ul>
           </div>
-          <div className="flex flex-col gap-4">
-            <div className="w-12 h-12 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold text-xl mb-2">3</div>
-            <h3 className="font-bold text-on-surface text-lg">{t('seo_text_9')}</h3>
-            <p className="text-on-surface-variant leading-relaxed text-sm">{t('seo_text_10')}</p>
+
+          <div className="p-6 rounded-2xl bg-surface-container border border-outline-variant/30 flex flex-col gap-4">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-lg bg-rose-500/15 text-rose-600 dark:text-rose-400 flex items-center justify-center shrink-0">
+                <XCircle className="w-5 h-5" />
+              </div>
+              <h3 className="text-base font-bold text-on-surface" dangerouslySetInnerHTML={{ __html: t.raw('seo_wasm_legacy_title') }} />
+            </div>
+            <ul className="space-y-3 text-xs sm:text-sm text-on-surface-variant list-none p-0 m-0">
+              <li className="flex items-start gap-2.5">
+                <XCircle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
+                <span dangerouslySetInnerHTML={{ __html: t.raw('seo_wasm_legacy_1') }} />
+              </li>
+              <li className="flex items-start gap-2.5">
+                <XCircle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
+                <span dangerouslySetInnerHTML={{ __html: t.raw('seo_wasm_legacy_2') }} />
+              </li>
+              <li className="flex items-start gap-2.5">
+                <XCircle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
+                <span dangerouslySetInnerHTML={{ __html: t.raw('seo_wasm_legacy_3') }} />
+              </li>
+              <li className="flex items-start gap-2.5">
+                <XCircle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
+                <span dangerouslySetInnerHTML={{ __html: t.raw('seo_wasm_legacy_4') }} />
+              </li>
+            </ul>
           </div>
         </div>
       </section>
 
-      {/* 3. Technical Deep Dive */}
-      <section className="bg-surface-container-low p-8 md:p-12 rounded-3xl border border-outline-variant/10 shadow-lg space-y-6">
-        <h2 className="text-xl md:text-2xl font-bold text-on-surface tracking-tight mb-2">{t('seo_text_11')}</h2>
-        <p className="text-on-surface-variant leading-relaxed">{t('seo_text_12')}</p>
-        <p className="text-on-surface-variant leading-relaxed">{t('seo_text_13')}<strong>{t('seo_text_14')}</strong>{t('seo_text_15')}</p>
-        <p className="text-on-surface-variant leading-relaxed">{t('seo_text_16')}<strong>{t('seo_text_17')}</strong>{t('seo_text_18')}</p>
-      </section>
+      {/* 3. Audio Specification Matrix */}
+      <section id="audio-spec-matrix" className="bg-surface-container-low p-6 sm:p-10 rounded-3xl border border-outline-variant/20 shadow-md">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-10 h-10 rounded-xl bg-amber-500/15 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
+            <Radio className="w-5 h-5" />
+          </div>
+          <h2 className="text-xl sm:text-2xl font-bold text-on-surface tracking-tight" dangerouslySetInnerHTML={{ __html: t.raw('seo_matrix_title') }} />
+        </div>
 
-      {/* 4. Matrix Table */}
-      <section className="bg-surface-container-low p-8 md:p-12 rounded-3xl border border-outline-variant/10 shadow-lg">
-        <h2 className="text-xl md:text-2xl font-bold text-on-surface tracking-tight mb-6">{t('seo_text_19')}</h2>
-        <div className="overflow-x-auto rounded-xl border border-outline-variant/30">
-          <table className="w-full text-left border-collapse min-w-[600px]">
+        <p className="text-sm sm:text-base text-on-surface-variant leading-relaxed mb-6" dangerouslySetInnerHTML={{ __html: t.raw('seo_matrix_desc') }} />
+
+        <div className="overflow-x-auto rounded-2xl border border-outline-variant/30">
+          <table className="w-full text-left border-collapse text-xs sm:text-sm">
             <thead>
-              <tr className="border-b border-outline-variant/30 text-on-surface-variant">
-                <th className="p-4 font-semibold">{t('seo_text_20')}</th>
-                <th className="p-4 font-semibold">{t('seo_text_21')}</th>
-                <th className="p-4 font-semibold">{t('seo_text_22')}</th>
-                <th className="p-4 font-semibold">{t('seo_text_23')}</th>
-                <th className="p-4 font-semibold">{t('seo_text_24')}</th>
+              <tr className="bg-surface-container-high/80 border-b border-outline-variant/30 text-on-surface">
+                <th scope="col" className="p-4 font-bold" dangerouslySetInnerHTML={{ __html: t.raw('seo_matrix_h1') }} />
+                <th scope="col" className="p-4 font-bold" dangerouslySetInnerHTML={{ __html: t.raw('seo_matrix_h2') }} />
+                <th scope="col" className="p-4 font-bold text-primary" dangerouslySetInnerHTML={{ __html: t.raw('seo_matrix_h3') }} />
               </tr>
             </thead>
-            <tbody className="bg-surface-container/30 text-sm text-on-surface">
-              <tr className="border-b border-outline-variant/10 hover:bg-on-surface/5 transition-colors">
-                <td className="p-4 font-bold text-on-surface">{t('seo_text_25')}</td>
-                <td className="p-4 text-on-surface-variant">{t('seo_text_26')}</td>
-                <td className="p-4">{t('seo_text_27')}</td>
-                <td className="p-4">~ 1:6</td>
-                <td className="p-4 text-on-surface-variant">{t('seo_text_28')}</td>
+            <tbody className="divide-y divide-outline-variant/20 bg-surface-container/40">
+              <tr className="hover:bg-surface-container-high/40 transition-colors">
+                <td className="p-4 font-semibold text-on-surface" dangerouslySetInnerHTML={{ __html: t.raw('seo_matrix_r1_c1') }} />
+                <td className="p-4 text-on-surface-variant" dangerouslySetInnerHTML={{ __html: t.raw('seo_matrix_r1_c2') }} />
+                <td className="p-4 text-on-surface font-medium" dangerouslySetInnerHTML={{ __html: t.raw('seo_matrix_r1_c3') }} />
               </tr>
-              <tr className="border-b border-outline-variant/10 hover:bg-on-surface/5 transition-colors">
-                <td className="p-4 font-bold text-on-surface">{t('seo_text_29')}</td>
-                <td className="p-4 text-on-surface-variant">{t('seo_text_30')}</td>
-                <td className="p-4">{t('seo_text_31')}</td>
-                <td className="p-4">~ 1:7</td>
-                <td className="p-4 text-on-surface-variant">{t('seo_text_32')}</td>
+              <tr className="hover:bg-surface-container-high/40 transition-colors">
+                <td className="p-4 font-semibold text-on-surface" dangerouslySetInnerHTML={{ __html: t.raw('seo_matrix_r2_c1') }} />
+                <td className="p-4 text-on-surface-variant" dangerouslySetInnerHTML={{ __html: t.raw('seo_matrix_r2_c2') }} />
+                <td className="p-4 text-on-surface font-medium" dangerouslySetInnerHTML={{ __html: t.raw('seo_matrix_r2_c3') }} />
               </tr>
-              <tr className="border-b border-outline-variant/10 hover:bg-on-surface/5 transition-colors">
-                <td className="p-4 font-bold text-on-surface">{t('seo_text_33')}</td>
-                <td className="p-4 text-on-surface-variant">{t('seo_text_34')}</td>
-                <td className="p-4">{t('seo_text_35')}</td>
-                <td className="p-4">~ 1:8</td>
-                <td className="p-4 text-on-surface-variant">{t('seo_text_36')}</td>
+              <tr className="hover:bg-surface-container-high/40 transition-colors">
+                <td className="p-4 font-semibold text-on-surface" dangerouslySetInnerHTML={{ __html: t.raw('seo_matrix_r3_c1') }} />
+                <td className="p-4 text-on-surface-variant" dangerouslySetInnerHTML={{ __html: t.raw('seo_matrix_r3_c2') }} />
+                <td className="p-4 text-emerald-600 dark:text-emerald-400 font-bold" dangerouslySetInnerHTML={{ __html: t.raw('seo_matrix_r3_c3') }} />
               </tr>
-              <tr className="border-b border-outline-variant/10 hover:bg-on-surface/5 transition-colors">
-                <td className="p-4 font-bold text-on-surface">{t('seo_text_37')}</td>
-                <td className="p-4 text-on-surface-variant">{t('seo_text_38')}</td>
-                <td className="p-4">{t('seo_text_39')}</td>
-                <td className="p-4">~ 1:11</td>
-                <td className="p-4 text-on-surface-variant">{t('seo_text_40')}</td>
+              <tr className="hover:bg-surface-container-high/40 transition-colors">
+                <td className="p-4 font-semibold text-on-surface" dangerouslySetInnerHTML={{ __html: t.raw('seo_matrix_r4_c1') }} />
+                <td className="p-4 text-on-surface-variant" dangerouslySetInnerHTML={{ __html: t.raw('seo_matrix_r4_c2') }} />
+                <td className="p-4 text-on-surface font-medium" dangerouslySetInnerHTML={{ __html: t.raw('seo_matrix_r4_c3') }} />
               </tr>
-              <tr className="hover:bg-on-surface/5 transition-colors">
-                <td className="p-4 font-bold text-on-surface">{t('seo_text_41')}</td>
-                <td className="p-4 text-on-surface-variant">{t('seo_text_42')}</td>
-                <td className="p-4">{t('seo_text_43')}</td>
-                <td className="p-4">~ 1:16</td>
-                <td className="p-4 text-on-surface-variant">{t('seo_text_44')}</td>
+              <tr className="hover:bg-surface-container-high/40 transition-colors">
+                <td className="p-4 font-semibold text-on-surface" dangerouslySetInnerHTML={{ __html: t.raw('seo_matrix_r5_c1') }} />
+                <td className="p-4 text-on-surface-variant" dangerouslySetInnerHTML={{ __html: t.raw('seo_matrix_r5_c2') }} />
+                <td className="p-4 text-on-surface font-medium" dangerouslySetInnerHTML={{ __html: t.raw('seo_matrix_r5_c3') }} />
               </tr>
             </tbody>
           </table>
         </div>
       </section>
 
-      {/* 5. Client vs Cloud */}
-      <section className="bg-surface-container-low p-8 md:p-12 rounded-3xl border border-outline-variant/10 shadow-lg">
-        <h2 className="text-xl md:text-2xl font-bold text-on-surface tracking-tight mb-4">{t('seo_text_45')}</h2>
-        <p className="text-on-surface-variant leading-relaxed">{t('seo_text_46')}</p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-          <div className="bg-surface-container p-6 rounded-2xl border border-emerald-500/20 hover:border-emerald-500/40 transition-colors">
-            <div className="flex items-center gap-3 mb-4">
-              <Shield className="w-6 h-6 text-emerald-400" />
-              <h3 className="text-lg font-bold text-on-surface">{t('seo_text_47')}</h3>
-            </div>
-            <ul className="space-y-4 text-sm text-on-surface-variant">
-              <li className="flex gap-3"><CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" /> <strong>{t('seo_text_48')}</strong>{t('seo_text_49')}</li>
-              <li className="flex gap-3"><CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" /> <strong>{t('seo_text_50')}</strong>{t('seo_text_51')}</li>
-              <li className="flex gap-3"><CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" /> <strong>{t('seo_text_52')}</strong>{t('seo_text_53')}</li>
-              <li className="flex gap-3"><CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" /> <strong>{t('seo_text_54')}</strong>{t('seo_text_55')}</li>
-            </ul>
+      {/* 4. Professional Use Cases */}
+      <section id="wav-to-mp3-use-cases" className="bg-surface-container-low p-6 sm:p-10 rounded-3xl border border-outline-variant/20 shadow-md">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-10 h-10 rounded-xl bg-purple-500/15 text-purple-600 dark:text-purple-400 flex items-center justify-center shrink-0">
+            <Sparkles className="w-5 h-5" />
           </div>
-          
-          <div className="bg-surface-container p-6 rounded-2xl border border-red-500/20 hover:border-red-500/40 transition-colors">
-            <div className="flex items-center gap-3 mb-4">
-              <Zap className="w-6 h-6 text-red-400" />
-              <h3 className="text-lg font-bold text-on-surface">{t('seo_text_56')}</h3>
-            </div>
-            <ul className="space-y-4 text-sm text-on-surface-variant">
-              <li className="flex gap-3"><CheckCircle2 className="w-5 h-5 text-red-500 shrink-0" /> <strong>{t('seo_text_57')}</strong>{t('seo_text_58')}</li>
-              <li className="flex gap-3"><CheckCircle2 className="w-5 h-5 text-red-500 shrink-0" /> <strong>{t('seo_text_59')}</strong>{t('seo_text_60')}</li>
-              <li className="flex gap-3"><CheckCircle2 className="w-5 h-5 text-red-500 shrink-0" /> <strong>{t('seo_text_61')}</strong>{t('seo_text_62')}</li>
-              <li className="flex gap-3"><CheckCircle2 className="w-5 h-5 text-red-500 shrink-0" /> <strong>{t('seo_text_63')}</strong>{t('seo_text_64')}</li>
-            </ul>
+          <h2 className="text-xl sm:text-2xl font-bold text-on-surface tracking-tight" dangerouslySetInnerHTML={{ __html: t.raw('seo_use_cases_title') }} />
+        </div>
+
+        <p className="text-sm sm:text-base text-on-surface-variant leading-relaxed mb-6" dangerouslySetInnerHTML={{ __html: t.raw('seo_use_cases_desc') }} />
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="p-5 rounded-2xl bg-surface-container border border-outline-variant/20 flex flex-col gap-3">
+            <h3 className="text-base font-bold text-on-surface" dangerouslySetInnerHTML={{ __html: t.raw('seo_use_case1_title') }} />
+            <p className="text-xs sm:text-sm text-on-surface-variant leading-relaxed" dangerouslySetInnerHTML={{ __html: t.raw('seo_use_case1_desc') }} />
+          </div>
+
+          <div className="p-5 rounded-2xl bg-surface-container border border-outline-variant/20 flex flex-col gap-3">
+            <h3 className="text-base font-bold text-on-surface" dangerouslySetInnerHTML={{ __html: t.raw('seo_use_case2_title') }} />
+            <p className="text-xs sm:text-sm text-on-surface-variant leading-relaxed" dangerouslySetInnerHTML={{ __html: t.raw('seo_use_case2_desc') }} />
+          </div>
+
+          <div className="p-5 rounded-2xl bg-surface-container border border-outline-variant/20 flex flex-col gap-3">
+            <h3 className="text-base font-bold text-on-surface" dangerouslySetInnerHTML={{ __html: t.raw('seo_use_case3_title') }} />
+            <p className="text-xs sm:text-sm text-on-surface-variant leading-relaxed" dangerouslySetInnerHTML={{ __html: t.raw('seo_use_case3_desc') }} />
           </div>
         </div>
       </section>
 
-      {/* 6. Use Cases */}
-      <section className="bg-surface-container-low p-8 md:p-12 rounded-3xl border border-outline-variant/10 shadow-lg">
-        <h2 className="text-xl md:text-2xl font-bold text-on-surface tracking-tight mb-8">{t('seo_text_65')}</h2>
-        <div className="space-y-6">
-          <div className="flex gap-4 p-4 rounded-2xl hover:bg-on-surface/5 transition-colors border border-transparent hover:border-outline-variant/10">
-            <Music className="w-8 h-8 text-primary shrink-0" />
-            <div>
-              <h4 className="text-lg font-bold text-on-surface mb-2">{t('seo_text_66')}</h4>
-              <p className="text-on-surface-variant text-sm leading-relaxed">{t('seo_text_67')}</p>
-            </div>
+      {/* 5. FAQs */}
+      <section id="faq" className="flex flex-col gap-6">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-primary/15 text-primary flex items-center justify-center shrink-0">
+            <HelpCircle className="w-5 h-5" />
           </div>
-          <div className="flex gap-4 p-4 rounded-2xl hover:bg-on-surface/5 transition-colors border border-transparent hover:border-outline-variant/10">
-            <FileAudio className="w-8 h-8 text-primary shrink-0" />
-            <div>
-              <h4 className="text-lg font-bold text-on-surface mb-2">{t('seo_text_68')}</h4>
-              <p className="text-on-surface-variant text-sm leading-relaxed">{t('seo_text_69')}</p>
-            </div>
-          </div>
-          <div className="flex gap-4 p-4 rounded-2xl hover:bg-on-surface/5 transition-colors border border-transparent hover:border-outline-variant/10">
-            <Layers className="w-8 h-8 text-primary shrink-0" />
-            <div>
-              <h4 className="text-lg font-bold text-on-surface mb-2">{t('seo_text_70')}</h4>
-              <p className="text-on-surface-variant text-sm leading-relaxed">{t('seo_text_71')}</p>
-            </div>
-          </div>
+          <h2 className="text-xl sm:text-2xl font-bold text-on-surface tracking-tight" dangerouslySetInnerHTML={{ __html: t.raw('seo_faq_title') }} />
         </div>
-      </section>
 
-      {/* 7. FAQs */}
-      <section className="flex flex-col gap-8">
-        <h2 className="text-xl md:text-2xl font-bold text-on-surface tracking-tight flex items-center gap-3">
-          <HelpCircle className="w-8 h-8 text-primary" />{t('seo_text_72')}</h2>
-        
         <div className="flex flex-col gap-4">
-          <div className="bg-surface-container-low p-6 md:p-8 rounded-2xl border border-outline-variant/10 hover:border-outline-variant/30 transition-colors">
-            <h3 className="font-bold text-on-surface text-xl mb-3">{t('seo_text_73')}</h3>
-            <p className="text-on-surface-variant leading-relaxed">{t('seo_text_74')}</p>
+          
+          {/* FAQ 1 */}
+          <div className="bg-surface-container-low rounded-2xl border border-outline-variant/20 overflow-hidden shadow-xs transition-colors">
+            <button
+              id="faq-btn-1"
+              type="button"
+              onClick={() => toggleFaq(0)}
+              className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface hover:text-primary transition-colors cursor-pointer"
+            >
+              <span dangerouslySetInnerHTML={{ __html: t.raw('seo_faq1_q') }} />
+              <ChevronDown className={`w-5 h-5 shrink-0 text-on-surface-variant transition-transform duration-200 ${openFaq === 0 ? 'rotate-180' : ''}`} />
+            </button>
+            {openFaq === 0 && (
+              <div className="px-5 sm:px-6 pb-6 text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-outline-variant/10 pt-4" dangerouslySetInnerHTML={{ __html: t.raw('seo_faq1_a') }} />
+            )}
           </div>
 
-          <div className="bg-surface-container-low p-6 md:p-8 rounded-2xl border border-outline-variant/10 hover:border-outline-variant/30 transition-colors">
-            <h3 className="font-bold text-on-surface text-xl mb-3">{t('seo_text_75')}</h3>
-            <p className="text-on-surface-variant leading-relaxed">{t('seo_text_76')}</p>
+          {/* FAQ 2 */}
+          <div className="bg-surface-container-low rounded-2xl border border-outline-variant/20 overflow-hidden shadow-xs transition-colors">
+            <button
+              id="faq-btn-2"
+              type="button"
+              onClick={() => toggleFaq(1)}
+              className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface hover:text-primary transition-colors cursor-pointer"
+            >
+              <span dangerouslySetInnerHTML={{ __html: t.raw('seo_faq2_q') }} />
+              <ChevronDown className={`w-5 h-5 shrink-0 text-on-surface-variant transition-transform duration-200 ${openFaq === 1 ? 'rotate-180' : ''}`} />
+            </button>
+            {openFaq === 1 && (
+              <div className="px-5 sm:px-6 pb-6 text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-outline-variant/10 pt-4" dangerouslySetInnerHTML={{ __html: t.raw('seo_faq2_a') }} />
+            )}
           </div>
 
-          <div className="bg-surface-container-low p-6 md:p-8 rounded-2xl border border-outline-variant/10 hover:border-outline-variant/30 transition-colors">
-            <h3 className="font-bold text-on-surface text-xl mb-3">{t('seo_text_77')}</h3>
-            <p className="text-on-surface-variant leading-relaxed">{t('seo_text_78')}</p>
+          {/* FAQ 3 */}
+          <div className="bg-surface-container-low rounded-2xl border border-outline-variant/20 overflow-hidden shadow-xs transition-colors">
+            <button
+              id="faq-btn-3"
+              type="button"
+              onClick={() => toggleFaq(2)}
+              className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface hover:text-primary transition-colors cursor-pointer"
+            >
+              <span dangerouslySetInnerHTML={{ __html: t.raw('seo_faq3_q') }} />
+              <ChevronDown className={`w-5 h-5 shrink-0 text-on-surface-variant transition-transform duration-200 ${openFaq === 2 ? 'rotate-180' : ''}`} />
+            </button>
+            {openFaq === 2 && (
+              <div className="px-5 sm:px-6 pb-6 text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-outline-variant/10 pt-4" dangerouslySetInnerHTML={{ __html: t.raw('seo_faq3_a') }} />
+            )}
           </div>
 
-          <div className="bg-surface-container-low p-6 md:p-8 rounded-2xl border border-outline-variant/10 hover:border-outline-variant/30 transition-colors">
-            <h3 className="font-bold text-on-surface text-xl mb-3">{t('seo_text_79')}</h3>
-            <p className="text-on-surface-variant leading-relaxed">{t('seo_text_80')}</p>
+          {/* FAQ 4 */}
+          <div className="bg-surface-container-low rounded-2xl border border-outline-variant/20 overflow-hidden shadow-xs transition-colors">
+            <button
+              id="faq-btn-4"
+              type="button"
+              onClick={() => toggleFaq(3)}
+              className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface hover:text-primary transition-colors cursor-pointer"
+            >
+              <span dangerouslySetInnerHTML={{ __html: t.raw('seo_faq4_q') }} />
+              <ChevronDown className={`w-5 h-5 shrink-0 text-on-surface-variant transition-transform duration-200 ${openFaq === 3 ? 'rotate-180' : ''}`} />
+            </button>
+            {openFaq === 3 && (
+              <div className="px-5 sm:px-6 pb-6 text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-outline-variant/10 pt-4" dangerouslySetInnerHTML={{ __html: t.raw('seo_faq4_a') }} />
+            )}
           </div>
 
-          <div className="bg-surface-container-low p-6 md:p-8 rounded-2xl border border-outline-variant/10 hover:border-outline-variant/30 transition-colors">
-            <h3 className="font-bold text-on-surface text-xl mb-3">{t('seo_text_81')}</h3>
-            <p className="text-on-surface-variant leading-relaxed">{t('seo_text_82')}</p>
+          {/* FAQ 5 */}
+          <div className="bg-surface-container-low rounded-2xl border border-outline-variant/20 overflow-hidden shadow-xs transition-colors">
+            <button
+              id="faq-btn-5"
+              type="button"
+              onClick={() => toggleFaq(4)}
+              className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface hover:text-primary transition-colors cursor-pointer"
+            >
+              <span dangerouslySetInnerHTML={{ __html: t.raw('seo_faq5_q') }} />
+              <ChevronDown className={`w-5 h-5 shrink-0 text-on-surface-variant transition-transform duration-200 ${openFaq === 4 ? 'rotate-180' : ''}`} />
+            </button>
+            {openFaq === 4 && (
+              <div className="px-5 sm:px-6 pb-6 text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-outline-variant/10 pt-4" dangerouslySetInnerHTML={{ __html: t.raw('seo_faq5_a') }} />
+            )}
           </div>
+
+          {/* FAQ 6 */}
+          <div className="bg-surface-container-low rounded-2xl border border-outline-variant/20 overflow-hidden shadow-xs transition-colors">
+            <button
+              id="faq-btn-6"
+              type="button"
+              onClick={() => toggleFaq(5)}
+              className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-on-surface hover:text-primary transition-colors cursor-pointer"
+            >
+              <span dangerouslySetInnerHTML={{ __html: t.raw('seo_faq6_q') }} />
+              <ChevronDown className={`w-5 h-5 shrink-0 text-on-surface-variant transition-transform duration-200 ${openFaq === 5 ? 'rotate-180' : ''}`} />
+            </button>
+            {openFaq === 5 && (
+              <div className="px-5 sm:px-6 pb-6 text-xs sm:text-sm text-on-surface-variant leading-relaxed border-t border-outline-variant/10 pt-4" dangerouslySetInnerHTML={{ __html: t.raw('seo_faq6_a') }} />
+            )}
+          </div>
+
         </div>
       </section>
 

@@ -13,6 +13,9 @@ const nextConfig = {
   webpack: (config) => {
     config.ignoreWarnings = [
       { module: /node_modules\/next-intl/ },
+      { message: /PackFileCacheStrategy/ },
+      { message: /FileSystemInfo/ },
+      /next-intl/,
       /PackFileCacheStrategy/
     ];
     return config;

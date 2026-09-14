@@ -94,7 +94,7 @@ export default async function RootLayout({children, params}: {children: React.Re
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={`${inter.variable} ${jbMono.variable}`} suppressHydrationWarning>
+    <html lang={locale} className={`${inter.variable} ${jbMono.variable} scroll-smooth`} suppressHydrationWarning>
       <head>
         
         
